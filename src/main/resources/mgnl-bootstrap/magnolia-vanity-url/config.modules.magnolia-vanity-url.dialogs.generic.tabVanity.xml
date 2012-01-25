@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sv:node sv:name="tabVanity" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mgnl:contentNode</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>mix:lockable</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5e44cea1-9f7c-4666-ba38-861854a20d9c</sv:value>
+  </sv:property>
+  <sv:property sv:name="controlType" sv:type="String">
+    <sv:value>tab</sv:value>
+  </sv:property>
+  <sv:property sv:name="i18nBasename" sv:type="String">
+    <sv:value>com.aperto.magkit.vanity.messages</sv:value>
+  </sv:property>
+  <sv:property sv:name="label" sv:type="String">
+    <sv:value>generic.vanityUrl.label</sv:value>
+  </sv:property>
+  <sv:node sv:name="MetaData">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mgnl:metaData</sv:value>
+    </sv:property>
+    <sv:property sv:name="mgnl:authorid" sv:type="String">
+      <sv:value>superuser</sv:value>
+    </sv:property>
+    <sv:property sv:name="mgnl:creationdate" sv:type="Date">
+      <sv:value>2012-01-24T15:01:06.407+01:00</sv:value>
+    </sv:property>
+    <sv:property sv:name="mgnl:lastmodified" sv:type="Date">
+      <sv:value>2012-01-24T16:08:08.025+01:00</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="vanityUrl">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mgnl:contentNode</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>mix:lockable</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>232dce49-237c-4b27-a3bd-e609c6d2b55d</sv:value>
+    </sv:property>
+    <sv:property sv:name="controlType" sv:type="String">
+      <sv:value>edit</sv:value>
+    </sv:property>
+    <sv:property sv:name="description" sv:type="String">
+      <sv:value>generic.vanityUrl.description</sv:value>
+    </sv:property>
+    <sv:property sv:name="label" sv:type="String">
+      <sv:value>generic.vanityUrl.label</sv:value>
+    </sv:property>
+    <sv:node sv:name="MetaData">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mgnl:metaData</sv:value>
+      </sv:property>
+      <sv:property sv:name="mgnl:authorid" sv:type="String">
+        <sv:value>superuser</sv:value>
+      </sv:property>
+      <sv:property sv:name="mgnl:creationdate" sv:type="Date">
+        <sv:value>2011-05-11T15:45:19.405+02:00</sv:value>
+      </sv:property>
+      <sv:property sv:name="mgnl:lastmodified" sv:type="Date">
+        <sv:value>2012-01-24T15:01:21.352+01:00</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
