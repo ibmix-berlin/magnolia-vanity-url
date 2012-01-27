@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="vanity" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sv:node sv:name="excludes" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>mgnl:contentNode</sv:value>
   </sv:property>
@@ -7,10 +7,10 @@
     <sv:value>mix:lockable</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>5f68832f-e612-4682-b7f9-85a6f2ec87ff</sv:value>
+    <sv:value>0025d34c-a4cd-4b03-9a02-f5532de25ab9</sv:value>
   </sv:property>
-  <sv:property sv:name="class" sv:type="String">
-    <sv:value>com.aperto.magnolia.vanity.VanityUrlPage</sv:value>
+  <sv:property sv:name="dotall" sv:type="String">
+    <sv:value>.*\..*</sv:value>
   </sv:property>
   <sv:node sv:name="MetaData">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -20,10 +20,10 @@
       <sv:value>superuser</sv:value>
     </sv:property>
     <sv:property sv:name="mgnl:creationdate" sv:type="Date">
-      <sv:value>2012-01-24T16:51:12.308+01:00</sv:value>
+      <sv:value>2012-01-26T16:49:01.679+01:00</sv:value>
     </sv:property>
     <sv:property sv:name="mgnl:lastmodified" sv:type="Date">
-      <sv:value>2012-01-24T17:03:46.048+01:00</sv:value>
+      <sv:value>2012-01-26T17:22:36.764+01:00</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>

@@ -13,7 +13,7 @@
     <sv:value>tab</sv:value>
   </sv:property>
   <sv:property sv:name="i18nBasename" sv:type="String">
-    <sv:value>com.aperto.magkit.vanity.messages</sv:value>
+    <sv:value>com.aperto.magnolia.vanity.messages</sv:value>
   </sv:property>
   <sv:property sv:name="label" sv:type="String">
     <sv:value>generic.vanityUrl.label</sv:value>

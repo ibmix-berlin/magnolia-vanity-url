@@ -1,4 +1,4 @@
-package com.aperto.magkit.vanity;
+package com.aperto.magnolia.vanity;
 
 import info.magnolia.cms.beans.config.VirtualURIMapping;
 import info.magnolia.cms.core.Content;
@@ -10,14 +10,17 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.RepositoryException;
 import java.text.MessageFormat;
-import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.PatternSyntaxException;
 
 import static info.magnolia.cms.beans.config.ContentRepository.WEBSITE;
 import static info.magnolia.cms.core.search.Query.SQL;
+import static info.magnolia.link.LinkUtil.createAbsoluteLink;
 import static org.apache.commons.lang.StringUtils.EMPTY;
-import static org.apache.commons.lang.StringUtils.contains;
 import static org.apache.commons.lang.StringUtils.isNotBlank;
-import static org.apache.commons.lang.StringUtils.startsWithAny;
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+import static org.apache.commons.lang.StringUtils.removeStart;
 
 /**
  * Virtual Uri Mapping of vanity URLs.
@@ -27,26 +30,39 @@ import static org.apache.commons.lang.StringUtils.startsWithAny;
  */
 public class VirtualVanityUriMapping implements VirtualURIMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
-    private static final String QUERY = "select * from nt:base where vanityUrl = ''{0}''";
-    private static final String[] DO_NOT_CHECK_STARTS = {"/docroot", "/.", "/dms/", "/rss/", "/tmp/", "/mediaObject/"};
+    private static final String QUERY = "select * from mgnl:content where vanityUrl = ''{0}''";
 
     // CHECKSTYLE:OFF
     public MappingResult mapURI(String uri) {
         // CHECKSTYLE:ON
         MappingResult result = null;
-        if (isContentUri(uri)) {
-            String toUri = getUriOfVanityUrl(uri);
-            if (isNotBlank(toUri)) {
-                result = new MappingResult();
-                result.setToURI(toUri);
-                result.setLevel(uri.length());
+        try {
+            if (isVanityCandidate(uri)) {
+                String toUri = getUriOfVanityUrl(uri);
+                if (isNotBlank(toUri)) {
+                    result = new MappingResult();
+                    result.setToURI(toUri);
+                    result.setLevel(uri.length());
+                }
             }
+        } catch (PatternSyntaxException e) {
+            LOGGER.error("A vanity url exclude pattern is not set correctly.", e);
         }
         return result;
     }
 
-    private boolean isContentUri(String uri) {
-        return !startsWithAny(uri, DO_NOT_CHECK_STARTS) && !contains(uri, "/resources/");
+    private boolean isVanityCandidate(String uri) {
+        boolean contentUri = true;
+        Map<String, String> excludes = VanityUrlModule.getInstance().getExcludes();
+        if (excludes != null) {
+            for (String exclude : excludes.values()) {
+                if (isNotEmpty(uri) && isNotEmpty(exclude) && uri.matches(exclude)) {
+                    contentUri = false;
+                    break;
+                }
+            }
+        }
+        return contentUri;
     }
 
     private String getUriOfVanityUrl(String vanityUrl) {
@@ -55,11 +71,10 @@ public class VirtualVanityUriMapping implements VirtualURIMapping {
         try {
             Query query = MgnlContext.getQueryManager(WEBSITE).createQuery(searchQuery, SQL);
             QueryResult queryResult = query.execute();
-            if (queryResult != null && queryResult.getContent().size() > 0) {
-                Collection<Content> list = queryResult.getContent();
-                if (list != null && !list.isEmpty()) {
-                    uri = "redirect:" + ((Content) list.toArray()[0]).getHandle() + ".html";
-                }
+            List<Content> result = (List<Content>) queryResult.getContent();
+            if (!result.isEmpty()) {
+                String contextPath = MgnlContext.getWebContext().getRequest().getContextPath();
+                uri = "redirect:" + removeStart(createAbsoluteLink(result.get(0)), contextPath);
             }
         } catch (RepositoryException e) {
             LOGGER.warn("Can't check correct template.", e);

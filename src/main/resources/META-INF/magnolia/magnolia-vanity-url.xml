@@ -4,21 +4,13 @@
   <name>magnolia-vanity-url</name>
   <displayName>${project.name}</displayName>
   <description>${project.description}</description>
-  <class>com.aperto.magkit.vanity.VanityUrlModule</class>
-  <versionHandler>com.aperto.magkit.vanity.setup.VanityUrlModuleVersionHandler</versionHandler>
+  <class>com.aperto.magnolia.vanity.VanityUrlModule</class>
+  <versionHandler>com.aperto.magnolia.vanity.setup.VanityUrlModuleVersionHandler</versionHandler>
   <version>${project.version}</version>
-
   <dependencies>
     <dependency>
       <name>core</name>
-      <version>4.4.4/*</version>
+      <version>4.4.1/*</version>
     </dependency>
-  <!-- Use the extended-templating-kit with the enterprise edition. -->
-  <!--
-    <dependency>
-      <name>extended-templating-kit</name>
-      <version>1.3/*</version>
-    </dependency>
-  -->
   </dependencies>
 </module>
