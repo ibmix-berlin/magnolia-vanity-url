@@ -51,6 +51,9 @@
     <sv:property sv:name="label" sv:type="String">
       <sv:value>generic.vanityUrl.label</sv:value>
     </sv:property>
+    <sv:property sv:name="validationPattern" sv:type="String">
+      <sv:value>/.+</sv:value>
+    </sv:property>
     <sv:node sv:name="MetaData">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mgnl:metaData</sv:value>
@@ -62,7 +65,7 @@
         <sv:value>2011-05-11T15:45:19.405+02:00</sv:value>
       </sv:property>
       <sv:property sv:name="mgnl:lastmodified" sv:type="Date">
-        <sv:value>2012-01-24T15:01:21.352+01:00</sv:value>
+        <sv:value>2012-02-08T12:36:08.074+01:00</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>
