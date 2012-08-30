@@ -1,6 +1,6 @@
 package com.aperto.magnolia.vanity;
 
-import info.magnolia.cms.beans.config.VirtualURIMapping;
+import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
 import info.magnolia.cms.core.Content;
 import info.magnolia.cms.core.search.Query;
 import info.magnolia.cms.core.search.QueryResult;
@@ -17,10 +17,7 @@ import java.util.regex.PatternSyntaxException;
 import static info.magnolia.cms.beans.config.ContentRepository.WEBSITE;
 import static info.magnolia.cms.core.search.Query.SQL;
 import static info.magnolia.link.LinkUtil.createAbsoluteLink;
-import static org.apache.commons.lang.StringUtils.EMPTY;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
-import static org.apache.commons.lang.StringUtils.removeStart;
+import static org.apache.commons.lang.StringUtils.*;
 
 /**
  * Virtual Uri Mapping of vanity URLs.
@@ -28,18 +25,29 @@ import static org.apache.commons.lang.StringUtils.removeStart;
  *
  * @author diana.racho (Aperto AG)
  */
-public class VirtualVanityUriMapping implements VirtualURIMapping {
+public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
     private static final String QUERY = "select * from mgnl:content where vanityUrl = ''{0}''";
 
     // CHECKSTYLE:OFF
+    @Override
     public MappingResult mapURI(String uri) {
+        // CHECKSTYLE:ON
+        return mapURI(uri, null);
+    }
+
+    // CHECKSTYLE:OFF
+    @Override
+    public MappingResult mapURI(String uri, String queryString) {
         // CHECKSTYLE:ON
         MappingResult result = null;
         try {
             if (isVanityCandidate(uri)) {
                 String toUri = getUriOfVanityUrl(uri);
                 if (isNotBlank(toUri)) {
+                    if (isNotBlank(queryString)) {
+                        toUri = toUri.concat(queryString);
+                    }
                     result = new MappingResult();
                     result.setToURI(toUri);
                     result.setLevel(uri.length());
@@ -81,4 +89,5 @@ public class VirtualVanityUriMapping implements VirtualURIMapping {
         }
         return uri;
     }
+
 }

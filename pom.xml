@@ -15,7 +15,7 @@
     <name>magnolia-vanity-url Magnolia Module</name>
 
     <properties>
-        <magnoliaVersion>4.4.4</magnoliaVersion>
+        <magnoliaVersion>4.4.6</magnoliaVersion>
     </properties>
 
     <dependencies>
