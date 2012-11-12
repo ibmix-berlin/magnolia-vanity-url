@@ -55,7 +55,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
                 String toUri = getUriOfVanityUrl(uri);
                 if (isNotBlank(toUri)) {
                     if (isNotBlank(queryString)) {
-                        toUri = toUri.concat(queryString);
+                        toUri = toUri.concat("?" + queryString);
                     }
                     result = new MappingResult();
                     result.setToURI(toUri);
