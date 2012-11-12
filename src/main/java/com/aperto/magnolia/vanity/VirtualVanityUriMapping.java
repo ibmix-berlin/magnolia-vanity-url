@@ -1,34 +1,42 @@
 package com.aperto.magnolia.vanity;
 
 import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
-import info.magnolia.cms.core.Content;
-import info.magnolia.cms.core.search.Query;
-import info.magnolia.cms.core.search.QueryResult;
 import info.magnolia.context.MgnlContext;
+import info.magnolia.templating.functions.TemplatingFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
+import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 import java.text.MessageFormat;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
-import static info.magnolia.cms.beans.config.ContentRepository.WEBSITE;
-import static info.magnolia.cms.core.search.Query.SQL;
-import static info.magnolia.link.LinkUtil.createAbsoluteLink;
+import static info.magnolia.repository.RepositoryConstants.WEBSITE;
+import static javax.jcr.query.Query.JCR_SQL2;
 import static org.apache.commons.lang.StringUtils.*;
 
 /**
  * Virtual Uri Mapping of vanity URLs.
  * Checks if current uri is set as vanity URL and redirect to the page which has set this vanity url.
- * TODO: use node api
  *
  * @author diana.racho (Aperto AG)
  */
 public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
-    private static final String QUERY = "select * from mgnl:content where vanityUrl = ''{0}''";
+    private static final String QUERY = "select * from [mgnl:page] where vanityUrl = ''{0}''";
+
+    private TemplatingFunctions _templatingFunctions;
+
+    @Inject
+    public void setTemplatingFunctions(TemplatingFunctions templatingFunctions) {
+        _templatingFunctions = templatingFunctions;
+    }
 
     // CHECKSTYLE:OFF
     @Override
@@ -78,17 +86,18 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         String uri = EMPTY;
         String searchQuery = MessageFormat.format(QUERY, new String[]{vanityUrl});
         try {
-            Query query = MgnlContext.getQueryManager(WEBSITE).createQuery(searchQuery, SQL);
+            Session jcrSession = MgnlContext.getJCRSession(WEBSITE);
+            QueryManager queryManager = jcrSession.getWorkspace().getQueryManager();
+            Query query = queryManager.createQuery(searchQuery, JCR_SQL2);
             QueryResult queryResult = query.execute();
-            List<Content> result = (List<Content>) queryResult.getContent();
-            if (!result.isEmpty()) {
+            NodeIterator nodes = queryResult.getNodes();
+            if (nodes.hasNext()) {
                 String contextPath = MgnlContext.getWebContext().getRequest().getContextPath();
-                uri = "redirect:" + removeStart(createAbsoluteLink(result.get(0)), contextPath);
+                uri = "redirect:" + removeStart(_templatingFunctions.link(nodes.nextNode()), contextPath);
             }
         } catch (RepositoryException e) {
             LOGGER.warn("Can't check correct template.", e);
         }
         return uri;
     }
-
 }

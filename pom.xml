@@ -34,6 +34,11 @@
 			<artifactId>magnolia-module-admininterface</artifactId>
 			<version>${magnoliaVersion}</version>
 		</dependency>
+		<dependency>
+			<groupId>info.magnolia</groupId>
+			<artifactId>magnolia-templating</artifactId>
+			<version>${magnoliaVersion}</version>
+		</dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
