@@ -32,10 +32,16 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private static final String QUERY = "select * from [mgnl:page] where vanityUrl = ''{0}''";
 
     private TemplatingFunctions _templatingFunctions;
+    private VanityUrlModule _vanityUrlModule;
 
     @Inject
     public void setTemplatingFunctions(TemplatingFunctions templatingFunctions) {
         _templatingFunctions = templatingFunctions;
+    }
+
+    @Inject
+    public void setVanityUrlModule(VanityUrlModule vanityUrlModule) {
+        _vanityUrlModule = vanityUrlModule;
     }
 
     // CHECKSTYLE:OFF
@@ -70,7 +76,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
 
     private boolean isVanityCandidate(String uri) {
         boolean contentUri = true;
-        Map<String, String> excludes = VanityUrlModule.getInstance().getExcludes();
+        Map<String, String> excludes = _vanityUrlModule.getExcludes();
         if (excludes != null) {
             for (String exclude : excludes.values()) {
                 if (isNotEmpty(uri) && isNotEmpty(exclude) && uri.matches(exclude)) {
