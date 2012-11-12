@@ -22,6 +22,7 @@ import static org.apache.commons.lang.StringUtils.*;
 /**
  * Virtual Uri Mapping of vanity URLs.
  * Checks if current uri is set as vanity URL and redirect to the page which has set this vanity url.
+ * TODO: use node api
  *
  * @author diana.racho (Aperto AG)
  */

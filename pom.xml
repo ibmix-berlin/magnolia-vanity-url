@@ -15,7 +15,7 @@
     <name>magnolia-vanity-url Magnolia Module</name>
 
     <properties>
-        <magnoliaVersion>4.4.6</magnoliaVersion>
+        <magnoliaVersion>4.5.4</magnoliaVersion>
     </properties>
 
     <dependencies>
@@ -37,8 +37,6 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- TEST -->
@@ -55,9 +53,9 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
+                <excludes>
+                    <exclude>META-INF/magnolia/*</exclude>
+                </excludes>
             </resource>
             <resource>
                 <filtering>true</filtering>

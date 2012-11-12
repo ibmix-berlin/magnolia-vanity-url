@@ -10,7 +10,7 @@
   <dependencies>
     <dependency>
       <name>core</name>
-      <version>4.4.1/*</version>
+      <version>${magnoliaVersion}/*</version>
     </dependency>
   </dependencies>
 </module>

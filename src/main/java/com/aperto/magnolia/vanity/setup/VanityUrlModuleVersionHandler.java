@@ -9,12 +9,10 @@ import info.magnolia.nodebuilder.task.NodeBuilderTask;
 import java.util.ArrayList;
 import java.util.List;
 
-import static info.magnolia.cms.beans.config.ContentRepository.CONFIG;
-import static info.magnolia.cms.core.ItemType.CONTENTNODE;
-import static info.magnolia.nodebuilder.Ops.addNode;
-import static info.magnolia.nodebuilder.Ops.addProperty;
-import static info.magnolia.nodebuilder.Ops.getNode;
+import static info.magnolia.cms.core.MgnlNodeType.NT_CONTENTNODE;
+import static info.magnolia.nodebuilder.Ops.*;
 import static info.magnolia.nodebuilder.task.ErrorHandling.logging;
+import static info.magnolia.repository.RepositoryConstants.CONFIG;
 
 /**
  * Module version handler of this magnolia module.
@@ -24,7 +22,7 @@ import static info.magnolia.nodebuilder.task.ErrorHandling.logging;
 public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
     private static final String STANDARD_TEMPLATING_KIT = "standard-templating-kit";
 
-    private static final NodeOperation VANITY_OPS = addNode("vanityUrl", CONTENTNODE.getSystemName()).then(
+    private static final NodeOperation VANITY_OPS = addNode("vanityUrl", NT_CONTENTNODE).then(
         addProperty("reference", "/modules/magnolia-vanity-url/dialogs/generic/tabVanity")
     );
 
@@ -51,7 +49,7 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
     );
 
     private final Task _adminPageConfig = new NodeBuilderTask("Page Config", "Add Admin Central Page for Vanity Url", logging, CONFIG, "/modules/adminInterface",
-        getNode("config/menu/tools").then(addNode("vanityUrl", CONTENTNODE.getSystemName()).then(
+        getNode("config/menu/tools").then(addNode("vanityUrl", NT_CONTENTNODE).then(
             addProperty("i18nBasename", "com.aperto.magnolia.vanity.messages"),
             addProperty("icon", "/.resources/icons/16/dot.gif"),
             addProperty("label", "menu.tools.vanity"),
