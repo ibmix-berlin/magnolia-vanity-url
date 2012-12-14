@@ -71,4 +71,18 @@
             </resource>
         </resources>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>aperto.nexus.releases</id>
+            <name>aperto.nexus.releases</name>
+            <url>https://maven.aperto.de/nexus/content/repositories/aperto.magkit.releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>aperto.nexus.snapshots</id>
+            <name>aperto.nexus.snapshots</name>
+            <url>https://maven.aperto.de/nexus/content/repositories/aperto.magkit.snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
