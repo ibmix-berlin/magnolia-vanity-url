@@ -16,6 +16,7 @@
 
     <properties>
         <magnoliaVersion>4.5.4</magnoliaVersion>
+        <magnolia.stk.version>2.0.4</magnolia.stk.version>
     </properties>
 
     <dependencies>
