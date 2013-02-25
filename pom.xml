@@ -21,11 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>info.magnolia</groupId>
-            <artifactId>magnolia-core</artifactId>
-            <version>${magnoliaVersion}</version>
-        </dependency>
-        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
@@ -35,11 +30,11 @@
 			<artifactId>magnolia-module-admininterface</artifactId>
 			<version>${magnoliaVersion}</version>
 		</dependency>
-		<dependency>
-			<groupId>info.magnolia</groupId>
-			<artifactId>magnolia-templating</artifactId>
-			<version>${magnoliaVersion}</version>
-		</dependency>
+        <dependency>
+            <groupId>info.magnolia</groupId>
+            <artifactId>magnolia-module-standard-templating-kit</artifactId>
+            <version>${magnolia.stk.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>

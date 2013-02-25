@@ -1,7 +1,10 @@
 package com.aperto.magnolia.vanity;
 
 import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
+import info.magnolia.cms.core.AggregationState;
 import info.magnolia.context.MgnlContext;
+import info.magnolia.module.templatingkit.ExtendedAggregationState;
+import info.magnolia.module.templatingkit.sites.Site;
 import info.magnolia.templating.functions.TemplatingFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,7 +93,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
 
     private String getUriOfVanityUrl(String vanityUrl) {
         String uri = EMPTY;
-        String searchQuery = MessageFormat.format(QUERY, new String[]{vanityUrl});
+        String searchQuery = buildSearchQuery(vanityUrl);
         try {
             Session jcrSession = MgnlContext.getJCRSession(WEBSITE);
             QueryManager queryManager = jcrSession.getWorkspace().getQueryManager();
@@ -105,5 +108,23 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
             LOGGER.warn("Can't check correct template.", e);
         }
         return uri;
+    }
+
+    private String buildSearchQuery(final String vanityUrl) {
+        String query = MessageFormat.format(QUERY, new String[]{vanityUrl});
+
+        AggregationState aggregationState = MgnlContext.getAggregationState();
+        if (aggregationState instanceof ExtendedAggregationState) {
+            LOGGER.debug("Extended aggregation state found, so try to restrict query on site only.");
+            Site site = ((ExtendedAggregationState) aggregationState).getSite();
+            String siteName = site.getName();
+            if (!"default".equals(siteName)) {
+                LOGGER.debug("Custom site found: {}, use the site name for query.", siteName);
+                query += " and ISDESCENDANTNODE('/" + siteName + "')";
+            }
+        }
+
+        LOGGER.debug("Query for vanity url is: {}.", query);
+        return query;
     }
 }
