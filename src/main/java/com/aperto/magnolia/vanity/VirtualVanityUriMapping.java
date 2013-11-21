@@ -1,6 +1,7 @@
 package com.aperto.magnolia.vanity;
 
 import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
+import info.magnolia.cms.beans.config.URI2RepositoryMapping;
 import info.magnolia.cms.core.AggregationState;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.module.templatingkit.ExtendedAggregationState;
@@ -119,8 +120,18 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
             Site site = ((ExtendedAggregationState) aggregationState).getSite();
             String siteName = site.getName();
             if (!"default".equals(siteName)) {
+                String searchBase = "/" + siteName;
+                Map<String, URI2RepositoryMapping> mappings = site.getMappings();
+                URI2RepositoryMapping websiteMapping = mappings.get(WEBSITE);
+                if (websiteMapping != null) {
+                    String handlePrefix = websiteMapping.getHandlePrefix();
+                    if (isNotBlank(handlePrefix)) {
+                        searchBase = handlePrefix;
+                    }
+                }
+
                 LOGGER.debug("Custom site found: {}, use the site name for query.", siteName);
-                query += " and ISDESCENDANTNODE('/" + siteName + "')";
+                query += " and ISDESCENDANTNODE('" + searchBase + "')";
             }
         }
 
