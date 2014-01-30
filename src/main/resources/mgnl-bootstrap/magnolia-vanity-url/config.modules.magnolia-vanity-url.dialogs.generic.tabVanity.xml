@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="tabVanity" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sv:node sv:name="tabVanity" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>mgnl:contentNode</sv:value>
   </sv:property>
-  <sv:property sv:name="jcr:mixinTypes" sv:type="Name">
+  <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
     <sv:value>mix:lockable</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
@@ -15,12 +15,18 @@
   <sv:property sv:name="i18nBasename" sv:type="String">
     <sv:value>com.aperto.magnolia.vanity.messages</sv:value>
   </sv:property>
+  <sv:property sv:name="jcr:createdBy" sv:type="String">
+    <sv:value>admin</sv:value>
+  </sv:property>
   <sv:property sv:name="label" sv:type="String">
     <sv:value>generic.vanityUrl.label</sv:value>
   </sv:property>
   <sv:node sv:name="MetaData">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>mgnl:metaData</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="mgnl:authorid" sv:type="String">
       <sv:value>superuser</sv:value>
@@ -36,20 +42,26 @@
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>mgnl:contentNode</sv:value>
     </sv:property>
-    <sv:property sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mix:lockable</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
       <sv:value>232dce49-237c-4b27-a3bd-e609c6d2b55d</sv:value>
     </sv:property>
     <sv:property sv:name="controlType" sv:type="String">
-      <sv:value>edit</sv:value>
+      <sv:value>multiselect</sv:value>
     </sv:property>
     <sv:property sv:name="description" sv:type="String">
       <sv:value>generic.vanityUrl.description</sv:value>
     </sv:property>
+    <sv:property sv:name="jcr:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
     <sv:property sv:name="label" sv:type="String">
       <sv:value>generic.vanityUrl.label</sv:value>
+    </sv:property>
+    <sv:property sv:name="saveHandler" sv:type="String">
+      <sv:value>info.magnolia.module.admininterface.MultiValueSaveHandler</sv:value>
     </sv:property>
     <sv:property sv:name="validationPattern" sv:type="String">
       <sv:value>/.+</sv:value>
@@ -58,6 +70,9 @@
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mgnl:metaData</sv:value>
       </sv:property>
+      <sv:property sv:name="jcr:createdBy" sv:type="String">
+        <sv:value>admin</sv:value>
+      </sv:property>
       <sv:property sv:name="mgnl:authorid" sv:type="String">
         <sv:value>superuser</sv:value>
       </sv:property>
@@ -65,7 +80,7 @@
         <sv:value>2011-05-11T15:45:19.405+02:00</sv:value>
       </sv:property>
       <sv:property sv:name="mgnl:lastmodified" sv:type="Date">
-        <sv:value>2012-02-08T12:36:08.074+01:00</sv:value>
+        <sv:value>2014-01-30T15:10:36.883+01:00</sv:value>
       </sv:property>
     </sv:node>
   </sv:node>

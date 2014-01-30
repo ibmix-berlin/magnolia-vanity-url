@@ -2,6 +2,7 @@ package com.aperto.magnolia.vanity.setup;
 
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
+import info.magnolia.module.delta.DeltaBuilder;
 import info.magnolia.module.delta.Task;
 import info.magnolia.nodebuilder.NodeOperation;
 import info.magnolia.nodebuilder.task.NodeBuilderTask;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static info.magnolia.cms.core.MgnlNodeType.NT_CONTENTNODE;
+import static info.magnolia.module.delta.DeltaBuilder.update;
 import static info.magnolia.nodebuilder.Ops.*;
 import static info.magnolia.nodebuilder.task.ErrorHandling.logging;
 import static info.magnolia.repository.RepositoryConstants.CONFIG;
@@ -51,11 +53,18 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
     private final Task _adminPageConfig = new NodeBuilderTask("Page Config", "Add Admin Central Page for Vanity Url", logging, CONFIG, "/modules/adminInterface",
         getNode("config/menu/tools").then(addNode("vanityUrl", NT_CONTENTNODE).then(
             addProperty("i18nBasename", "com.aperto.magnolia.vanity.messages"),
-            addProperty("icon", "/.resources/icons/16/dot.gif"),
+            addProperty("icon", "/.resources/icons/16/compass.gif"),
             addProperty("label", "menu.tools.vanity"),
             addProperty("onclick", "MgnlAdminCentral.showContent('/.magnolia/pages/vanity.html');")
         ))
     );
+
+    public VanityUrlModuleVersionHandler() {
+        DeltaBuilder delta = update("1.0.3", "Change property type of existing vanity urls.").addTask(
+            new MigrateVanityPropertiesTask()
+        );
+        register(delta);
+    }
 
     protected List<Task> getExtraInstallTasks(InstallContext installContext) {
         List<Task> tasks = new ArrayList<Task>();

@@ -1,23 +1,25 @@
 package com.aperto.magnolia.vanity;
 
-import info.magnolia.cms.core.Content;
-import info.magnolia.cms.core.search.Query;
-import info.magnolia.cms.core.search.QueryResult;
 import info.magnolia.cms.i18n.Messages;
-import info.magnolia.context.MgnlContext;
 import info.magnolia.module.admininterface.TemplatedMVCHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import static info.magnolia.cms.beans.config.ContentRepository.WEBSITE;
-import static info.magnolia.cms.core.search.Query.SQL;
-import static info.magnolia.cms.util.NodeDataUtil.getString;
+import static info.magnolia.cms.util.QueryUtil.search;
 import static info.magnolia.freemarker.FreemarkerUtil.createTemplateName;
+import static info.magnolia.jcr.util.NodeUtil.asIterable;
+import static info.magnolia.jcr.util.NodeUtil.asList;
+import static info.magnolia.jcr.util.PropertyUtil.getValuesStringList;
+import static info.magnolia.repository.RepositoryConstants.WEBSITE;
+import static org.apache.commons.lang.StringUtils.join;
 
 /**
  * Collects vanity urls and page handles for overview in AdminCentral page.
@@ -27,8 +29,8 @@ import static info.magnolia.freemarker.FreemarkerUtil.createTemplateName;
  */
 public class VanityUrlPage extends TemplatedMVCHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(VanityUrlPage.class);
-    private static final String ND_VANITY = "vanityUrl";
-    private static final String QUERY = "SELECT * from mgnl:content where " + ND_VANITY + " IS NOT NULL";
+    public static final String PN_VANITY = "vanityUrl";
+    private static final String QUERY = "select * from [mgnl:page] where " + PN_VANITY + " is not null";
 
     public VanityUrlPage(String name, HttpServletRequest request, HttpServletResponse response) {
         super(name, request, response);
@@ -38,18 +40,27 @@ public class VanityUrlPage extends TemplatedMVCHandler {
     public Map<String, String> getUriListOfVanityUrl() {
         Map<String, String> uriList = new TreeMap<String, String>();
         try {
-            Query query = MgnlContext.getQueryManager(WEBSITE).createQuery(QUERY, SQL);
-            QueryResult queryResult = query.execute();
-            Collection<Content> result = queryResult.getContent();
-            if (!result.isEmpty()) {
-                for (Content content : result) {
-                    uriList.put(content.getHandle(), getString(content, ND_VANITY));
+            List<Node> nodes = queryVanityTargetNodes();
+            for (Node node : nodes) {
+                if (node.hasProperty(PN_VANITY)) {
+                    List<String> values = getValuesStringList(node.getProperty(PN_VANITY).getValues());
+                    uriList.put(node.getPath(), join(values.toArray(new String[values.size()]), ','));
                 }
             }
         } catch (RepositoryException e) {
             LOGGER.warn("Can't execute query for vanity urls.", e);
         }
         return uriList;
+    }
+
+    /**
+     * Query for vanity url configuration.
+     *
+     * @return List of nodes.
+     * @throws RepositoryException
+     */
+    public static List<Node> queryVanityTargetNodes() throws RepositoryException {
+        return asList(asIterable(search(WEBSITE, QUERY)));
     }
 
     public Messages getMessages() {

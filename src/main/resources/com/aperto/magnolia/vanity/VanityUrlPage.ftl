@@ -55,7 +55,7 @@
         <table class="data">
             <tr><th>${this.messages.get("page.vanity")}</th><th>${this.messages.get("page.handle")}</th></tr>
 [#list uriList?keys as key]
-            <tr><td>${uriList[key]}</td><td><a href="${this.request.contextPath}${key}" target="_blank">${key}</a></td></tr>
+            <tr><td>${uriList[key]?replace(',', '<br/>')}</td><td><a href="${this.request.contextPath}${key}" target="_blank">${key}</a></td></tr>
 [/#list]
         </table>
 [#else]
