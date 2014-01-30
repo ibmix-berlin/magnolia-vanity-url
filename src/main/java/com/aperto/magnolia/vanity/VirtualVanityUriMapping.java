@@ -92,7 +92,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         return contentUri;
     }
 
-    private String getUriOfVanityUrl(String vanityUrl) {
+    protected String getUriOfVanityUrl(String vanityUrl) {
         String uri = EMPTY;
         String searchQuery = buildSearchQuery(vanityUrl);
         try {
