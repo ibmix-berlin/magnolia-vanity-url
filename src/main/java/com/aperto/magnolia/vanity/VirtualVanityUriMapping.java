@@ -21,6 +21,7 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
+import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static javax.jcr.query.Query.JCR_SQL2;
 import static org.apache.commons.lang.StringUtils.*;
@@ -103,7 +104,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
             NodeIterator nodes = queryResult.getNodes();
             if (nodes.hasNext()) {
                 String contextPath = MgnlContext.getWebContext().getRequest().getContextPath();
-                uri = "redirect:" + removeStart(_templatingFunctions.link(nodes.nextNode()), contextPath);
+                uri = REDIRECT_PREFIX + removeStart(_templatingFunctions.link(nodes.nextNode()), contextPath);
             }
         } catch (RepositoryException e) {
             LOGGER.warn("Can't check correct template.", e);
