@@ -2,6 +2,7 @@ package com.aperto.magnolia.vanity.setup;
 
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
+import info.magnolia.module.delta.BootstrapSingleModuleResource;
 import info.magnolia.module.delta.DeltaBuilder;
 import info.magnolia.module.delta.Task;
 import info.magnolia.nodebuilder.NodeOperation;
@@ -60,9 +61,9 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
     );
 
     public VanityUrlModuleVersionHandler() {
-        DeltaBuilder delta = update("1.0.3", "Change property type of existing vanity urls.").addTask(
-            new MigrateVanityPropertiesTask()
-        );
+        DeltaBuilder delta = update("1.0.3", "Change property type of existing vanity urls.")
+            .addTask(new BootstrapSingleModuleResource("Bootstrap new dialog", "Bootstrap new dialog definition.", "mgnl-bootstrap/magnolia-vanity-url/config.modules.magnolia-vanity-url.dialogs.generic.tabVanity.xml"))
+            .addTask(new MigrateVanityPropertiesTask());
         register(delta);
     }
 
