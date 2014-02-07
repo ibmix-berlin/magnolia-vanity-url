@@ -62,7 +62,7 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
 
     public VanityUrlModuleVersionHandler() {
         DeltaBuilder delta = update("1.0.3", "Change property type of existing vanity urls.")
-            .addTask(new BootstrapSingleModuleResource("Bootstrap new dialog", "Bootstrap new dialog definition.", "mgnl-bootstrap/magnolia-vanity-url/config.modules.magnolia-vanity-url.dialogs.generic.tabVanity.xml"))
+            .addTask(new BootstrapSingleModuleResource("Bootstrap new dialog", "Bootstrap new dialog definition.", "config.modules.magnolia-vanity-url.dialogs.generic.tabVanity.xml"))
             .addTask(new MigrateVanityPropertiesTask());
         register(delta);
     }
