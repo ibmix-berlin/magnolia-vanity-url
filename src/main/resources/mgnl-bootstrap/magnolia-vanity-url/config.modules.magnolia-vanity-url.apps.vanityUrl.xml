@@ -1840,11 +1840,8 @@
                 <sv:property sv:name="class" sv:type="String">
                   <sv:value>info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition</sv:value>
                 </sv:property>
-                <sv:property sv:name="editable" sv:type="String">
-                  <sv:value>true</sv:value>
-                </sv:property>
                 <sv:property sv:name="expandRatio" sv:type="Double">
-                  <sv:value>2.0</sv:value>
+                  <sv:value>3.0</sv:value>
                 </sv:property>
                 <sv:property sv:name="jcr:createdBy" sv:type="String">
                   <sv:value>admin</sv:value>
@@ -1865,13 +1862,60 @@
                   <sv:value>superuser</sv:value>
                 </sv:property>
                 <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-                  <sv:value>2014-05-05T16:18:21.076+02:00</sv:value>
+                  <sv:value>2014-05-05T17:34:42.457+02:00</sv:value>
                 </sv:property>
                 <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
                   <sv:value>superuser</sv:value>
                 </sv:property>
                 <sv:property sv:name="propertyName" sv:type="String">
                   <sv:value>vanityUrl</sv:value>
+                </sv:property>
+                <sv:property sv:name="sortable" sv:type="String">
+                  <sv:value>true</sv:value>
+                </sv:property>
+              </sv:node>
+              <sv:node sv:name="site">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                  <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+                  <sv:value>mix:lockable</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:uuid" sv:type="String">
+                  <sv:value>c7afa0cb-9cc0-4ebb-9b69-d6397b2ccb5e</sv:value>
+                </sv:property>
+                <sv:property sv:name="class" sv:type="String">
+                  <sv:value>info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition</sv:value>
+                </sv:property>
+                <sv:property sv:name="expandRatio" sv:type="Double">
+                  <sv:value>1.0</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:createdBy" sv:type="String">
+                  <sv:value>admin</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
+                  <sv:value>false</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:created" sv:type="Date">
+                  <sv:value>2014-05-05T17:31:37.006+02:00</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:createdBy" sv:type="String">
+                  <sv:value>superuser</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
+                  <sv:value>2014-05-05T17:31:37.008+02:00</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
+                  <sv:value>superuser</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+                  <sv:value>2014-05-05T17:32:11.639+02:00</sv:value>
+                </sv:property>
+                <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+                  <sv:value>superuser</sv:value>
+                </sv:property>
+                <sv:property sv:name="propertyName" sv:type="String">
+                  <sv:value>site</sv:value>
                 </sv:property>
                 <sv:property sv:name="sortable" sv:type="String">
                   <sv:value>true</sv:value>
