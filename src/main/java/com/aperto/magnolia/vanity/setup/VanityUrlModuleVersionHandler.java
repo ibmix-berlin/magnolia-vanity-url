@@ -1,20 +1,16 @@
 package com.aperto.magnolia.vanity.setup;
 
+import info.magnolia.jcr.util.NodeTypes;
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
-import info.magnolia.module.delta.BootstrapSingleModuleResource;
-import info.magnolia.module.delta.DeltaBuilder;
 import info.magnolia.module.delta.Task;
-import info.magnolia.nodebuilder.NodeOperation;
+import info.magnolia.nodebuilder.task.ErrorHandling;
 import info.magnolia.nodebuilder.task.NodeBuilderTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static info.magnolia.cms.core.MgnlNodeType.NT_CONTENTNODE;
-import static info.magnolia.module.delta.DeltaBuilder.update;
-import static info.magnolia.nodebuilder.Ops.*;
-import static info.magnolia.nodebuilder.task.ErrorHandling.logging;
+import static info.magnolia.nodebuilder.Ops.addNode;
 import static info.magnolia.repository.RepositoryConstants.CONFIG;
 
 /**
@@ -23,56 +19,15 @@ import static info.magnolia.repository.RepositoryConstants.CONFIG;
  * @author frank.sommer
  */
 public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
-    private static final String STANDARD_TEMPLATING_KIT = "standard-templating-kit";
 
-    private static final NodeOperation VANITY_OPS = addNode("vanityUrl", NT_CONTENTNODE).then(
-        addProperty("reference", "/modules/magnolia-vanity-url/dialogs/generic/tabVanity")
+    private final Task _addAppToLauncher = new NodeBuilderTask("Add app to app launcher", "Add vanity url app to app launcher.", ErrorHandling.logging, CONFIG, "/modules/ui-admincentral/config/appLauncherLayout/groups/manage/apps",
+        addNode("vanityUrl", NodeTypes.ContentNode.NAME)
     );
 
-    private final Task _stkDialogs = new NodeBuilderTask("Dialogs", "Add Vanity URI Mapping to STK", logging, CONFIG, "/modules/standard-templating-kit",
-        getNode("dialogs/pages").then(
-            getNode("faq/stkFAQProperties").then(VANITY_OPS),
-            getNode("form/stkFormProperties").then(VANITY_OPS),
-            getNode("news/stkNewsProperties").then(VANITY_OPS),
-            getNode("event/stkEventProperties").then(VANITY_OPS),
-            getNode("home/stkHomeProperties").then(VANITY_OPS),
-            getNode("article/stkArticleProperties").then(VANITY_OPS),
-            getNode("section/stkSectionProperties").then(VANITY_OPS),
-            getNode("siteMap/stkSiteMapProperties").then(VANITY_OPS),
-            getNode("glossary/stkGlossaryProperties").then(VANITY_OPS),
-            getNode("glossary/stkGlossaryTermProperties").then(VANITY_OPS),
-            getNode("glossary/stkGlossaryLetterProperties").then(VANITY_OPS),
-            getNode("largeArticle/stkLargeArticleProperties").then(VANITY_OPS),
-            getNode("imageGallery/stkImageGalleryProperties").then(VANITY_OPS),
-            getNode("newsOverview/stkNewsOverviewProperties").then(VANITY_OPS),
-            getNode("eventsOverview/stkEventsOverviewProperties").then(VANITY_OPS),
-            getNode("searchResult/stkSearchResultProperties").then(VANITY_OPS),
-            getNode("categoryOverview/stkCategoryOverviewProperties").then(VANITY_OPS)
-        )
-    );
-
-    private final Task _adminPageConfig = new NodeBuilderTask("Page Config", "Add Admin Central Page for Vanity Url", logging, CONFIG, "/modules/adminInterface",
-        getNode("config/menu/tools").then(addNode("vanityUrl", NT_CONTENTNODE).then(
-            addProperty("i18nBasename", "com.aperto.magnolia.vanity.messages"),
-            addProperty("icon", "/.resources/icons/16/compass.gif"),
-            addProperty("label", "menu.tools.vanity"),
-            addProperty("onclick", "MgnlAdminCentral.showContent('/.magnolia/pages/vanity.html');")
-        ))
-    );
-
-    public VanityUrlModuleVersionHandler() {
-        DeltaBuilder delta = update("1.0.3", "Change property type of existing vanity urls.")
-            .addTask(new BootstrapSingleModuleResource("Bootstrap new dialog", "Bootstrap new dialog definition.", "config.modules.magnolia-vanity-url.dialogs.generic.tabVanity.xml"))
-            .addTask(new MigrateVanityPropertiesTask());
-        register(delta);
-    }
-
-    protected List<Task> getExtraInstallTasks(InstallContext installContext) {
-        List<Task> tasks = new ArrayList<Task>();
-        tasks.add(_adminPageConfig);
-        if (installContext.isModuleRegistered(STANDARD_TEMPLATING_KIT)) {
-            tasks.add(_stkDialogs);
-        }
+    @Override
+    protected List<Task> getExtraInstallTasks(final InstallContext installContext) {
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(_addAppToLauncher);
         return tasks;
     }
 }

@@ -1,0 +1,7 @@
+<nodeTypes xmlns:mgnl="http://www.magnolia.info/jcr/mgnl">
+    <nodeType name="mgnl:vanityUrl" isMixin="false" hasOrderableChildNodes="true" primaryItemName="">
+        <supertypes>
+            <supertype>mgnl:content</supertype>
+        </supertypes>
+    </nodeType>
+</nodeTypes>

@@ -5,18 +5,21 @@
     <parent>
 		<groupId>com.aperto</groupId>
 		<artifactId>aperto-pom</artifactId>
-		<version>1.5.1</version>
+		<version>1.7.2</version>
 	</parent>
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
-    <version>1.0.4</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>magnolia-vanity-url Magnolia Module</name>
 
     <properties>
-        <magnoliaVersion>4.5.4</magnoliaVersion>
-        <magnolia.stk.version>2.0.4</magnolia.stk.version>
+        <magnoliaVersion>5.2.2</magnoliaVersion>
+        <magnolia.stk.version>2.7.2</magnolia.stk.version>
+
+        <source.javaversion>1.7</source.javaversion>
+        <target.javaversion>1.7</target.javaversion>
     </properties>
 
     <dependencies>
@@ -26,8 +29,8 @@
             <version>2.6</version>
         </dependency>
 		<dependency>
-			<groupId>info.magnolia</groupId>
-			<artifactId>magnolia-module-admininterface</artifactId>
+			<groupId>info.magnolia.ui</groupId>
+			<artifactId>magnolia-ui-admincentral</artifactId>
 			<version>${magnoliaVersion}</version>
 		</dependency>
         <dependency>
@@ -38,6 +41,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
         </dependency>
 
         <!-- TEST -->
@@ -68,15 +72,6 @@
         </resources>
         <pluginManagement>
             <plugins>
-                <!--
-                   Sonar plugin that generates various metric reports for your projects.
-                   see http://sonar.codehaus.org/
-                  -->
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>2.1</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module SYSTEM "module.dtd" >
 <module>
-  <name>magnolia-vanity-url</name>
-  <displayName>${project.name}</displayName>
-  <description>${project.description}</description>
-  <class>com.aperto.magnolia.vanity.VanityUrlModule</class>
-  <versionHandler>com.aperto.magnolia.vanity.setup.VanityUrlModuleVersionHandler</versionHandler>
-  <version>${project.version}</version>
-  <dependencies>
-    <dependency>
-      <name>core</name>
-      <version>${magnoliaVersion}/*</version>
-    </dependency>
-    <dependency>
-      <name>adminInterface</name>
-      <version>${magnoliaVersion}/*</version>
-    </dependency>
-    <dependency>
-      <name>standard-templating-kit</name>
-      <version>${magnolia.stk.version}/*</version>
-    </dependency>
-  </dependencies>
+    <name>magnolia-vanity-url</name>
+    <displayName>${project.name}</displayName>
+    <description>${project.description}</description>
+    <class>com.aperto.magnolia.vanity.VanityUrlModule</class>
+    <versionHandler>com.aperto.magnolia.vanity.setup.VanityUrlModuleVersionHandler</versionHandler>
+    <version>${project.version}</version>
+    <dependencies>
+        <dependency>
+            <name>ui-admincentral</name>
+            <version>${magnoliaVersion}/*</version>
+        </dependency>
+        <dependency>
+            <name>standard-templating-kit</name>
+            <version>${magnolia.stk.version}/*</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <name>magnolia</name>
+            <workspaces>
+                <workspace>vanityUrls</workspace>
+            </workspaces>
+            <nodeTypeFile>/mgnl-nodetypes/magnolia-vanity-url-nodetypes.xml</nodeTypeFile>
+        </repository>
+    </repositories>
 </module>
