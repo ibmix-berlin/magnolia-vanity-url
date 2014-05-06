@@ -2562,7 +2562,7 @@
                     <sv:value>9f60abf1-84f3-4b33-8ea4-f354fb7c19d7</sv:value>
                   </sv:property>
                   <sv:property sv:name="class" sv:type="String">
-                    <sv:value>info.magnolia.ui.form.field.definition.TextFieldDefinition</sv:value>
+                    <sv:value>com.aperto.magnolia.vanity.app.SiteSelectFieldDefinition</sv:value>
                   </sv:property>
                   <sv:property sv:name="defaultValue" sv:type="String">
                     <sv:value>default</sv:value>
@@ -2586,13 +2586,16 @@
                     <sv:value>superuser</sv:value>
                   </sv:property>
                   <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-                    <sv:value>2014-05-05T16:59:40.456+02:00</sv:value>
+                    <sv:value>2014-05-06T09:44:20.535+02:00</sv:value>
                   </sv:property>
                   <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
                     <sv:value>superuser</sv:value>
                   </sv:property>
                   <sv:property sv:name="required" sv:type="Boolean">
                     <sv:value>true</sv:value>
+                  </sv:property>
+                  <sv:property sv:name="sortOptions" sv:type="Boolean">
+                    <sv:value>false</sv:value>
                   </sv:property>
                 </sv:node>
                 <sv:node sv:name="link">

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -39,6 +40,10 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
 
     private TemplatingFunctions _templatingFunctions;
     private VanityUrlModule _vanityUrlModule;
+
+    @Inject
+    @Named(value = "magnolia.contextpath")
+    private String _contextPath = "";
 
     @Inject
     public void setTemplatingFunctions(TemplatingFunctions templatingFunctions) {
@@ -81,7 +86,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     }
 
     private boolean isVanityCandidate(String uri) {
-        boolean contentUri = true;
+        boolean contentUri = uri.length() > 1;
         Map<String, String> excludes = _vanityUrlModule.getExcludes();
         if (excludes != null) {
             for (String exclude : excludes.values()) {
@@ -94,30 +99,55 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         return contentUri;
     }
 
-    protected String getUriOfVanityUrl(String vanityUrl) {
+    protected String getUriOfVanityUrl(final String vanityUrl) {
         String redirectUri = EMPTY;
+        final String siteName = retrieveSite();
+
         try {
-            Session jcrSession = MgnlContext.getJCRSession("vanityUrls");
-            QueryManager queryManager = jcrSession.getWorkspace().getQueryManager();
-            Query query = queryManager.createQuery(QUERY, JCR_SQL2);
-            query.bindValue("vanityUrl", new StringValue(vanityUrl));
-            query.bindValue("site", new StringValue(retrieveSite()));
-            QueryResult queryResult = query.execute();
-            NodeIterator nodes = queryResult.getNodes();
-            if (nodes.hasNext()) {
-                Node node = nodes.nextNode();
-                String link = getString(node, "link");
-                String url = link;
-                if (!isExternalLink(link)) {
-                    String contextPath = MgnlContext.getWebContext().getRequest().getContextPath();
-                    url = removeStart(_templatingFunctions.link(WEBSITE, link), contextPath);
+            // do it in system context, so the anonymous need no read rights for using vanity urls
+            redirectUri = MgnlContext.doInSystemContext(
+                new MgnlContext.Op<String, RepositoryException>() {
+                    @Override
+                    public String exec() throws RepositoryException {
+                        Node node = queryForVanityUrlNode(vanityUrl, siteName);
+                        return determineRedirectUri(node);
+                    }
                 }
-                redirectUri = REDIRECT_PREFIX + url;
-            }
+            );
         } catch (RepositoryException e) {
             LOGGER.warn("Error on querying for vanity url.", e);
         }
         return redirectUri;
+    }
+
+    private String determineRedirectUri(final Node node) {
+        String redirectUri = EMPTY;
+        if (node != null) {
+            String link = getString(node, "link");
+            String url = link;
+            if (!isExternalLink(link)) {
+                url = removeStart(_templatingFunctions.link(WEBSITE, link), _contextPath);
+            }
+            redirectUri = REDIRECT_PREFIX + url;
+        }
+        return redirectUri;
+    }
+
+    private Node queryForVanityUrlNode(final String vanityUrl, final String siteName) throws RepositoryException {
+        Node node = null;
+
+        Session jcrSession = MgnlContext.getJCRSession("vanityUrls");
+        QueryManager queryManager = jcrSession.getWorkspace().getQueryManager();
+        Query query = queryManager.createQuery(QUERY, JCR_SQL2);
+        query.bindValue("vanityUrl", new StringValue(vanityUrl));
+        query.bindValue("site", new StringValue(siteName));
+        QueryResult queryResult = query.execute();
+        NodeIterator nodes = queryResult.getNodes();
+        if (nodes.hasNext()) {
+            node = nodes.nextNode();
+        }
+
+        return node;
     }
 
     private String retrieveSite() {
