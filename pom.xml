@@ -38,6 +38,11 @@
             <artifactId>magnolia-module-standard-templating-kit</artifactId>
             <version>${magnolia.stk.version}</version>
         </dependency>
+        <dependency>
+        	<groupId>net.glxn</groupId>
+        	<artifactId>qrgen</artifactId>
+        	<version>1.4</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

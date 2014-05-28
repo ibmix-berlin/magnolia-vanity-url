@@ -8,7 +8,6 @@ import info.magnolia.context.SystemContext;
 import info.magnolia.context.WebContext;
 import info.magnolia.objectfactory.ComponentProvider;
 import info.magnolia.objectfactory.Components;
-import info.magnolia.templating.functions.TemplatingFunctions;
 import info.magnolia.test.mock.jcr.MockNode;
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +20,6 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -54,17 +52,10 @@ public class VirtualVanityUriMappingTest {
     }
 
     @Test
-    public void testVanityUrlWithExternalTarget() {
-        VirtualURIMapping.MappingResult mappingResult = _uriMapping.mapURI("/extern", "test=1");
+    public void testVanityUrlWithTarget() {
+        VirtualURIMapping.MappingResult mappingResult = _uriMapping.mapURI("/xmas");
         assertThat(mappingResult, notNullValue());
-        assertThat(mappingResult.getToURI(), equalTo("redirect:http://www.aperto.de?test=1"));
-    }
-
-    @Test
-    public void testVanityUrlWithInternalTarget() {
-        VirtualURIMapping.MappingResult mappingResult = _uriMapping.mapURI("/intern");
-        assertThat(mappingResult, notNullValue());
-        assertThat(mappingResult.getToURI(), equalTo("redirect:/internal/page.html#anchor1"));
+        assertThat(mappingResult.getToURI(), equalTo("redirect:/internal/page.html"));
     }
 
     @Before
@@ -77,22 +68,14 @@ public class VirtualVanityUriMappingTest {
         module.setExcludes(excludes);
         _uriMapping.setVanityUrlModule(module);
 
-        VanityQueryService queryService = mock(VanityQueryService.class);
-        when(queryService.queryForVanityUrlNode("/home", "default")).thenReturn(null);
+        VanityUrlService vanityUrlService = mock(VanityUrlService.class);
+        when(vanityUrlService.queryForVanityUrlNode("/home", "default")).thenReturn(null);
 
-        MockNode mockNode = new MockNode("external");
-        mockNode.setProperty("link", "http://www.aperto.de");
-        when(queryService.queryForVanityUrlNode("/extern", "default")).thenReturn(mockNode);
+        MockNode mockNode = new MockNode("xmas");
+        when(vanityUrlService.queryForVanityUrlNode("/xmas", "default")).thenReturn(mockNode);
 
-        MockNode mockNode2 = new MockNode("internal");
-        mockNode2.setProperty("link", "123-4556-123");
-        mockNode2.setProperty("linkSuffix", "#anchor1");
-        when(queryService.queryForVanityUrlNode("/intern", "default")).thenReturn(mockNode2);
-        _uriMapping.setVanityQueryService(queryService);
-
-        TemplatingFunctions templatingFunctions = mock(TemplatingFunctions.class);
-        when(templatingFunctions.link(anyString(), anyString())).thenReturn("/internal/page.html");
-        _uriMapping.setTemplatingFunctions(templatingFunctions);
+        when(vanityUrlService.createRedirectUrl(mockNode)).thenReturn("redirect:/internal/page.html");
+        _uriMapping.setVanityUrlService(vanityUrlService);
 
         initWebContext();
 

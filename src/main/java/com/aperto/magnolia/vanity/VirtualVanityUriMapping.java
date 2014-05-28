@@ -5,21 +5,15 @@ import info.magnolia.cms.core.AggregationState;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.module.templatingkit.ExtendedAggregationState;
 import info.magnolia.module.templatingkit.sites.Site;
-import info.magnolia.templating.functions.TemplatingFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
-import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
-import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
-import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static org.apache.commons.lang.StringUtils.*;
 
 /**
@@ -29,19 +23,8 @@ import static org.apache.commons.lang.StringUtils.*;
  */
 public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
-
-    private TemplatingFunctions _templatingFunctions;
     private VanityUrlModule _vanityUrlModule;
-    private VanityQueryService _vanityQueryService;
-
-    @Inject
-    @Named(value = "magnolia.contextpath")
-    private String _contextPath = "";
-
-    @Inject
-    public void setTemplatingFunctions(TemplatingFunctions templatingFunctions) {
-        _templatingFunctions = templatingFunctions;
-    }
+    private VanityUrlService _vanityUrlService;
 
     @Inject
     public void setVanityUrlModule(VanityUrlModule vanityUrlModule) {
@@ -49,8 +32,8 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     }
 
     @Inject
-    public void setVanityQueryService(final VanityQueryService vanityQueryService) {
-        _vanityQueryService = vanityQueryService;
+    public void setVanityUrlService(final VanityUrlService vanityUrlService) {
+        _vanityUrlService = vanityUrlService;
     }
 
     // CHECKSTYLE:OFF
@@ -111,26 +94,13 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
                 new MgnlContext.Op<String, RepositoryException>() {
                     @Override
                     public String exec() throws RepositoryException {
-                        Node node = _vanityQueryService.queryForVanityUrlNode(vanityUrl, siteName);
-                        return determineRedirectUri(node);
+                        Node node = _vanityUrlService.queryForVanityUrlNode(vanityUrl, siteName);
+                        return _vanityUrlService.createRedirectUrl(node);
                     }
                 }
             );
         } catch (RepositoryException e) {
             LOGGER.warn("Error on querying for vanity url.", e);
-        }
-        return redirectUri;
-    }
-
-    private String determineRedirectUri(final Node node) {
-        String redirectUri = EMPTY;
-        if (node != null) {
-            String link = getString(node, "link");
-            String url = link;
-            if (!isExternalLink(link)) {
-                url = removeStart(_templatingFunctions.link(WEBSITE, link), _contextPath);
-            }
-            redirectUri = REDIRECT_PREFIX + url + getString(node, "linkSuffix", EMPTY);
         }
         return redirectUri;
     }

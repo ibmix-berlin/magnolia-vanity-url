@@ -2252,6 +2252,50 @@
           </sv:node>
         </sv:node>
       </sv:node>
+      <sv:node sv:name="imageProvider">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>mgnl:contentNode</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+          <sv:value>mix:lockable</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>9f8403de-3be3-4543-8523-8e3b1b4ac9b6</sv:value>
+        </sv:property>
+        <sv:property sv:name="class" sv:type="String">
+          <sv:value>info.magnolia.ui.imageprovider.definition.ConfiguredImageProviderDefinition</sv:value>
+        </sv:property>
+        <sv:property sv:name="imageProviderClass" sv:type="String">
+          <sv:value>info.magnolia.ui.imageprovider.DefaultImageProvider</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:createdBy" sv:type="String">
+          <sv:value>admin</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:created" sv:type="Date">
+          <sv:value>2014-05-28T13:57:30.597+02:00</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:createdBy" sv:type="String">
+          <sv:value>superuser</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
+          <sv:value>2014-05-28T13:57:30.600+02:00</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
+          <sv:value>superuser</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+          <sv:value>2014-05-28T13:57:56.438+02:00</sv:value>
+        </sv:property>
+        <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+          <sv:value>superuser</sv:value>
+        </sv:property>
+        <sv:property sv:name="originalImageNodeName" sv:type="String">
+          <sv:value>jcr:content</sv:value>
+        </sv:property>
+      </sv:node>
     </sv:node>
     <sv:node sv:name="detail">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -2912,6 +2956,9 @@
           <sv:property sv:name="class" sv:type="String">
             <sv:value>info.magnolia.ui.form.action.SaveFormActionDefinition</sv:value>
           </sv:property>
+          <sv:property sv:name="implementationClass" sv:type="String">
+            <sv:value>com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction</sv:value>
+          </sv:property>
           <sv:property sv:name="jcr:createdBy" sv:type="String">
             <sv:value>admin</sv:value>
           </sv:property>
@@ -2931,7 +2978,7 @@
             <sv:value>superuser</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-            <sv:value>2014-05-05T14:56:06.682+02:00</sv:value>
+            <sv:value>2014-05-28T12:57:49.498+02:00</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
             <sv:value>superuser</sv:value>
@@ -3050,46 +3097,5 @@
     <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
       <sv:value>superuser</sv:value>
     </sv:property>
-    <sv:node sv:name="roles">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mgnl:contentNode</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>916fceba-9215-46bd-885d-a13ec0892f60</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:createdBy" sv:type="String">
-        <sv:value>admin</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
-        <sv:value>false</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:created" sv:type="Date">
-        <sv:value>2014-05-05T14:56:38.757+02:00</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:createdBy" sv:type="String">
-        <sv:value>superuser</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
-        <sv:value>2014-05-05T14:56:38.760+02:00</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
-        <sv:value>superuser</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-        <sv:value>2014-05-05T14:57:02.673+02:00</sv:value>
-      </sv:property>
-      <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
-        <sv:value>superuser</sv:value>
-      </sv:property>
-      <sv:property sv:name="poweruser" sv:type="String">
-        <sv:value>poweruser</sv:value>
-      </sv:property>
-      <sv:property sv:name="show-vanity-url" sv:type="String">
-        <sv:value>show-vanity-url</sv:value>
-      </sv:property>
-      <sv:property sv:name="vanity-url-editor" sv:type="String">
-        <sv:value>vanity-url-editor</sv:value>
-      </sv:property>
-    </sv:node>
   </sv:node>
 </sv:node>
