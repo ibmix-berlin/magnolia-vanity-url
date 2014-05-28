@@ -55,9 +55,9 @@ public class VirtualVanityUriMappingTest {
 
     @Test
     public void testVanityUrlWithExternalTarget() {
-        VirtualURIMapping.MappingResult mappingResult = _uriMapping.mapURI("/extern");
+        VirtualURIMapping.MappingResult mappingResult = _uriMapping.mapURI("/extern", "test=1");
         assertThat(mappingResult, notNullValue());
-        assertThat(mappingResult.getToURI(), equalTo("redirect:http://www.aperto.de"));
+        assertThat(mappingResult.getToURI(), equalTo("redirect:http://www.aperto.de?test=1"));
     }
 
     @Test
