@@ -443,7 +443,7 @@
             <sv:value>superuser</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-            <sv:value>2014-05-05T14:56:06.682+02:00</sv:value>
+            <sv:value>2014-05-28T15:35:44.066+02:00</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
             <sv:value>superuser</sv:value>
@@ -604,6 +604,91 @@
             </sv:property>
             <sv:property sv:name="mgnl:lastModified" sv:type="Date">
               <sv:value>2014-05-06T09:53:36.118+02:00</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+              <sv:value>superuser</sv:value>
+            </sv:property>
+            <sv:property sv:name="ruleClass" sv:type="String">
+              <sv:value>info.magnolia.ui.api.availability.IsNotDeletedRule</sv:value>
+            </sv:property>
+          </sv:node>
+        </sv:node>
+        <sv:node sv:name="viewCode">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mgnl:contentNode</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
+            <sv:value>mix:lockable</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:uuid" sv:type="String">
+            <sv:value>ef3836b1-876a-4689-8cd2-d39377d33652</sv:value>
+          </sv:property>
+          <sv:property sv:name="appName" sv:type="String">
+            <sv:value>vanityUrl</sv:value>
+          </sv:property>
+          <sv:property sv:name="class" sv:type="String">
+            <sv:value>com.aperto.magnolia.vanity.app.PreviewActionDefinition</sv:value>
+          </sv:property>
+          <sv:property sv:name="icon" sv:type="String">
+            <sv:value>icon-view</sv:value>
+          </sv:property>
+          <sv:property sv:name="implementationClass" sv:type="String">
+            <sv:value>com.aperto.magnolia.vanity.app.QrCodeViewAction</sv:value>
+          </sv:property>
+          <sv:property sv:name="jcr:createdBy" sv:type="String">
+            <sv:value>admin</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
+            <sv:value>false</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:created" sv:type="Date">
+            <sv:value>2014-05-28T15:54:45.509+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:createdBy" sv:type="String">
+            <sv:value>superuser</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
+            <sv:value>2014-05-28T15:54:45.512+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
+            <sv:value>superuser</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+            <sv:value>2014-05-28T15:55:20.000+02:00</sv:value>
+          </sv:property>
+          <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+            <sv:value>superuser</sv:value>
+          </sv:property>
+          <sv:property sv:name="subAppId" sv:type="String">
+            <sv:value>preview</sv:value>
+          </sv:property>
+          <sv:node sv:name="availability">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+              <sv:value>mgnl:contentNode</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:uuid" sv:type="String">
+              <sv:value>b9779329-80ef-477f-b51c-96d18b4004e2</sv:value>
+            </sv:property>
+            <sv:property sv:name="jcr:createdBy" sv:type="String">
+              <sv:value>admin</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
+              <sv:value>false</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:created" sv:type="Date">
+              <sv:value>2014-05-28T15:54:45.509+02:00</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:createdBy" sv:type="String">
+              <sv:value>superuser</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
+              <sv:value>2014-05-28T15:54:45.512+02:00</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
+              <sv:value>superuser</sv:value>
+            </sv:property>
+            <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+              <sv:value>2014-05-28T15:54:50.680+02:00</sv:value>
             </sv:property>
             <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
               <sv:value>superuser</sv:value>
@@ -1160,7 +1245,7 @@
                     <sv:value>superuser</sv:value>
                   </sv:property>
                   <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-                    <sv:value>2014-05-06T09:53:57.720+02:00</sv:value>
+                    <sv:value>2014-05-28T15:55:34.413+02:00</sv:value>
                   </sv:property>
                   <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
                     <sv:value>superuser</sv:value>
@@ -1218,6 +1303,29 @@
                     </sv:property>
                     <sv:property sv:name="mgnl:lastModified" sv:type="Date">
                       <sv:value>2014-05-06T09:54:07.992+02:00</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+                      <sv:value>superuser</sv:value>
+                    </sv:property>
+                  </sv:node>
+                  <sv:node sv:name="viewCode">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                      <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:uuid" sv:type="String">
+                      <sv:value>a4ef4a6c-5268-4276-9f53-6abc088b6a01</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:createdBy" sv:type="String">
+                      <sv:value>admin</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="mgnl:created" sv:type="Date">
+                      <sv:value>2014-05-28T15:55:34.414+02:00</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="mgnl:createdBy" sv:type="String">
+                      <sv:value>superuser</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+                      <sv:value>2014-05-28T15:55:38.737+02:00</sv:value>
                     </sv:property>
                     <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
                       <sv:value>superuser</sv:value>
@@ -2287,13 +2395,13 @@
           <sv:value>superuser</sv:value>
         </sv:property>
         <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-          <sv:value>2014-05-28T13:57:56.438+02:00</sv:value>
+          <sv:value>2014-05-28T16:46:28.914+02:00</sv:value>
         </sv:property>
         <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
           <sv:value>superuser</sv:value>
         </sv:property>
         <sv:property sv:name="originalImageNodeName" sv:type="String">
-          <sv:value>jcr:content</sv:value>
+          <sv:value>qrCode</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>

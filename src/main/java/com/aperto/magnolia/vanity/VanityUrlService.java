@@ -34,6 +34,7 @@ import static org.apache.commons.lang.StringUtils.*;
 public class VanityUrlService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VanityUrlService.class);
     private static final String QUERY = "select * from [mgnl:vanityUrl] where vanityUrl = $vanityUrl and site = $site";
+    public static final String NN_IMAGE = "qrCode";
 
     @Inject
     @Named(value = "magnolia.contextpath")
@@ -93,6 +94,25 @@ public class VanityUrlService {
             }
         }
         return url;
+    }
+
+    /**
+     * Create the link to the qr image without context path.
+     *
+     * @param node vanity url node
+     * @return link to qr image
+     */
+    public String createImageLink(final Node node) {
+        String link = EMPTY;
+        try {
+            if (node != null && node.hasNode(NN_IMAGE)) {
+                link = createLink(node.getNode(NN_IMAGE));
+                link = removeStart(defaultString(link), _contextPath);
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("Error creating link to image property.", e);
+        }
+        return link;
     }
 
     /**

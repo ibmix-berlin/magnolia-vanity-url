@@ -14,7 +14,6 @@ import info.magnolia.ui.vaadin.integration.jcr.AbstractJcrNodeAdapter;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNewNodeAdapter;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNodeAdapter;
 import net.glxn.qrgen.QRCode;
-import net.glxn.qrgen.image.ImageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +23,8 @@ import javax.jcr.RepositoryException;
 import java.io.File;
 import java.io.OutputStream;
 
+import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
 import static com.google.common.io.Closeables.closeQuietly;
-import static info.magnolia.dam.DamConstants.CONTENT_NODE_NAME;
 import static info.magnolia.jcr.util.NodeTypes.Resource;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static org.apache.commons.lang.StringUtils.strip;
@@ -39,8 +38,9 @@ import static org.apache.commons.lang.StringUtils.trim;
  */
 public class VanityUrlSaveFormAction extends SaveFormAction {
     private static final Logger LOGGER = LoggerFactory.getLogger(VanityUrlSaveFormAction.class);
-    private static final int PREVIEW_WIDTH = 160;
-    private static final int PREVIEW_HEIGHT = 160;
+    private static final int QR_WIDTH = 500;
+    private static final int GR_HEIGHT = 500;
+    public static final String IMAGE_EXTENSION = ".png";
 
     private SimpleTranslator _simpleTranslator;
     private VanityUrlService _vanityUrlService;
@@ -66,8 +66,8 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             File tmpDirectory = Path.getTempDirectory();
 
             UploadReceiver uploadReceiver = new UploadReceiver(tmpDirectory, _simpleTranslator);
-            outputStream = uploadReceiver.receiveUpload(fileName + ".jpg", "image/jpeg");
-            QRCode.from(url).to(ImageType.JPG).withSize(PREVIEW_WIDTH, PREVIEW_HEIGHT).writeTo(outputStream);
+            outputStream = uploadReceiver.receiveUpload(fileName + IMAGE_EXTENSION, "image/png");
+            QRCode.from(url).withSize(QR_WIDTH, GR_HEIGHT).writeTo(outputStream);
 
             AbstractJcrNodeAdapter itemWithBinaryData = getOrCreateSubItemWithBinaryData();
             BasicFileItemWrapper fileWrapper = new BasicFileItemWrapper(itemWithBinaryData, tmpDirectory);
@@ -89,11 +89,11 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         AbstractJcrNodeAdapter child = null;
         try {
             Node node = item.getJcrItem();
-            if (node.hasNode(CONTENT_NODE_NAME) && !(item instanceof JcrNewNodeAdapter)) {
-                child = new JcrNodeAdapter(node.getNode(CONTENT_NODE_NAME));
+            if (node.hasNode(NN_IMAGE) && !(item instanceof JcrNewNodeAdapter)) {
+                child = new JcrNodeAdapter(node.getNode(NN_IMAGE));
                 child.setParent(item);
             } else {
-                child = new JcrNewNodeAdapter(node, Resource.NAME, CONTENT_NODE_NAME);
+                child = new JcrNewNodeAdapter(node, Resource.NAME, NN_IMAGE);
                 child.setParent(item);
             }
         } catch (RepositoryException e) {
