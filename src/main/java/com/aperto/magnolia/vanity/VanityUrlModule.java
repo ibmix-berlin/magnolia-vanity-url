@@ -1,5 +1,6 @@
 package com.aperto.magnolia.vanity;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -12,7 +13,7 @@ public class VanityUrlModule {
     private Map<String, String> _excludes;
 
     public Map<String, String> getExcludes() {
-        return _excludes;
+        return _excludes == null ? Collections.<String, String>emptyMap() : _excludes;
     }
 
     public void setExcludes(Map<String, String> excludes) {
