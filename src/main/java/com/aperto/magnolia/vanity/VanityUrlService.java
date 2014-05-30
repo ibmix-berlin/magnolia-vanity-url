@@ -1,6 +1,7 @@
 package com.aperto.magnolia.vanity;
 
 import info.magnolia.context.MgnlContext;
+import info.magnolia.link.LinkUtil;
 import org.apache.jackrabbit.value.StringValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,6 @@ import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
-import static info.magnolia.link.LinkUtil.createExternalLink;
-import static info.magnolia.link.LinkUtil.createLink;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static javax.jcr.query.Query.JCR_SQL2;
 import static org.apache.commons.lang.StringUtils.*;
@@ -80,18 +79,24 @@ public class VanityUrlService {
             url = getString(node, "link", EMPTY);
             if (isNotEmpty(url)) {
                 if (!isExternalLink(url)) {
-                    if (forPublic) {
-                        url = getExternalLinkFromId(url);
-                        if (isNotEmpty(_contextPath)) {
-                            url = replaceOnce(url, _contextPath, EMPTY);
-                        }
-                    } else {
-                        String link = getLinkFromId(url);
-                        url = removeStart(defaultString(link), _contextPath);
-                    }
+                    url = createLink(url, forPublic);
                 }
                 url += getString(node, "linkSuffix", EMPTY);
             }
+        }
+        return url;
+    }
+
+    private String createLink(final String identifier, final boolean forPublic) {
+        String url;
+        if (forPublic) {
+            url = getExternalLinkFromId(identifier);
+            if (isNotEmpty(_contextPath)) {
+                url = replaceOnce(url, _contextPath, EMPTY);
+            }
+        } else {
+            String link = getLinkFromId(identifier);
+            url = removeStart(defaultString(link), _contextPath);
         }
         return url;
     }
@@ -106,7 +111,7 @@ public class VanityUrlService {
         String link = EMPTY;
         try {
             if (node != null && node.hasNode(NN_IMAGE)) {
-                link = createLink(node.getNode(NN_IMAGE));
+                link = LinkUtil.createLink(node.getNode(NN_IMAGE));
                 link = removeStart(defaultString(link), _contextPath);
             }
         } catch (RepositoryException e) {
@@ -147,13 +152,13 @@ public class VanityUrlService {
      * Override for testing.
      */
     protected String getLinkFromId(final String url) {
-        return createLink(getNodeByIdentifier(WEBSITE, url));
+        return LinkUtil.createLink(getNodeByIdentifier(WEBSITE, url));
     }
 
     /**
      * Override for testing.
      */
     protected String getExternalLinkFromId(final String url) {
-        return createExternalLink(getNodeByIdentifier(WEBSITE, url));
+        return LinkUtil.createExternalLink(getNodeByIdentifier(WEBSITE, url));
     }
 }
