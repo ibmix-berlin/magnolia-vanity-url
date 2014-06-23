@@ -17,7 +17,7 @@
     </organization>
 
     <properties>
-        <magnoliaVersion>5.2.2</magnoliaVersion>
+        <magnoliaVersion>5.2.5</magnoliaVersion>
         <magnolia.stk.version>2.7.2</magnolia.stk.version>
 
         <source.javaversion>1.7</source.javaversion>
@@ -220,6 +220,39 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>2.1</version>
+                </plugin>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                	<groupId>org.eclipse.m2e</groupId>
+                	<artifactId>lifecycle-mapping</artifactId>
+                	<version>1.0.0</version>
+                	<configuration>
+                		<lifecycleMappingMetadata>
+                			<pluginExecutions>
+                				<pluginExecution>
+                					<pluginExecutionFilter>
+                						<groupId>
+                							org.codehaus.mojo
+                						</groupId>
+                						<artifactId>
+                							license-maven-plugin
+                						</artifactId>
+                						<versionRange>
+                							[1.7,)
+                						</versionRange>
+                						<goals>
+                							<goal>
+                								update-file-header
+                							</goal>
+                						</goals>
+                					</pluginExecutionFilter>
+                					<action>
+                						<ignore></ignore>
+                					</action>
+                				</pluginExecution>
+                			</pluginExecutions>
+                		</lifecycleMappingMetadata>
+                	</configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
