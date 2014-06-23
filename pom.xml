@@ -255,17 +255,18 @@
         </profile>
     </profiles>
 
-    <distributionManagement>
+    <!-- TODO distribution management -->
+    <!--distributionManagement>
         <repository>
-            <id>aperto.nexus.releases</id>
-            <name>aperto.nexus.releases</name>
-            <url>https://maven.aperto.de/nexus/content/repositories/aperto.magkit.releases/</url>
+            <id>mgnl.nexus.releases</id>
+            <name>mgnl.nexus.releases</name>
+            <url>https://nexus.magnolia-cms.com/content/repositories/magnolia.forge.releases//</url>
         </repository>
         <snapshotRepository>
-            <id>aperto.nexus.snapshots</id>
-            <name>aperto.nexus.snapshots</name>
-            <url>https://maven.aperto.de/nexus/content/repositories/aperto.magkit.snapshots/</url>
+            <id>mgnl.nexus.snapshots</id>
+            <name>mgnl.nexus.snapshots</name>
+            <url>https://nexus.magnolia-cms.com/content/repositories/magnolia.forge.snapshots/</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement-->
 </project>
