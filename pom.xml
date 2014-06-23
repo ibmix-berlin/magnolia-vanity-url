@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-		<groupId>com.aperto</groupId>
-		<artifactId>aperto-pom</artifactId>
-		<version>1.7.2</version>
-	</parent>
+        <groupId>com.aperto</groupId>
+        <artifactId>aperto-pom</artifactId>
+        <version>1.7.2</version>
+    </parent>
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
@@ -28,20 +28,20 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
-		<dependency>
-			<groupId>info.magnolia.ui</groupId>
-			<artifactId>magnolia-ui-admincentral</artifactId>
-			<version>${magnoliaVersion}</version>
-		</dependency>
+        <dependency>
+            <groupId>info.magnolia.ui</groupId>
+            <artifactId>magnolia-ui-admincentral</artifactId>
+            <version>${magnoliaVersion}</version>
+        </dependency>
         <dependency>
             <groupId>info.magnolia</groupId>
             <artifactId>magnolia-module-standard-templating-kit</artifactId>
             <version>${magnolia.stk.version}</version>
         </dependency>
         <dependency>
-        	<groupId>net.glxn</groupId>
-        	<artifactId>qrgen</artifactId>
-        	<version>1.4</version>
+            <groupId>net.glxn</groupId>
+            <artifactId>qrgen</artifactId>
+            <version>1.4</version>
         </dependency>
 
         <dependency>
@@ -93,6 +93,29 @@
                 </includes>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.7</version>
+                <configuration>
+                    <licenseName>gpl3_license</licenseName>
+                    <licenseResolver>${project.baseUri}/src/license</licenseResolver>
+                    <excludes>
+                        <exclude>/mgnl-bootstrap/**.*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>first</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
             </plugins>
