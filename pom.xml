@@ -20,6 +20,10 @@
 
         <source.javaversion>1.7</source.javaversion>
         <target.javaversion>1.7</target.javaversion>
+
+        <!-- checkstyle can be disabled with this property -->
+        <checkstyle.skip>false</checkstyle.skip>
+        <checkstyle.config>src/config</checkstyle.config>
     </properties>
 
     <dependencies>
@@ -61,10 +65,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.11</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <version>1.9.0</version>
         </dependency>
         <dependency>
             <groupId>info.magnolia</groupId>
@@ -112,12 +118,48 @@
                             <goal>update-file-header</goal>
                         </goals>
                         <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>gpl3_license</licenseName>
+                            <excludes>
+                                <exclude>**/checkstyle-rules.xml</exclude>
+                                <exclude>**/mgnl-bootstrap/**/*.xml</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.10</version>
+                    <configuration>
+                        <configLocation>${checkstyle.config}/checkstyle-rules.xml</configLocation>
+                        <failsOnError>true</failsOnError>
+                        <consoleOutput>true</consoleOutput>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        <excludes>**/package-info.java</excludes>
+                        <skip>${checkstyle.skip}</skip>
+                        <linkXRef>false</linkXRef>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>check-checkstyle</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>5.6</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
