@@ -33,6 +33,6 @@ Maven dependency
         <dependency>
             <artifactId>magnolia-vanity-url</artifactId>
             <groupId>com.aperto.magkit</groupId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
         </dependency>
 ```        
