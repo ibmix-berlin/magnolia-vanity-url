@@ -288,18 +288,15 @@
         </profile>
     </profiles>
 
-    <!-- TODO distribution management -->
-    <!--distributionManagement>
-        <repository>
-            <id>mgnl.nexus.releases</id>
-            <name>mgnl.nexus.releases</name>
-            <url>https://nexus.magnolia-cms.com/content/repositories/magnolia.forge.releases//</url>
-        </repository>
-        <snapshotRepository>
-            <id>mgnl.nexus.snapshots</id>
-            <name>mgnl.nexus.snapshots</name>
-            <url>https://nexus.magnolia-cms.com/content/repositories/magnolia.forge.snapshots/</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-    </distributionManagement-->
+	<distributionManagement>
+		<repository>
+			<id>magnolia.forge.releases</id>
+			<url>http://nexus.magnolia-cms.com/content/repositories/magnolia.forge.releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>magnolia.forge.snapshots</id>
+			<url>http://nexus.magnolia-cms.com/content/repositories/magnolia.forge.snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
 </project>
