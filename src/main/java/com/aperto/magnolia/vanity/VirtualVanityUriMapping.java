@@ -134,7 +134,9 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         AggregationState aggregationState = MgnlContext.getAggregationState();
         if (aggregationState instanceof ExtendedAggregationState) {
             Site site = ((ExtendedAggregationState) aggregationState).getSite();
-            siteName = site.getName();
+            if (!"site".equals(site.getName())) {
+                siteName = site.getName();
+            }
         }
 
         return siteName;
