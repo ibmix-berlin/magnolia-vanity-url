@@ -24,8 +24,8 @@ package com.aperto.magnolia.vanity;
 
 
 import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
-import info.magnolia.cms.core.AggregationState;
 import info.magnolia.context.MgnlContext;
+import info.magnolia.module.ModuleRegistry;
 import info.magnolia.module.templatingkit.ExtendedAggregationState;
 import info.magnolia.module.templatingkit.sites.Site;
 import org.slf4j.Logger;
@@ -48,6 +48,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
     private VanityUrlModule _vanityUrlModule;
     private VanityUrlService _vanityUrlService;
+    private ModuleRegistry _moduleRegistry;
 
     @Inject
     public void setVanityUrlModule(VanityUrlModule vanityUrlModule) {
@@ -57,6 +58,11 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     @Inject
     public void setVanityUrlService(final VanityUrlService vanityUrlService) {
         _vanityUrlService = vanityUrlService;
+    }
+
+    @Inject
+    public void setModuleRegistry(final ModuleRegistry moduleRegistry) {
+        _moduleRegistry = moduleRegistry;
     }
 
     // CHECKSTYLE:OFF
@@ -131,9 +137,8 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private String retrieveSite() {
         String siteName = "default";
 
-        AggregationState aggregationState = MgnlContext.getAggregationState();
-        if (aggregationState instanceof ExtendedAggregationState) {
-            Site site = ((ExtendedAggregationState) aggregationState).getSite();
+        if (_moduleRegistry.isModuleRegistered("multisite")) {
+            Site site = ((ExtendedAggregationState) MgnlContext.getAggregationState()).getSite();
             siteName = site.getName();
         }
 

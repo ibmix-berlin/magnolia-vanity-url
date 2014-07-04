@@ -29,6 +29,7 @@ import info.magnolia.context.ContextFactory;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.context.SystemContext;
 import info.magnolia.context.WebContext;
+import info.magnolia.module.ModuleRegistry;
 import info.magnolia.objectfactory.ComponentProvider;
 import info.magnolia.objectfactory.Components;
 import info.magnolia.test.mock.jcr.MockNode;
@@ -99,6 +100,9 @@ public class VirtualVanityUriMappingTest {
 
         when(vanityUrlService.createRedirectUrl(mockNode)).thenReturn("redirect:/internal/page.html");
         _uriMapping.setVanityUrlService(vanityUrlService);
+
+        ModuleRegistry moduleRegistry = mock(ModuleRegistry.class);
+        _uriMapping.setModuleRegistry(moduleRegistry);
 
         initWebContext();
 
