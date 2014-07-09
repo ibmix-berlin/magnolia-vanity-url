@@ -33,6 +33,7 @@ import java.util.Map;
  * @since 26.01.2012
  */
 public class VanityUrlModule {
+    public static final String WORKSPACE = "vanityUrls";
     private Map<String, String> _excludes;
 
     public Map<String, String> getExcludes() {

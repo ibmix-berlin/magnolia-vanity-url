@@ -23,8 +23,12 @@ package com.aperto.magnolia.vanity;
  */
 
 
+import info.magnolia.cms.beans.config.ServerConfiguration;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.link.LinkUtil;
+import info.magnolia.module.templatingkit.sites.Domain;
+import info.magnolia.module.templatingkit.sites.Site;
+import info.magnolia.module.templatingkit.sites.SiteManager;
 import org.apache.jackrabbit.value.StringValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +42,7 @@ import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
+import java.util.Collection;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
@@ -55,12 +60,21 @@ import static org.apache.commons.lang.StringUtils.*;
  */
 public class VanityUrlService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VanityUrlService.class);
+
     private static final String QUERY = "select * from [mgnl:vanityUrl] where vanityUrl = $vanityUrl and site = $site";
     public static final String NN_IMAGE = "qrCode";
+    public static final String DEF_SITE = "default";
+    private static final String PN_SITE = "site";
+    private static final String PN_VANITY_URL = "vanityUrl";
+    private static final String PN_LINK = "link";
+    private static final String PN_SUFFIX = "linkSuffix";
 
     @Inject
     @Named(value = "magnolia.contextpath")
     private String _contextPath = "";
+
+    private SiteManager _siteManager;
+    private ServerConfiguration _serverConfiguration;
 
     /**
      * Creates the redirect url for uri mapping.
@@ -77,13 +91,42 @@ public class VanityUrlService {
     }
 
     /**
-     * Creates the public url for qr code generation.
+     * Creates the public url for displaying as target link in app view.
      *
      * @param node vanity url node
      * @return public url
      */
     public String createPublicUrl(final Node node) {
         return createTargetLink(node, true);
+    }
+
+    /**
+     * Creates the vanity url for public instance, stored in qr code.
+     *
+     * @param node vanity url node
+     * @return vanity url
+     */
+    public String createVanityUrl(final Node node) {
+        // default base url is the default
+        String baseUrl = _serverConfiguration.getDefaultBaseUrl();
+
+        // for public removing the context path
+        if (isNotEmpty(_contextPath)) {
+            baseUrl = replaceOnce(baseUrl, _contextPath, EMPTY);
+        }
+
+        // check the site configuration and take the first domain
+        String siteName = getString(node, PN_SITE, DEF_SITE);
+        if (!DEF_SITE.equals(siteName)) {
+            Site site = _siteManager.getSite(siteName);
+            Collection<Domain> domains = site.getDomains();
+            if (!domains.isEmpty()) {
+                Domain firstDomain = domains.iterator().next();
+                baseUrl = firstDomain.toString();
+            }
+        }
+
+        return removeEnd(baseUrl, "/") + getString(node, PN_VANITY_URL, EMPTY);
     }
 
     /**
@@ -99,12 +142,12 @@ public class VanityUrlService {
     private String createTargetLink(final Node node, final boolean forPublic) {
         String url = EMPTY;
         if (node != null) {
-            url = getString(node, "link", EMPTY);
+            url = getString(node, PN_LINK, EMPTY);
             if (isNotEmpty(url)) {
                 if (!isExternalLink(url)) {
                     url = createLink(url, forPublic);
                 }
-                url += getString(node, "linkSuffix", EMPTY);
+                url += getString(node, PN_SUFFIX, EMPTY);
             }
         }
         return url;
@@ -154,11 +197,11 @@ public class VanityUrlService {
         Node node = null;
 
         try {
-            Session jcrSession = MgnlContext.getJCRSession("vanityUrls");
+            Session jcrSession = MgnlContext.getJCRSession(VanityUrlModule.WORKSPACE);
             QueryManager queryManager = jcrSession.getWorkspace().getQueryManager();
             Query query = queryManager.createQuery(QUERY, JCR_SQL2);
-            query.bindValue("vanityUrl", new StringValue(vanityUrl));
-            query.bindValue("site", new StringValue(siteName));
+            query.bindValue(PN_VANITY_URL, new StringValue(vanityUrl));
+            query.bindValue(PN_SITE, new StringValue(siteName));
             QueryResult queryResult = query.execute();
             NodeIterator nodes = queryResult.getNodes();
             if (nodes.hasNext()) {
@@ -183,5 +226,15 @@ public class VanityUrlService {
      */
     protected String getExternalLinkFromId(final String url) {
         return LinkUtil.createExternalLink(getNodeByIdentifier(WEBSITE, url));
+    }
+
+    @Inject
+    public void setSiteManager(final SiteManager siteManager) {
+        _siteManager = siteManager;
+    }
+
+    @Inject
+    public void setServerConfiguration(final ServerConfiguration serverConfiguration) {
+        _serverConfiguration = serverConfiguration;
     }
 }

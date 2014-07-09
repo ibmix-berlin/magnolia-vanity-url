@@ -37,6 +37,7 @@ import javax.jcr.RepositoryException;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
+import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
 import static org.apache.commons.lang.StringUtils.*;
 
 /**
@@ -135,7 +136,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     }
 
     private String retrieveSite() {
-        String siteName = "default";
+        String siteName = DEF_SITE;
 
         if (_moduleRegistry.isModuleRegistered("multisite")) {
             Site site = ((ExtendedAggregationState) MgnlContext.getAggregationState()).getSite();

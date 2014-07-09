@@ -31,6 +31,7 @@ import info.magnolia.nodebuilder.task.NodeBuilderTask;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.aperto.magnolia.vanity.VanityUrlModule.WORKSPACE;
 import static info.magnolia.jcr.util.NodeTypes.ContentNode;
 import static info.magnolia.nodebuilder.Ops.addNode;
 import static info.magnolia.nodebuilder.Ops.addProperty;
@@ -49,10 +50,10 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
     );
 
     private final Task _addUriRepositoryMapping = new NodeBuilderTask("Add repository mapping", "Add uri to repository mapping for vanityUrls.", logging, CONFIG, "/server/URI2RepositoryMapping/mappings",
-        addNode("vanityUrls", ContentNode.NAME).then(
-            addProperty("URIPrefix", "/vanityUrls"),
+        addNode(WORKSPACE, ContentNode.NAME).then(
+            addProperty("URIPrefix", "/" + WORKSPACE),
             addProperty("handlePrefix", ""),
-            addProperty("repository", "vanityUrls")
+            addProperty("repository", WORKSPACE)
         )
     );
 

@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
 import static info.magnolia.jcr.util.NodeTypes.ContentNode;
 import static info.magnolia.jcr.util.NodeUtil.asList;
 import static info.magnolia.repository.RepositoryConstants.CONFIG;
@@ -58,7 +59,7 @@ public class SiteSelectFieldDefinition extends SelectFieldDefinition {
         final List<Node> nodes = getNodes();
         if (nodes.isEmpty()) {
             LOGGER.debug("No site nodes found.");
-            options.add(createOptionDefinition("default", true));
+            options.add(createOptionDefinition(DEF_SITE, true));
         } else {
             LOGGER.debug("{} site nodes found.", nodes.size());
             for (Node node : nodes) {

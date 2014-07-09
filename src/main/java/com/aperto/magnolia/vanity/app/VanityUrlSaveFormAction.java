@@ -84,7 +84,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         OutputStream outputStream = null;
         try {
             final Node node = item.applyChanges();
-            String url = _vanityUrlService.createPublicUrl(node);
+            String url = _vanityUrlService.createVanityUrl(node);
             String fileName = trim(strip(getString(node, "vanityUrl", ""), "/")).replace("/", "-");
             File tmpDirectory = Path.getTempDirectory();
 
