@@ -215,6 +215,23 @@
                     <version>2.5</version>
                 </plugin>
                 <!--
+                    This plugin is used to release a project with Maven, saving a lot of repetitive, manual work. Releasing a project is
+                    made in two steps: prepare and perform. see http://maven.apache.org/plugins/maven-release-plugin
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4.1</version>
+                    <configuration>
+                        <preparationGoals>clean verify</preparationGoals>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <pushChanges>false</pushChanges>
+                        <localCheckout>true</localCheckout>
+                        <arguments>-Pjavadoc</arguments>
+                        <goals>deploy</goals>
+                    </configuration>
+                </plugin>
+                <!--
                    Sonar plugin that generates various metric reports for your projects.
                    see http://sonar.codehaus.org/
                   -->
@@ -289,6 +306,12 @@
             </build>
         </profile>
     </profiles>
+
+    <scm>
+        <url>https://github.com/aperto/magnolia-vanity-url.git</url>
+        <connection>scm:git:https://github.com/aperto/magnolia-vanity-url.git</connection>
+        <developerConnection>scm:git:https://github.com/aperto/magnolia-vanity-url.git</developerConnection>
+    </scm>
 
 	<distributionManagement>
 		<repository>
