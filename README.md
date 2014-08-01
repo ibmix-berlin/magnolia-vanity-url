@@ -23,9 +23,9 @@ Any bug reports, improvement or feature requests are welcome!
 
 Maven artifacts in Magnolia's Nexus
 ---------------------------------
-Once the build job on [Magnolia's Jenkins](http://jenkins.magnolia-cms.com/) is in place and everything is setup properly, you will be able to retrieve artifacts through [Magnolia's Forge release repository](http://nexus.magnolia-cms.com/content/repositories/magnolia.forge.releases/) and [Forge snapshot repository](http://nexus.magnolia-cms.com/content/repositories/magnolia.forge.snapshots/). 
+The code is built on [Magnolia's Jenkins](http://jenkins.magnolia-cms.com/job/forge_magnolia-vanity-url/), and Maven artifacts are available through [Magnolia's Forge release repository](http://nexus.magnolia-cms.com/content/repositories/magnolia.forge.releases/) and [Forge snapshot repository](http://nexus.magnolia-cms.com/content/repositories/magnolia.forge.snapshots/). 
 
-Please stay tuned...
+You can browse available artifacts through [Magnolia's Nexus](http://nexus.magnolia-cms.com/#nexus-search;quick~magnolia-vanity-url)
 
 Maven dependency
 -----------------
