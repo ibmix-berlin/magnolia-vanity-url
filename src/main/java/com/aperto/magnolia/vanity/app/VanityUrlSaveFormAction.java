@@ -23,35 +23,45 @@ package com.aperto.magnolia.vanity.app;
  */
 
 
-import com.aperto.magnolia.vanity.VanityUrlService;
+import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
+import static info.magnolia.jcr.util.PropertyUtil.getString;
+import static org.apache.commons.lang.StringUtils.strip;
+import static org.apache.commons.lang.StringUtils.trim;
+import info.magnolia.cms.beans.runtime.FileProperties;
 import info.magnolia.cms.core.Path;
 import info.magnolia.i18nsystem.SimpleTranslator;
+import info.magnolia.jcr.util.NodeTypes.Resource;
+import info.magnolia.jcr.util.PropertyUtil;
 import info.magnolia.ui.api.action.ActionExecutionException;
 import info.magnolia.ui.form.EditorCallback;
 import info.magnolia.ui.form.EditorValidator;
 import info.magnolia.ui.form.action.SaveFormAction;
 import info.magnolia.ui.form.action.SaveFormActionDefinition;
 import info.magnolia.ui.form.field.upload.UploadReceiver;
-import info.magnolia.ui.form.field.upload.basic.BasicFileItemWrapper;
-import info.magnolia.ui.vaadin.integration.jcr.AbstractJcrNodeAdapter;
-import info.magnolia.ui.vaadin.integration.jcr.JcrNewNodeAdapter;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNodeAdapter;
-import net.glxn.qrgen.QRCode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 import javax.jcr.Node;
+import javax.jcr.Property;
 import javax.jcr.RepositoryException;
-import java.io.File;
-import java.io.OutputStream;
 
-import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
-import static com.google.common.io.Closeables.closeQuietly;
-import static info.magnolia.jcr.util.NodeTypes.Resource;
-import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static org.apache.commons.lang.StringUtils.strip;
-import static org.apache.commons.lang.StringUtils.trim;
+import net.glxn.qrgen.QRCode;
+
+import org.apache.jackrabbit.JcrConstants;
+import org.apache.jackrabbit.value.ValueFactoryImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.aperto.magnolia.vanity.VanityUrlService;
 
 /**
  * Saves additional to the form fields a qr code image as preview image.
@@ -67,6 +77,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
 
     private SimpleTranslator _simpleTranslator;
     private VanityUrlService _vanityUrlService;
+    private String _fileName;
 
     public VanityUrlSaveFormAction(final SaveFormActionDefinition definition, final JcrNodeAdapter item, final EditorCallback callback, final EditorValidator validator) {
         super(definition, item, callback, validator);
@@ -75,56 +86,77 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
     @Override
     public void execute() throws ActionExecutionException {
         if (validator.isValid()) {
-            savePreviewImage();
+            try {
+                savePreviewImage();
+            } catch (IOException e) {
+                LOGGER.error("Error while saving vanity url", e);
+            }
         }
         super.execute();
     }
 
-    private void savePreviewImage() {
-        OutputStream outputStream = null;
+    private void savePreviewImage() throws IOException {
+        FileOutputStream outputStream = null;
+        FileInputStream qrCodeInputStream = null;
         try {
             final Node node = item.applyChanges();
             String url = _vanityUrlService.createVanityUrl(node);
-            String fileName = trim(strip(getString(node, "vanityUrl", ""), "/")).replace("/", "-");
-            File tmpDirectory = Path.getTempDirectory();
+            _fileName = trim(strip(getString(node, "vanityUrl", ""), "/")).replace("/", "-");
+            File tmpQrCodeFile = Path.getTempDirectory();
 
-            UploadReceiver uploadReceiver = new UploadReceiver(tmpDirectory, _simpleTranslator);
-            outputStream = uploadReceiver.receiveUpload(fileName + IMAGE_EXTENSION, "image/png");
+            UploadReceiver uploadReceiver = new UploadReceiver(tmpQrCodeFile, _simpleTranslator);
+            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(_fileName + IMAGE_EXTENSION, "image/png");
             QRCode.from(url).withSize(QR_WIDTH, GR_HEIGHT).writeTo(outputStream);
-
-            AbstractJcrNodeAdapter itemWithBinaryData = getOrCreateSubItemWithBinaryData();
-            BasicFileItemWrapper fileWrapper = new BasicFileItemWrapper(itemWithBinaryData, tmpDirectory);
-            fileWrapper.populateFromReceiver(uploadReceiver);
+            Node qrNode = node.addNode(NN_IMAGE, Resource.NAME);
+            
+           
+            qrCodeInputStream = new FileInputStream(uploadReceiver.getFile());
+            populateItem(qrCodeInputStream, qrNode);
+            outputStream.flush();
+            
         } catch (RepositoryException e) {
             LOGGER.error("Error on saving preview image for vanity url.", e);
         } finally {
-            closeQuietly(outputStream);
-        }
-    }
-
-    /**
-     * Get or Create the Binary Item.
-     * If this Item doesn't exist yet, initialize all fields (as Property).
-     * Inspired from Magnolia.
-     * @see info.magnolia.ui.form.field.factory.BasicUploadFieldFactory#getOrCreateSubItemWithBinaryData()
-     */
-    private AbstractJcrNodeAdapter getOrCreateSubItemWithBinaryData() {
-        AbstractJcrNodeAdapter child = null;
-        try {
-            Node node = item.getJcrItem();
-            if (node.hasNode(NN_IMAGE) && !(item instanceof JcrNewNodeAdapter)) {
-                child = new JcrNodeAdapter(node.getNode(NN_IMAGE));
-                child.setParent(item);
-            } else {
-                child = new JcrNewNodeAdapter(node, Resource.NAME, NN_IMAGE);
-                child.setParent(item);
+            if (outputStream != null) {
+                outputStream.close();
             }
-        } catch (RepositoryException e) {
-            LOGGER.error("Could get or create item", e);
+            if (qrCodeInputStream != null) {
+                qrCodeInputStream.close();
+            }
         }
-        return child;
+    }
+    
+    protected void populateItem(InputStream inputStream, Node qrCodeNode) throws  RepositoryException {
+        Property data = PropertyUtil.getPropertyOrNull(qrCodeNode, JcrConstants.JCR_DATA);
+        
+
+        if (inputStream != null) {
+            try {
+                if (data == null) {
+                    data = qrCodeNode.setProperty(JcrConstants.JCR_DATA, ValueFactoryImpl.getInstance().createBinary(inputStream));
+                } else {
+                    data.setValue(ValueFactoryImpl.getInstance().createBinary(inputStream));
+                }
+                
+            } catch (Exception re) {
+                LOGGER.error("Could not get Binary. Upload will not be performed", re);
+                return;
+            }
+        }
+        PropertyUtil.setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, _fileName);
+//        qrCodeNode.getProperty(FileProperties.PROPERTY_FILENAME).setValue(fileName);
+        PropertyUtil.setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, "image/png");
+      
+//        qrCodeNode.getProperty(FileProperties.PROPERTY_CONTENTTYPE).setValue("image/png");
+       
+       
+        Calendar  calValue = new GregorianCalendar(TimeZone.getDefault());
+//        qrCodeNode.getProperty(FileProperties.PROPERTY_LASTMODIFIED).setValue(calValue);
+        PropertyUtil.setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
+  
     }
 
+ 
     @Inject
     public void setVanityUrlService(final VanityUrlService vanityUrlService) {
         _vanityUrlService = vanityUrlService;
