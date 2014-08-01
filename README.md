@@ -39,4 +39,5 @@ Maven dependency
 Versions
 -----------------
 Version 1.2.0 is compatible with Magnolia 5.2
+
 Version 1.2.1-SNAPSHOT onwards is compatible with Magnolia 5.3
