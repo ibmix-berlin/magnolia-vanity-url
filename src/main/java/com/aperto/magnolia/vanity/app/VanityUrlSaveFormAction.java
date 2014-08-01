@@ -144,14 +144,11 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             }
         }
         PropertyUtil.setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, _fileName);
-//        qrCodeNode.getProperty(FileProperties.PROPERTY_FILENAME).setValue(fileName);
+
         PropertyUtil.setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, "image/png");
-      
-//        qrCodeNode.getProperty(FileProperties.PROPERTY_CONTENTTYPE).setValue("image/png");
-       
-       
+           
         Calendar  calValue = new GregorianCalendar(TimeZone.getDefault());
-//        qrCodeNode.getProperty(FileProperties.PROPERTY_LASTMODIFIED).setValue(calValue);
+
         PropertyUtil.setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
   
     }
