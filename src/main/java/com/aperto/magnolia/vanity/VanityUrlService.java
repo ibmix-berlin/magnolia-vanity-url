@@ -78,6 +78,7 @@ public class VanityUrlService {
 
     /**
      * Creates the redirect url for uri mapping.
+     * Without context path, because of Magnolia's {@link info.magnolia.cms.util.RequestDispatchUtil}.
      *
      * @param node vanity url node
      * @return redirect url
@@ -131,6 +132,7 @@ public class VanityUrlService {
 
     /**
      * Creates the preview url for app preview.
+     * Without contextPath, because of Magnolia's app framework.
      *
      * @param node vanity url node
      * @return preview url
