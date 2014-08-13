@@ -34,6 +34,7 @@ import info.magnolia.ui.form.action.SaveFormActionDefinition;
 import info.magnolia.ui.form.field.upload.UploadReceiver;
 import info.magnolia.ui.form.field.upload.basic.BasicFileItemWrapper;
 import info.magnolia.ui.vaadin.integration.jcr.AbstractJcrNodeAdapter;
+import info.magnolia.ui.vaadin.integration.jcr.DefaultProperty;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNewNodeAdapter;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNodeAdapter;
 import net.glxn.qrgen.QRCode;
@@ -47,11 +48,11 @@ import java.io.File;
 import java.io.OutputStream;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
+import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static com.google.common.io.Closeables.closeQuietly;
 import static info.magnolia.jcr.util.NodeTypes.Resource;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static org.apache.commons.lang.StringUtils.strip;
-import static org.apache.commons.lang.StringUtils.trim;
+import static org.apache.commons.lang.StringUtils.*;
 
 /**
  * Saves additional to the form fields a qr code image as preview image.
@@ -75,9 +76,27 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
     @Override
     public void execute() throws ActionExecutionException {
         if (validator.isValid()) {
+            checkVanityUrl();
             savePreviewImage();
         }
         super.execute();
+    }
+
+    private void checkVanityUrl() {
+        try {
+            final Node node = item.applyChanges();
+            String vanityUrl = getString(node, PN_VANITY_URL);
+            vanityUrl = stripStart(trimToEmpty(vanityUrl), "/");
+            if (isEmpty(vanityUrl)) {
+                vanityUrl = "/untitled";
+            } else {
+                vanityUrl = "/" + vanityUrl;
+            }
+            item.addItemProperty(PN_VANITY_URL, new DefaultProperty<>(vanityUrl));
+            node.getSession().save();
+        } catch (RepositoryException e) {
+            LOGGER.error("Error checking vanity url property.", e);
+        }
     }
 
     private void savePreviewImage() {
