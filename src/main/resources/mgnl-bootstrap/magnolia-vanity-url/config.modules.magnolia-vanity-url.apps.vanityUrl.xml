@@ -2487,7 +2487,7 @@
         <sv:value>superuser</sv:value>
       </sv:property>
       <sv:property sv:name="subAppClass" sv:type="String">
-        <sv:value>info.magnolia.ui.contentapp.detail.DetailSubApp</sv:value>
+        <sv:value>com.aperto.magnolia.vanity.app.VanityUrlDetailSubApp</sv:value>
       </sv:property>
       <sv:node sv:name="editor">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">

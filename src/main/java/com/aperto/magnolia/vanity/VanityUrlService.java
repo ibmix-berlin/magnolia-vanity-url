@@ -65,7 +65,7 @@ public class VanityUrlService {
     public static final String NN_IMAGE = "qrCode";
     public static final String DEF_SITE = "default";
     private static final String PN_SITE = "site";
-    private static final String PN_VANITY_URL = "vanityUrl";
+    public static final String PN_VANITY_URL = "vanityUrl";
     private static final String PN_LINK = "link";
     private static final String PN_SUFFIX = "linkSuffix";
 
