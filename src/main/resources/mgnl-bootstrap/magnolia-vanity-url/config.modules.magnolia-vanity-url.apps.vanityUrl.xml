@@ -2877,58 +2877,6 @@
                   <sv:property sv:name="required" sv:type="Boolean">
                     <sv:value>true</sv:value>
                   </sv:property>
-                  <sv:node sv:name="validators">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                    <sv:property sv:name="jcr:uuid" sv:type="String">
-                      <sv:value>e59f0caf-7960-4589-b608-0bcfdad3d848</sv:value>
-                    </sv:property>
-                    <sv:property sv:name="jcr:createdBy" sv:type="String">
-                      <sv:value>admin</sv:value>
-                    </sv:property>
-                    <sv:property sv:name="mgnl:created" sv:type="Date">
-                      <sv:value>2014-05-05T16:19:59.042+02:00</sv:value>
-                    </sv:property>
-                    <sv:property sv:name="mgnl:createdBy" sv:type="String">
-                      <sv:value>superuser</sv:value>
-                    </sv:property>
-                    <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-                      <sv:value>2014-05-05T16:20:17.083+02:00</sv:value>
-                    </sv:property>
-                    <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
-                      <sv:value>superuser</sv:value>
-                    </sv:property>
-                    <sv:node sv:name="validator">
-                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                        <sv:value>mgnl:contentNode</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="jcr:uuid" sv:type="String">
-                        <sv:value>c923d267-695e-4771-8819-2ad4b6b5af63</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="class" sv:type="String">
-                        <sv:value>info.magnolia.ui.form.validator.definition.RegexpValidatorDefinition</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="jcr:createdBy" sv:type="String">
-                        <sv:value>admin</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="mgnl:created" sv:type="Date">
-                        <sv:value>2014-05-05T16:20:17.084+02:00</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="mgnl:createdBy" sv:type="String">
-                        <sv:value>superuser</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-                        <sv:value>2014-05-05T16:21:44.355+02:00</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
-                        <sv:value>superuser</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="pattern" sv:type="String">
-                        <sv:value>/.+</sv:value>
-                      </sv:property>
-                    </sv:node>
-                  </sv:node>
                 </sv:node>
                 <sv:node sv:name="site">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
