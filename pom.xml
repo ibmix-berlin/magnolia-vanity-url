@@ -17,8 +17,8 @@
     </organization>
 
     <properties>
-        <magnoliaVersion>5.2.5</magnoliaVersion>
-        <magnolia.stk.version>2.7.2</magnolia.stk.version>
+        <magnoliaVersion>5.3.1</magnoliaVersion>
+        <magnolia.stk.version>2.8.1</magnolia.stk.version>
 
         <source.javaversion>1.7</source.javaversion>
         <target.javaversion>1.7</target.javaversion>
@@ -38,9 +38,19 @@
             <version>2.6</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
             <groupId>info.magnolia.ui</groupId>
             <artifactId>magnolia-ui-admincentral</artifactId>
             <version>${magnoliaVersion}</version>
+        </dependency>
+        <dependency>
+          <groupId>info.magnolia.ui</groupId>
+          <artifactId>magnolia-ui-contentapp</artifactId>
+          <version>${magnoliaVersion}</version>
         </dependency>
         <dependency>
             <groupId>info.magnolia</groupId>

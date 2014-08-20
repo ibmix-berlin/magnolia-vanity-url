@@ -21,6 +21,7 @@ package com.aperto.magnolia.vanity.app;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
+import com.aperto.magnolia.vanity.VanityUrlModule;
 import info.magnolia.cms.core.version.VersionManager;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.event.EventBus;
@@ -31,6 +32,7 @@ import info.magnolia.ui.contentapp.ContentSubAppView;
 import info.magnolia.ui.contentapp.detail.DetailEditorPresenter;
 import info.magnolia.ui.contentapp.detail.DetailLocation;
 import info.magnolia.ui.contentapp.detail.DetailSubApp;
+import info.magnolia.ui.vaadin.integration.contentconnector.ContentConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,8 +59,8 @@ public class VanityUrlDetailSubApp extends DetailSubApp {
     private final SimpleTranslator _i18n;
 
     @Inject
-    protected VanityUrlDetailSubApp(final SubAppContext subAppContext, final ContentSubAppView view, @Named(AdmincentralEventBus.NAME) EventBus adminCentralEventBus, DetailEditorPresenter workbench, VersionManager versionManager, SimpleTranslator i18n) {
-        super(subAppContext, view, adminCentralEventBus, workbench, i18n);
+    protected VanityUrlDetailSubApp(final SubAppContext subAppContext, final ContentSubAppView view, @Named(AdmincentralEventBus.NAME) EventBus adminCentralEventBus, DetailEditorPresenter workbench, VersionManager versionManager, SimpleTranslator i18n, ContentConnector contentConnector) {
+        super(subAppContext, view, adminCentralEventBus, workbench, i18n, contentConnector);
         _versionManager = versionManager;
         _i18n = i18n;
     }
@@ -68,7 +70,7 @@ public class VanityUrlDetailSubApp extends DetailSubApp {
         String baseCaption = super.getBaseCaption(location);
         String nodePath = location.getNodePath();
         try {
-            Session jcrSession = MgnlContext.getJCRSession(getWorkspace());
+            Session jcrSession = MgnlContext.getJCRSession(VanityUrlModule.WORKSPACE);
             if (jcrSession.nodeExists(nodePath)) {
                 Node node = jcrSession.getNode(nodePath);
                 // get specific node version if needed

@@ -53,8 +53,8 @@ import java.util.TimeZone;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
-import static com.google.common.io.Closeables.closeQuietly;
 import static info.magnolia.jcr.util.PropertyUtil.*;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 import static org.apache.commons.lang.StringUtils.*;
 import static org.apache.jackrabbit.JcrConstants.JCR_DATA;
 
