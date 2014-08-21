@@ -68,7 +68,8 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
     private static final Logger LOGGER = LoggerFactory.getLogger(VanityUrlSaveFormAction.class);
     private static final int QR_WIDTH = 500;
     private static final int GR_HEIGHT = 500;
-    public static final String IMAGE_EXTENSION = ".png";
+    private static final String MIME_TYPE = "image/png";
+    private static final String IMAGE_EXTENSION = ".png";
 
     private SimpleTranslator _simpleTranslator;
     private VanityUrlService _vanityUrlService;
@@ -110,13 +111,19 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         try {
             final Node node = item.applyChanges();
             String url = _vanityUrlService.createVanityUrl(node);
-            _fileName = trim(strip(getString(node, "vanityUrl", ""), "/")).replace("/", "-");
+            _fileName = trim(strip(getString(node, PN_VANITY_URL, ""), "/")).replace("/", "-");
             File tmpQrCodeFile = Path.getTempDirectory();
 
             UploadReceiver uploadReceiver = new UploadReceiver(tmpQrCodeFile, _simpleTranslator);
-            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(_fileName + IMAGE_EXTENSION, "image/png");
+            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(_fileName + IMAGE_EXTENSION, MIME_TYPE);
             QRCode.from(url).withSize(QR_WIDTH, GR_HEIGHT).writeTo(outputStream);
-            Node qrNode = node.addNode(NN_IMAGE, Resource.NAME);
+
+            Node qrNode;
+            if (node.hasNode(NN_IMAGE)) {
+                qrNode = node.getNode(NN_IMAGE);
+            } else {
+                qrNode = node.addNode(NN_IMAGE, Resource.NAME);
+            }
 
             qrCodeInputStream = new FileInputStream(uploadReceiver.getFile());
             populateItem(qrCodeInputStream, qrNode);
@@ -143,7 +150,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
                 }
 
                 setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, _fileName);
-                setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, "image/png");
+                setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, MIME_TYPE);
                 Calendar calValue = new GregorianCalendar(TimeZone.getDefault());
                 setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
             } catch (RepositoryException re) {
