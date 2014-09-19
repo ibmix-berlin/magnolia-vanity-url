@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.3.0</version>
     <packaging>jar</packaging>
     <name>magnolia-vanity-url Magnolia Module</name>
 
@@ -276,7 +275,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -321,7 +320,7 @@
         <url>https://github.com/aperto/magnolia-vanity-url.git</url>
         <connection>scm:git:https://github.com/aperto/magnolia-vanity-url.git</connection>
         <developerConnection>scm:git:https://github.com/aperto/magnolia-vanity-url.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>magnolia-vanity-url-1.3.0</tag>
     </scm>
 
     <distributionManagement>
