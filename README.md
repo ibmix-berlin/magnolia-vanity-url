@@ -35,8 +35,17 @@ Maven dependency
             <groupId>com.aperto.magkit</groupId>
             <version>1.3.0</version>
         </dependency>
-```        
+```
+
 Versions
 -----------------
 Version 1.2.x is compatible with Magnolia 5.2.x
 Version 1.3.x is compatible with Magnolia 5.3.x
+
+Magnolia Module Configuration
+-----------------
+In the module configuration of the vanity url module, you can configure the following settings:
+* _excludes_ : Pattern of urls, which are no candidates for vanity urls.
+* _publicUrlService_ : Implementation of _com.aperto.magnolia.vanity.PublicUrlService_. Two implementations are already available.
+  * _com.aperto.magnolia.vanity.DefaultPublicUrlService_ (default) : Use of default base url and site configuration with context path replacement.
+  * _com.aperto.magnolia.vanity.SimplePublicUrlService_ : Used configured public prefix and removes the author context path.
