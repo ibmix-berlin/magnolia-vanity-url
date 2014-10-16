@@ -23,19 +23,19 @@ package com.aperto.magnolia.vanity.setup;
  */
 
 
+import info.magnolia.jcr.nodebuilder.task.NodeBuilderTask;
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
 import info.magnolia.module.delta.Task;
-import info.magnolia.nodebuilder.task.NodeBuilderTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.aperto.magnolia.vanity.VanityUrlModule.WORKSPACE;
+import static info.magnolia.jcr.nodebuilder.Ops.addNode;
+import static info.magnolia.jcr.nodebuilder.Ops.addProperty;
+import static info.magnolia.jcr.nodebuilder.task.ErrorHandling.logging;
 import static info.magnolia.jcr.util.NodeTypes.ContentNode;
-import static info.magnolia.nodebuilder.Ops.addNode;
-import static info.magnolia.nodebuilder.Ops.addProperty;
-import static info.magnolia.nodebuilder.task.ErrorHandling.logging;
 import static info.magnolia.repository.RepositoryConstants.CONFIG;
 
 /**
