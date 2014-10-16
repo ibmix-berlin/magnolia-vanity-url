@@ -23,6 +23,8 @@ package com.aperto.magnolia.vanity;
  */
 
 
+import info.magnolia.objectfactory.Components;
+
 import java.util.Collections;
 import java.util.Map;
 
@@ -35,6 +37,7 @@ import java.util.Map;
 public class VanityUrlModule {
     public static final String WORKSPACE = "vanityUrls";
     private Map<String, String> _excludes;
+    private PublicUrlService _publicUrlService;
 
     public Map<String, String> getExcludes() {
         return _excludes == null ? Collections.<String, String>emptyMap() : _excludes;
@@ -42,5 +45,16 @@ public class VanityUrlModule {
 
     public void setExcludes(Map<String, String> excludes) {
         _excludes = excludes;
+    }
+
+    public PublicUrlService getPublicUrlService() {
+        if (_publicUrlService == null) {
+            _publicUrlService = Components.getComponent(PublicUrlService.class);
+        }
+        return _publicUrlService;
+    }
+
+    public void setPublicUrlService(final PublicUrlService publicUrlService) {
+        _publicUrlService = publicUrlService;
     }
 }
