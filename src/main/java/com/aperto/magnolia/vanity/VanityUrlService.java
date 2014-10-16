@@ -23,12 +23,8 @@ package com.aperto.magnolia.vanity;
  */
 
 
-import info.magnolia.cms.beans.config.ServerConfiguration;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.link.LinkUtil;
-import info.magnolia.module.templatingkit.sites.Domain;
-import info.magnolia.module.templatingkit.sites.Site;
-import info.magnolia.module.templatingkit.sites.SiteManager;
 import org.apache.jackrabbit.value.StringValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +38,6 @@ import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
-import java.util.Collection;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
@@ -64,17 +59,16 @@ public class VanityUrlService {
     private static final String QUERY = "select * from [mgnl:vanityUrl] where vanityUrl = $vanityUrl and site = $site";
     public static final String NN_IMAGE = "qrCode";
     public static final String DEF_SITE = "default";
-    private static final String PN_SITE = "site";
+    public static final String PN_SITE = "site";
     public static final String PN_VANITY_URL = "vanityUrl";
-    private static final String PN_LINK = "link";
-    private static final String PN_SUFFIX = "linkSuffix";
+    public static final String PN_LINK = "link";
+    public static final String PN_SUFFIX = "linkSuffix";
 
     @Inject
     @Named(value = "magnolia.contextpath")
     private String _contextPath = "";
 
-    private SiteManager _siteManager;
-    private ServerConfiguration _serverConfiguration;
+    private VanityUrlModule _vanityUrlModule;
 
     /**
      * Creates the redirect url for uri mapping.
@@ -83,7 +77,7 @@ public class VanityUrlService {
      * @return redirect url
      */
     public String createRedirectUrl(final Node node) {
-        String redirectUri = createTargetLink(node, false);
+        String redirectUri = createTargetLink(node);
         if (isNotEmpty(redirectUri)) {
             redirectUri = REDIRECT_PREFIX + redirectUri;
         }
@@ -97,7 +91,8 @@ public class VanityUrlService {
      * @return public url
      */
     public String createPublicUrl(final Node node) {
-        return createTargetLink(node, true);
+        PublicUrlService publicUrlService = _vanityUrlModule.getPublicUrlService();
+        return publicUrlService.createTargetUrl(node);
     }
 
     /**
@@ -107,26 +102,8 @@ public class VanityUrlService {
      * @return vanity url
      */
     public String createVanityUrl(final Node node) {
-        // default base url is the default
-        String baseUrl = _serverConfiguration.getDefaultBaseUrl();
-
-        // for public removing the context path
-        if (isNotEmpty(_contextPath)) {
-            baseUrl = replaceOnce(baseUrl, _contextPath, EMPTY);
-        }
-
-        // check the site configuration and take the first domain
-        String siteName = getString(node, PN_SITE, DEF_SITE);
-        if (!DEF_SITE.equals(siteName)) {
-            Site site = _siteManager.getSite(siteName);
-            Collection<Domain> domains = site.getDomains();
-            if (!domains.isEmpty()) {
-                Domain firstDomain = domains.iterator().next();
-                baseUrl = firstDomain.toString();
-            }
-        }
-
-        return removeEnd(baseUrl, "/") + getString(node, PN_VANITY_URL, EMPTY);
+        PublicUrlService publicUrlService = _vanityUrlModule.getPublicUrlService();
+        return publicUrlService.createVanityUrl(node);
     }
 
     /**
@@ -136,33 +113,20 @@ public class VanityUrlService {
      * @return preview url
      */
     public String createPreviewUrl(final Node node) {
-        return createTargetLink(node, false);
+        return createTargetLink(node);
     }
 
-    private String createTargetLink(final Node node, final boolean forPublic) {
+    private String createTargetLink(final Node node) {
         String url = EMPTY;
         if (node != null) {
             url = getString(node, PN_LINK, EMPTY);
             if (isNotEmpty(url)) {
                 if (!isExternalLink(url)) {
-                    url = createLink(url, forPublic);
+                    String link = getLinkFromId(url);
+                    url = removeStart(defaultString(link), _contextPath);
                 }
                 url += getString(node, PN_SUFFIX, EMPTY);
             }
-        }
-        return url;
-    }
-
-    private String createLink(final String identifier, final boolean forPublic) {
-        String url;
-        if (forPublic) {
-            url = getExternalLinkFromId(identifier);
-            if (isNotEmpty(_contextPath)) {
-                url = replaceOnce(url, _contextPath, EMPTY);
-            }
-        } else {
-            String link = getLinkFromId(identifier);
-            url = removeStart(defaultString(link), _contextPath);
         }
         return url;
     }
@@ -221,20 +185,8 @@ public class VanityUrlService {
         return LinkUtil.createLink(getNodeByIdentifier(WEBSITE, url));
     }
 
-    /**
-     * Override for testing.
-     */
-    protected String getExternalLinkFromId(final String url) {
-        return LinkUtil.createExternalLink(getNodeByIdentifier(WEBSITE, url));
-    }
-
     @Inject
-    public void setSiteManager(final SiteManager siteManager) {
-        _siteManager = siteManager;
-    }
-
-    @Inject
-    public void setServerConfiguration(final ServerConfiguration serverConfiguration) {
-        _serverConfiguration = serverConfiguration;
+    public void setVanityUrlModule(final VanityUrlModule vanityUrlModule) {
+        _vanityUrlModule = vanityUrlModule;
     }
 }

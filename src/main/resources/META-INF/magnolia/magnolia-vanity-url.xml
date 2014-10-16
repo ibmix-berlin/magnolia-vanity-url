@@ -29,6 +29,15 @@
     <class>com.aperto.magnolia.vanity.VanityUrlModule</class>
     <versionHandler>com.aperto.magnolia.vanity.setup.VanityUrlModuleVersionHandler</versionHandler>
     <version>${project.version}</version>
+
+    <components>
+        <id>main</id>
+        <component>
+            <type>com.aperto.magnolia.vanity.PublicUrlService</type>
+            <implementation>com.aperto.magnolia.vanity.DefaultPublicUrlService</implementation>
+        </component>
+    </components>
+
     <dependencies>
         <dependency>
             <name>ui-admincentral</name>

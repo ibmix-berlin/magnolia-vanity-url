@@ -25,6 +25,8 @@ package com.aperto.magnolia.vanity.setup;
 
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
+import info.magnolia.module.delta.BootstrapConditionally;
+import info.magnolia.module.delta.DeltaBuilder;
 import info.magnolia.module.delta.Task;
 import info.magnolia.nodebuilder.task.NodeBuilderTask;
 
@@ -56,6 +58,12 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
             addProperty("repository", WORKSPACE)
         )
     );
+
+    public VanityUrlModuleVersionHandler() {
+        DeltaBuilder update131 = DeltaBuilder.update("1.3.1", "Update to version 1.3.1");
+        update131.addTask(new BootstrapConditionally("Bootstrap new config", "Bootstrap new public url service configuration.", "/mgnl-bootstrap/magnolia-vanity-url/config.modules.magnolia-vanity-url.config.publicUrlService.xml"));
+        register(update131);
+    }
 
     @Override
     protected List<Task> getExtraInstallTasks(final InstallContext installContext) {
