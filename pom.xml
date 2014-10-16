@@ -324,4 +324,12 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>magnolia.community</id>
+            <name>Magnolia Community Repository</name>
+            <url>https://nexus.magnolia-cms.com/content/repositories/magnolia.public.releases/</url>
+        </repository>
+    </repositories>
+
 </project>
