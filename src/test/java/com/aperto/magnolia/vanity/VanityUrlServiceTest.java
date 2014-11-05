@@ -28,7 +28,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 
+import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
@@ -86,12 +88,42 @@ public class VanityUrlServiceTest {
         assertThat(_service.createVanityUrl(null), equalTo("http://www.aperto.de/vanity"));
     }
 
+    @Test
+    public void testImageLinkWithNull() throws Exception {
+        assertThat(_service.createImageLink(null), equalTo(""));
+    }
+
+    @Test
+    public void testImageLinkWithMissingImage() throws Exception {
+        MockNode mockNode = new MockNode("node");
+        assertThat(_service.createImageLink(mockNode), equalTo(""));
+    }
+
+    @Test
+    public void testImageLinkWithImage() throws Exception {
+        MockNode mockNode = new MockNode("node");
+        MockNode image = new MockNode(NN_IMAGE);
+        mockNode.addNode(image);
+        assertThat(_service.createImageLink(mockNode), equalTo("/node/qrCode.png"));
+    }
+
     @Before
     public void setUp() throws Exception {
         _service = new VanityUrlService() {
             @Override
             protected String getLinkFromId(final String url) {
                 return "/internal/page.html";
+            }
+
+            @Override
+            protected String getLinkFromNode(final Node node) {
+                String link = "";
+                try {
+                    link = node.getPath() + ".html";
+                } catch (RepositoryException e) {
+                    // should not happen
+                }
+                return link;
             }
         };
 

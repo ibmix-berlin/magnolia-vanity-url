@@ -69,7 +69,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
     private static final int QR_WIDTH = 500;
     private static final int GR_HEIGHT = 500;
     private static final String MIME_TYPE = "image/png";
-    private static final String IMAGE_EXTENSION = ".png";
+    public static final String IMAGE_EXTENSION = ".png";
 
     private SimpleTranslator _simpleTranslator;
     private VanityUrlService _vanityUrlService;
