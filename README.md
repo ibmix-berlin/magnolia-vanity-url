@@ -46,6 +46,7 @@ Magnolia Module Configuration
 -----------------
 In the module configuration of the vanity url module, you can configure the following settings:
 * _excludes_ : Pattern of urls, which are no candidates for vanity urls.
+  * by default an exclude for all urls containing a dot is configured, that prevents the virtual uri mapping checks every ordinary request like script.js or page.html 
 * _publicUrlService_ : Implementation of _com.aperto.magnolia.vanity.PublicUrlService_. Two implementations are already available.
   * _com.aperto.magnolia.vanity.DefaultPublicUrlService_ (default) : Use of default base url and site configuration with context path replacement.
   * _com.aperto.magnolia.vanity.SimplePublicUrlService_ : Used configured public prefix and removes the author context path.
