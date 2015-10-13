@@ -70,6 +70,10 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
         DeltaBuilder update131 = DeltaBuilder.update("1.3.1", "Update to version 1.3.1");
         update131.addTask(new BootstrapConditionally("Bootstrap new config", "Bootstrap new public url service configuration.", "/mgnl-bootstrap/magnolia-vanity-url/config.modules.magnolia-vanity-url.config.publicUrlService.xml"));
         register(update131);
+        
+        DeltaBuilder update133 = DeltaBuilder.update("1.3.3", "Update to version 1.3.3");
+        update133.addTask(new BootstrapConditionally("Bootstrap new config", "Bootstrap folder definition in app.", "/mgnl-bootstrap/magnolia-vanity-url/config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
+        register(update133);
     }
 
     @Override
