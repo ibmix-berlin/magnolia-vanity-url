@@ -25,15 +25,17 @@ package com.aperto.magnolia.vanity;
 
 import info.magnolia.cms.beans.config.ServerConfiguration;
 import info.magnolia.link.LinkUtil;
-import info.magnolia.module.templatingkit.sites.Domain;
-import info.magnolia.module.templatingkit.sites.Site;
-import info.magnolia.module.templatingkit.sites.SiteManager;
+import info.magnolia.module.site.Domain;
+import info.magnolia.module.site.Site;
+import info.magnolia.module.site.SiteManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
+
 import java.util.Collection;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.*;

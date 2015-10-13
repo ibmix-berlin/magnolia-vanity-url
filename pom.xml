@@ -4,7 +4,7 @@
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
-    <version>1.3.3-SNAPSHOT</version>
+    <version>1.3.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>magnolia-vanity-url Magnolia Module</name>
 
@@ -16,8 +16,7 @@
     </organization>
 
     <properties>
-        <magnoliaVersion>5.3.1</magnoliaVersion>
-        <magnolia.stk.version>2.8.1</magnolia.stk.version>
+        <magnoliaVersion>5.4.2</magnoliaVersion>
 
         <source.javaversion>1.7</source.javaversion>
         <target.javaversion>1.7</target.javaversion>
@@ -51,11 +50,16 @@
           <artifactId>magnolia-ui-contentapp</artifactId>
           <version>${magnoliaVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>info.magnolia</groupId>
-            <artifactId>magnolia-module-standard-templating-kit</artifactId>
-            <version>${magnolia.stk.version}</version>
-        </dependency>
+	    <dependency>
+	      <groupId>info.magnolia.site</groupId>
+	      <artifactId>magnolia-site</artifactId>
+		  <version>1.0.2</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>info.magnolia.site</groupId>
+	      <artifactId>magnolia-site-app</artifactId>
+		  <version>1.0.2</version>
+	    </dependency>
         <dependency>
             <groupId>net.glxn</groupId>
             <artifactId>qrgen</artifactId>

@@ -26,14 +26,16 @@ package com.aperto.magnolia.vanity;
 import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.module.ModuleRegistry;
-import info.magnolia.module.templatingkit.ExtendedAggregationState;
-import info.magnolia.module.templatingkit.sites.Site;
+import info.magnolia.module.site.ExtendedAggregationState;
+import info.magnolia.module.site.Site;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
