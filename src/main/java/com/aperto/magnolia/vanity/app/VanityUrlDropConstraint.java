@@ -25,6 +25,8 @@ package com.aperto.magnolia.vanity.app;
 
 import info.magnolia.ui.workbench.tree.drop.BaseDropConstraint;
 
+import static com.aperto.magnolia.vanity.VanityUrlModule.NT_VANITY;
+
 /**
  * Implementation of {@link info.magnolia.ui.workbench.tree.drop.DropConstraint} for vanity url app.
  *
@@ -34,6 +36,6 @@ import info.magnolia.ui.workbench.tree.drop.BaseDropConstraint;
 public class VanityUrlDropConstraint extends BaseDropConstraint {
 
     public VanityUrlDropConstraint() {
-        super("mgnl:vanityUrl");
+        super(NT_VANITY);
     }
 }
