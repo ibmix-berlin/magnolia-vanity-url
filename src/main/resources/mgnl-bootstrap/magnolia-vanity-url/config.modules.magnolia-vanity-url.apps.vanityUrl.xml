@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="vanityUrl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<sv:node sv:name="vanityUrl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>mgnl:contentNode</sv:value>
   </sv:property>
@@ -1044,7 +1044,7 @@
             <sv:value>000e3c70-3877-4041-8574-b2734eb0cbf8</sv:value>
           </sv:property>
           <sv:property sv:name="extends" sv:type="String">
-            <sv:value>../confirmDeleteAsset</sv:value>
+            <sv:value>../confirmDeleteUrl</sv:value>
           </sv:property>
           <sv:property sv:name="icon" sv:type="String">
             <sv:value>icon-delete</sv:value>
@@ -1068,7 +1068,7 @@
             <sv:value>superuser</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-            <sv:value>2015-10-13T12:16:20.585+02:00</sv:value>
+            <sv:value>2015-10-14T10:19:32.972+02:00</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
             <sv:value>superuser</sv:value>

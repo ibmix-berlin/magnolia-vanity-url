@@ -36,6 +36,7 @@ import java.util.Map;
  */
 public class VanityUrlModule {
     public static final String WORKSPACE = "vanityUrls";
+    public static final String NT_VANITY = "mgnl:vanityUrl";
     private Map<String, String> _excludes;
     private PublicUrlService _publicUrlService;
 
