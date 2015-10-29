@@ -50,16 +50,16 @@
           <artifactId>magnolia-ui-contentapp</artifactId>
           <version>${magnoliaVersion}</version>
         </dependency>
-	    <dependency>
-	      <groupId>info.magnolia.site</groupId>
-	      <artifactId>magnolia-site</artifactId>
-		  <version>1.0.2</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>info.magnolia.site</groupId>
-	      <artifactId>magnolia-site-app</artifactId>
-		  <version>1.0.2</version>
-	    </dependency>
+        <dependency>
+          <groupId>info.magnolia.site</groupId>
+          <artifactId>magnolia-site</artifactId>
+          <version>1.0.2</version>
+        </dependency>
+        <dependency>
+          <groupId>info.magnolia.site</groupId>
+          <artifactId>magnolia-site-app</artifactId>
+          <version>1.0.2</version>
+        </dependency>
         <dependency>
             <groupId>net.glxn</groupId>
             <artifactId>qrgen</artifactId>

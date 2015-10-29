@@ -30,8 +30,7 @@ import info.magnolia.context.MgnlContext;
 import info.magnolia.context.SystemContext;
 import info.magnolia.context.WebContext;
 import info.magnolia.module.ModuleRegistry;
-import info.magnolia.objectfactory.ComponentProvider;
-import info.magnolia.objectfactory.Components;
+import info.magnolia.test.ComponentsTestUtil;
 import info.magnolia.test.mock.jcr.MockNode;
 import org.junit.After;
 import org.junit.Before;
@@ -110,12 +109,10 @@ public class VirtualVanityUriMappingTest {
     }
 
     private void initComponentProvider() {
-        ComponentProvider componentProvider = mock(ComponentProvider.class);
         ContextFactory contextFactory = mock(ContextFactory.class);
         SystemContext systemContext = mock(SystemContext.class);
         when(contextFactory.getSystemContext()).thenReturn(systemContext);
-        when(componentProvider.getComponent(ContextFactory.class)).thenReturn(contextFactory);
-        Components.setComponentProvider(componentProvider);
+        ComponentsTestUtil.setInstance(ContextFactory.class, contextFactory);
     }
 
     private void initWebContext() {
@@ -128,6 +125,5 @@ public class VirtualVanityUriMappingTest {
     @After
     public void tearDown() throws Exception {
         MgnlContext.setInstance(null);
-        Components.setComponentProvider(null);
     }
 }
