@@ -43,10 +43,6 @@
             <name>ui-admincentral</name>
             <version>${magnoliaVersion}/*</version>
         </dependency>
-        <dependency>
-            <name>standard-templating-kit</name>
-            <version>${magnolia.stk.version}/*</version>
-        </dependency>
     </dependencies>
 
     <repositories>
