@@ -47,7 +47,6 @@ import static info.magnolia.repository.RepositoryConstants.CONFIG;
  * @author frank.sommer
  */
 public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
-    private static final String FLUSH_CACHE_PATH = "/modules/cache/config/contentCaching/defaultPageCache/flushPolicy/policies/flushAll/excludedWorkspaces";
 
     private final Task _addAppToLauncher = new NodeBuilderTask("Add app to app launcher", "Add vanity url app to app launcher.", logging, CONFIG, "/modules/ui-admincentral/config/appLauncherLayout/groups/manage/apps",
         addNode("vanityUrl", ContentNode.NAME)
