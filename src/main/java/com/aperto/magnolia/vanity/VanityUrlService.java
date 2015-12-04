@@ -41,6 +41,7 @@ import javax.jcr.query.QueryResult;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
+import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
 import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
@@ -65,6 +66,7 @@ public class VanityUrlService {
     public static final String PN_VANITY_URL = "vanityUrl";
     public static final String PN_LINK = "link";
     public static final String PN_SUFFIX = "linkSuffix";
+    public static final String PN_TYPE = "type";
 
     @Inject
     @Named(value = "magnolia.contextpath")
@@ -82,7 +84,11 @@ public class VanityUrlService {
     public String createRedirectUrl(final Node node) {
         String redirectUri = createTargetLink(node);
         if (isNotEmpty(redirectUri)) {
-            redirectUri = REDIRECT_PREFIX + redirectUri;
+            if ("301".equals(getString(node, PN_TYPE, EMPTY))) {
+                redirectUri = PERMANENT_PREFIX + redirectUri;
+            } else {
+                redirectUri = REDIRECT_PREFIX + redirectUri;
+            }
         }
         return redirectUri;
     }
