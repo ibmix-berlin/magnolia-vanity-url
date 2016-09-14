@@ -4,7 +4,7 @@
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
-    <version>1.4.2-SNAPSHOT</version>
+    <version>1.4.2-FORWARDING</version>
     <packaging>jar</packaging>
     <name>magnolia-vanity-url Magnolia Module</name>
 
