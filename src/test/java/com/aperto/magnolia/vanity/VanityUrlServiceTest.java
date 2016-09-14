@@ -23,6 +23,7 @@ package com.aperto.magnolia.vanity;
  */
 
 
+import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.test.mock.jcr.MockNode;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +32,10 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
+import static info.magnolia.jcr.util.PropertyUtil.getString;
+import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
+import static info.magnolia.repository.RepositoryConstants.WEBSITE;
+import static org.apache.commons.lang.StringUtils.EMPTY;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
@@ -79,6 +84,15 @@ public class VanityUrlServiceTest {
     }
 
     @Test
+    public void testForward() throws Exception {
+        MockNode mockNode = new MockNode("node");
+        mockNode.setProperty("link", "123-4556-123");
+        mockNode.setProperty("type", "forward");
+
+        assertThat(_service.createRedirectUrl(mockNode), equalTo("forward:/internal/forward/page"));
+    }
+
+    @Test
     public void testPublicUrl() throws Exception {
         assertThat(_service.createPublicUrl(null), equalTo("http://www.aperto.de/page.html"));
     }
@@ -124,6 +138,11 @@ public class VanityUrlServiceTest {
                     // should not happen
                 }
                 return link;
+            }
+
+            @Override
+            protected String getForwardUri(Node node)  {
+                return "/internal/forward/page";
             }
         };
 
