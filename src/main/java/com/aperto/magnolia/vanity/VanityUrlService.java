@@ -24,6 +24,7 @@ package com.aperto.magnolia.vanity;
 
 
 import info.magnolia.context.MgnlContext;
+import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.link.LinkUtil;
 import org.apache.jackrabbit.value.StringValue;
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ import javax.jcr.query.QueryResult;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
+import static info.magnolia.cms.util.RequestDispatchUtil.FORWARD_PREFIX;
 import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
 import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
@@ -82,6 +84,10 @@ public class VanityUrlService {
      * @return redirect url
      */
     public String createRedirectUrl(final Node node) {
+        if ("forward".equals(getString(node, PN_TYPE, EMPTY))) {
+            return FORWARD_PREFIX + getForwardUri(node);
+        }
+
         String redirectUri = createTargetLink(node);
         if (isNotEmpty(redirectUri)) {
             if ("301".equals(getString(node, PN_TYPE, EMPTY))) {
@@ -91,6 +97,16 @@ public class VanityUrlService {
             }
         }
         return redirectUri;
+    }
+
+    protected String getForwardUri(Node node) {
+        String nodeId = getString(node, PN_LINK, EMPTY);
+        Node targetNode = getNodeByIdentifier(WEBSITE, nodeId);
+        if (targetNode != null) {
+            return NodeUtil.getPathIfPossible(targetNode) + getString(node, PN_SUFFIX, EMPTY);
+        }
+
+        return EMPTY;
     }
 
     /**
