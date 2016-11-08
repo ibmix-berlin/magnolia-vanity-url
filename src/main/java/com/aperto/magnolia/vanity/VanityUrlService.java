@@ -41,6 +41,7 @@ import javax.jcr.query.QueryResult;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
+import static info.magnolia.cms.util.RequestDispatchUtil.FORWARD_PREFIX;
 import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
 import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
@@ -82,15 +83,20 @@ public class VanityUrlService {
      * @return redirect url
      */
     public String createRedirectUrl(final Node node) {
-        String redirectUri = createTargetLink(node);
-        if (isNotEmpty(redirectUri)) {
-            if ("301".equals(getString(node, PN_TYPE, EMPTY))) {
-                redirectUri = PERMANENT_PREFIX + redirectUri;
-            } else {
-                redirectUri = REDIRECT_PREFIX + redirectUri;
-            }
+        String result = EMPTY;
+        String type = getString(node, PN_TYPE, EMPTY);
+        String prefix = null;
+        if ("forward".equals(type)) {
+            result = createForwardLink(node);
+            prefix = FORWARD_PREFIX;
+        } else {
+            result = createTargetLink(node);
+            prefix = "301".equals(type) ? PERMANENT_PREFIX : REDIRECT_PREFIX;
         }
-        return redirectUri;
+        if (isNotEmpty(result)) {
+            result = prefix + result;
+        }
+        return result;
     }
 
     /**
@@ -126,16 +132,33 @@ public class VanityUrlService {
         return createTargetLink(node);
     }
 
+    private String createForwardLink(final Node node) {
+        // nearly the same functionality as in createTargetLink. the only difference
+        // is the clearing of the url if an external url had been configured
+        return createTargetLink(node, true);
+    }
+
     private String createTargetLink(final Node node) {
+      return createTargetLink(node, false);
+    }
+    
+    private String createTargetLink(final Node node, boolean clearIfExternal) {
         String url = EMPTY;
         if (node != null) {
             url = getString(node, PN_LINK, EMPTY);
             if (isNotEmpty(url)) {
-                if (!isExternalLink(url)) {
+                if (isExternalLink(url)) {
+                    // we won't allow external links in a forward
+                    if (clearIfExternal) {
+                        url = EMPTY;
+                    }
+                } else {
                     String link = getLinkFromId(url);
-                    url = removeStart(defaultString(link), _contextPath);
+                    url = substringAfter(defaultString(link), _contextPath);
                 }
-                url += getString(node, PN_SUFFIX, EMPTY);
+            }
+            if (isNotEmpty(url)) {
+                url += getString(node, PN_SUFFIX, EMPTY); 
             }
         }
         return url;
@@ -193,7 +216,7 @@ public class VanityUrlService {
      * Override for testing.
      */
     protected String getLinkFromId(final String url) {
-        return LinkUtil.createLink(getNodeByIdentifier(WEBSITE, url));
+        return getLinkFromNode(getNodeByIdentifier(WEBSITE, url));
     }
 
     /**
