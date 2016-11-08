@@ -139,7 +139,7 @@ public class VanityUrlService {
     }
 
     private String createTargetLink(final Node node) {
-      return createTargetLink(node, false);
+        return createTargetLink(node, false);
     }
     
     private String createTargetLink(final Node node, boolean clearIfExternal) {

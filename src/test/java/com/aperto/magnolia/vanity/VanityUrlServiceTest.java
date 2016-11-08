@@ -172,11 +172,11 @@ public class VanityUrlServiceTest {
             protected String getLinkFromNode(final Node node) {
                 String link = "";
                 if (node != null) {
-                  try {
-                      link = node.getPath() + ".html";
-                  } catch (RepositoryException e) {
-                      // should not happen
-                  }
+                    try {
+                        link = node.getPath() + ".html";
+                    } catch (RepositoryException e) {
+                        // should not happen
+                    }
                 }
                 return link;
             }
