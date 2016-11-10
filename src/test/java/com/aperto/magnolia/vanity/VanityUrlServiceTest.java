@@ -1,5 +1,10 @@
 package com.aperto.magnolia.vanity;
 
+import info.magnolia.cms.i18n.*;
+import info.magnolia.context.*;
+import info.magnolia.test.*;
+import info.magnolia.test.mock.*;
+
 /*
  * #%L
  * magnolia-vanity-url Magnolia Module
@@ -21,9 +26,8 @@ package com.aperto.magnolia.vanity;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
+import info.magnolia.test.mock.jcr.*;
 
-
-import info.magnolia.test.mock.jcr.MockNode;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +41,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import info.magnolia.repository.*;
+
 /**
  * Test the service class.
  *
@@ -45,6 +51,9 @@ import static org.mockito.Mockito.when;
  */
 public class VanityUrlServiceTest {
 
+    private static final String TEST_UUID = "123-4556-123";
+    private static final String TEST_UUID_FORWARD = "123-4556-124";
+    
     private VanityUrlService _service;
 
     @Test
@@ -62,7 +71,7 @@ public class VanityUrlServiceTest {
     @Test
     public void testTargetUrlInternalWithAnchor() throws Exception {
         MockNode mockNode = new MockNode("node");
-        mockNode.setProperty("link", "123-4556-123");
+        mockNode.setProperty("link", TEST_UUID);
         mockNode.setProperty("linkSuffix", "#anchor1");
 
         assertThat(_service.createRedirectUrl(mockNode), equalTo("redirect:/internal/page.html#anchor1"));
@@ -76,6 +85,31 @@ public class VanityUrlServiceTest {
 
         assertThat(_service.createRedirectUrl(mockNode), equalTo("redirect:http://www.aperto.de"));
         assertThat(_service.createPreviewUrl(mockNode), equalTo("http://www.aperto.de"));
+    }
+
+    @Test
+    public void testForward() throws Exception {
+        MockNode mockNode = new MockNode("node");
+        mockNode.setProperty("link", TEST_UUID_FORWARD);
+        mockNode.setProperty("type", "forward");
+        assertThat(_service.createRedirectUrl(mockNode), equalTo("forward:/internal/forward/page.html"));
+    }
+
+    @Test
+    public void testForwardWithAnchor() throws Exception {
+        MockNode mockNode = new MockNode("node");
+        mockNode.setProperty("link", TEST_UUID_FORWARD);
+        mockNode.setProperty("type", "forward");
+        mockNode.setProperty("linkSuffix", "#anchor1");
+        assertThat(_service.createRedirectUrl(mockNode), equalTo("forward:/internal/forward/page.html#anchor1"));
+    }
+
+    @Test
+    public void testForwardWithInvalidUrl() throws Exception {
+        MockNode mockNode = new MockNode("node");
+        mockNode.setProperty("link", "http://www.aperto.de");
+        mockNode.setProperty("type", "forward");
+        assertThat(_service.createRedirectUrl(mockNode), equalTo(""));
     }
 
     @Test
@@ -107,24 +141,46 @@ public class VanityUrlServiceTest {
         assertThat(_service.createImageLink(mockNode), equalTo("/node/qrCode.png"));
     }
 
+    private MockNode createNode(MockSession session, String path) throws Exception {
+        MockNode current = (MockNode) session.getRootNode();
+        String[] parts   = path.split("/");
+        for (String part : parts) {
+            MockNode child = null;
+            if (current.hasNode(part)) {
+                child = (MockNode) current.getNode(part);
+            } else {
+                child = new MockNode(part);
+                current.addNode(child);
+            }
+            current = child;
+        }
+        return current;
+    }
+    
     @Before
     public void setUp() throws Exception {
+        ComponentsTestUtil.setInstance(I18nContentSupport.class, new DefaultI18nContentSupport());
+        MockWebContext webContext = new MockWebContext();
+        MockSession session = new MockSession(RepositoryConstants.WEBSITE);
+        createNode(session, "/internal/forward/page").setIdentifier(TEST_UUID_FORWARD);
+        createNode(session, "/internal/page").setIdentifier(TEST_UUID);
+        webContext.addSession(RepositoryConstants.WEBSITE, session);
+        MgnlContext.setInstance(webContext);
         _service = new VanityUrlService() {
-            @Override
-            protected String getLinkFromId(final String url) {
-                return "/internal/page.html";
-            }
 
             @Override
             protected String getLinkFromNode(final Node node) {
                 String link = "";
-                try {
-                    link = node.getPath() + ".html";
-                } catch (RepositoryException e) {
-                    // should not happen
+                if (node != null) {
+                    try {
+                        link = node.getPath() + ".html";
+                    } catch (RepositoryException e) {
+                        // should not happen
+                    }
                 }
                 return link;
             }
+
         };
 
         VanityUrlModule vanityUrlModule = new VanityUrlModule();

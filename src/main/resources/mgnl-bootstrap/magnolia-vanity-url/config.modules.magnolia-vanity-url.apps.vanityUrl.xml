@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="vanityUrl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+<sv:node sv:name="vanityUrl" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>mgnl:contentNode</sv:value>
   </sv:property>
@@ -4936,6 +4936,41 @@
                       </sv:property>
                       <sv:property sv:name="value" sv:type="String">
                         <sv:value>302</sv:value>
+                      </sv:property>
+                    </sv:node>
+                    <sv:node sv:name="forward">
+                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="jcr:uuid" sv:type="String">
+                        <sv:value>c11c7702-b36a-49c3-951c-7290fc407caf</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="jcr:createdBy" sv:type="String">
+                        <sv:value>admin</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:activationStatus" sv:type="Boolean">
+                        <sv:value>false</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:created" sv:type="Date">
+                        <sv:value>2016-09-13T15:58:32.276+02:00</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:createdBy" sv:type="String">
+                        <sv:value>superuser</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:lastActivated" sv:type="Date">
+                        <sv:value>2016-09-13T15:58:32.280+02:00</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:lastActivatedBy" sv:type="String">
+                        <sv:value>superuser</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:lastModified" sv:type="Date">
+                        <sv:value>2016-09-13T16:00:17.369+02:00</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
+                        <sv:value>superuser</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="value" sv:type="String">
+                        <sv:value>forward</sv:value>
                       </sv:property>
                     </sv:node>
                   </sv:node>
