@@ -41,9 +41,7 @@ import javax.jcr.query.QueryResult;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
-import static info.magnolia.cms.util.RequestDispatchUtil.FORWARD_PREFIX;
-import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
-import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
+import static info.magnolia.cms.util.RequestDispatchUtil.*;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
 import static info.magnolia.link.LinkUtil.DEFAULT_EXTENSION;
@@ -82,10 +80,10 @@ public class VanityUrlService {
      * @param node vanity url node
      * @return redirect url
      */
-    public String createRedirectUrl(final Node node) {
-        String result = EMPTY;
+    protected String createRedirectUrl(final Node node) {
+        String result;
         String type = getString(node, PN_TYPE, EMPTY);
-        String prefix = null;
+        String prefix;
         if ("forward".equals(type)) {
             result = createForwardLink(node);
             prefix = FORWARD_PREFIX;
@@ -153,7 +151,7 @@ public class VanityUrlService {
                         url = EMPTY;
                     }
                 } else {
-                    String link = getLinkFromId(url);
+                    String link = getLinkFromNode(getNodeByIdentifier(WEBSITE, url));
                     url = substringAfter(defaultString(link), _contextPath);
                 }
             }
@@ -210,13 +208,6 @@ public class VanityUrlService {
         }
 
         return node;
-    }
-
-    /**
-     * Override for testing.
-     */
-    protected String getLinkFromId(final String url) {
-        return getLinkFromNode(getNodeByIdentifier(WEBSITE, url));
     }
 
     /**

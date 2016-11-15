@@ -1,33 +1,13 @@
 package com.aperto.magnolia.vanity;
 
-import info.magnolia.cms.i18n.*;
-import info.magnolia.context.*;
-import info.magnolia.test.*;
-import info.magnolia.test.mock.*;
-
-/*
- * #%L
- * magnolia-vanity-url Magnolia Module
- * %%
- * Copyright (C) 2013 - 2014 Aperto AG
- * %%
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/gpl-3.0.html>.
- * #L%
- */
-import info.magnolia.test.mock.jcr.*;
-
+import info.magnolia.cms.i18n.DefaultI18nContentSupport;
+import info.magnolia.cms.i18n.I18nContentSupport;
+import info.magnolia.context.MgnlContext;
+import info.magnolia.repository.RepositoryConstants;
+import info.magnolia.test.ComponentsTestUtil;
+import info.magnolia.test.mock.MockWebContext;
+import info.magnolia.test.mock.jcr.MockNode;
+import info.magnolia.test.mock.jcr.MockSession;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +21,27 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import info.magnolia.repository.*;
+/*
+ * #%L
+ * magnolia-vanity-url Magnolia Module
+ * %%
+ * Copyright (C) 2013 - 2014 Aperto AG
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
 
 /**
  * Test the service class.
@@ -53,7 +53,7 @@ public class VanityUrlServiceTest {
 
     private static final String TEST_UUID = "123-4556-123";
     private static final String TEST_UUID_FORWARD = "123-4556-124";
-    
+
     private VanityUrlService _service;
 
     @Test
@@ -143,9 +143,9 @@ public class VanityUrlServiceTest {
 
     private MockNode createNode(MockSession session, String path) throws Exception {
         MockNode current = (MockNode) session.getRootNode();
-        String[] parts   = path.split("/");
+        String[] parts = path.split("/");
         for (String part : parts) {
-            MockNode child = null;
+            MockNode child;
             if (current.hasNode(part)) {
                 child = (MockNode) current.getNode(part);
             } else {
@@ -156,7 +156,7 @@ public class VanityUrlServiceTest {
         }
         return current;
     }
-    
+
     @Before
     public void setUp() throws Exception {
         ComponentsTestUtil.setInstance(I18nContentSupport.class, new DefaultI18nContentSupport());
