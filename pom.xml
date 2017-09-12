@@ -240,8 +240,8 @@
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <pushChanges>false</pushChanges>
                         <localCheckout>true</localCheckout>
-                        <arguments>-Pjavadoc</arguments>
                         <goals>deploy</goals>
+                        <releaseProfiles>javadoc</releaseProfiles>
                     </configuration>
                 </plugin>
                 <!--
