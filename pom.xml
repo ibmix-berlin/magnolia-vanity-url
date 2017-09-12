@@ -4,7 +4,7 @@
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
-    <version>1.4.2-SNAPSHOT</version>
+    <version>1.4.2</version>
     <packaging>jar</packaging>
     <name>magnolia-vanity-url Magnolia Module</name>
 
@@ -324,7 +324,7 @@
         <url>https://github.com/aperto/magnolia-vanity-url.git</url>
         <connection>scm:git:https://github.com/aperto/magnolia-vanity-url.git</connection>
         <developerConnection>scm:git:https://github.com/aperto/magnolia-vanity-url.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>magnolia-vanity-url-1.4.2</tag>
     </scm>
 
     <distributionManagement>
