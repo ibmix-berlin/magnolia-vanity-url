@@ -169,7 +169,7 @@ public class VanityUrlServiceTest {
         _service = new VanityUrlService() {
 
             @Override
-            protected String getLinkFromNode(final Node node) {
+            protected String getLinkFromNode(final Node node, final boolean isForward) {
                 String link = "";
                 if (node != null) {
                     try {
