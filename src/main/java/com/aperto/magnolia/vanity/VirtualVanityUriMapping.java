@@ -22,20 +22,18 @@ package com.aperto.magnolia.vanity;
  * #L%
  */
 
-
 import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.module.ModuleRegistry;
 import info.magnolia.module.site.ExtendedAggregationState;
 import info.magnolia.module.site.Site;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
@@ -49,22 +47,22 @@ import static org.apache.commons.lang.StringUtils.*;
  */
 public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
-    private VanityUrlModule _vanityUrlModule;
-    private VanityUrlService _vanityUrlService;
-    private ModuleRegistry _moduleRegistry;
+    private Provider<VanityUrlModule> _vanityUrlModule;
+    private Provider<VanityUrlService> _vanityUrlService;
+    private Provider<ModuleRegistry> _moduleRegistry;
 
     @Inject
-    public void setVanityUrlModule(VanityUrlModule vanityUrlModule) {
+    public void setVanityUrlModule(final Provider<VanityUrlModule> vanityUrlModule) {
         _vanityUrlModule = vanityUrlModule;
     }
 
     @Inject
-    public void setVanityUrlService(final VanityUrlService vanityUrlService) {
+    public void setVanityUrlService(final Provider<VanityUrlService> vanityUrlService) {
         _vanityUrlService = vanityUrlService;
     }
 
     @Inject
-    public void setModuleRegistry(final ModuleRegistry moduleRegistry) {
+    public void setModuleRegistry(final Provider<ModuleRegistry> moduleRegistry) {
         _moduleRegistry = moduleRegistry;
     }
 
@@ -101,7 +99,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     protected boolean isVanityCandidate(String uri) {
         boolean contentUri = !isRootRequest(uri);
         if (contentUri) {
-            Map<String, String> excludes = _vanityUrlModule.getExcludes();
+            Map<String, String> excludes = _vanityUrlModule.get().getExcludes();
             for (String exclude : excludes.values()) {
                 if (isNotEmpty(exclude) && uri.matches(exclude)) {
                     contentUri = false;
@@ -126,8 +124,9 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
                 new MgnlContext.Op<String, RepositoryException>() {
                     @Override
                     public String exec() throws RepositoryException {
-                        Node node = _vanityUrlService.queryForVanityUrlNode(vanityUrl, siteName);
-                        return _vanityUrlService.createRedirectUrl(node);
+                        VanityUrlService vanityUrlService = _vanityUrlService.get();
+                        Node node = vanityUrlService.queryForVanityUrlNode(vanityUrl, siteName);
+                        return vanityUrlService.createRedirectUrl(node);
                     }
                 }
             );
@@ -140,7 +139,7 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
     private String retrieveSite() {
         String siteName = DEF_SITE;
 
-        if (_moduleRegistry.isModuleRegistered("multisite")) {
+        if (_moduleRegistry.get().isModuleRegistered("multisite")) {
             Site site = ((ExtendedAggregationState) MgnlContext.getAggregationState()).getSite();
             siteName = site.getName();
         }

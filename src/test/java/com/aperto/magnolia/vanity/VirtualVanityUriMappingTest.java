@@ -36,6 +36,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.inject.Provider;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,12 +86,15 @@ public class VirtualVanityUriMappingTest {
     public void setUp() throws Exception {
         _uriMapping = new VirtualVanityUriMapping();
 
+        Provider moduleProvider = mock(Provider.class);
         VanityUrlModule module = new VanityUrlModule();
         Map<String, String> excludes = new HashMap<>();
         excludes.put("pages", ".*\\..*");
         module.setExcludes(excludes);
-        _uriMapping.setVanityUrlModule(module);
+        when(moduleProvider.get()).thenReturn(module);
+        _uriMapping.setVanityUrlModule(moduleProvider);
 
+        Provider serviceProvider = mock(Provider.class);
         VanityUrlService vanityUrlService = mock(VanityUrlService.class);
         when(vanityUrlService.queryForVanityUrlNode("/home", "default")).thenReturn(null);
 
@@ -98,10 +102,13 @@ public class VirtualVanityUriMappingTest {
         when(vanityUrlService.queryForVanityUrlNode("/xmas", "default")).thenReturn(mockNode);
 
         when(vanityUrlService.createRedirectUrl(mockNode)).thenReturn("redirect:/internal/page.html");
-        _uriMapping.setVanityUrlService(vanityUrlService);
+        when(serviceProvider.get()).thenReturn(vanityUrlService);
+        _uriMapping.setVanityUrlService(serviceProvider);
 
+        Provider registryProvider = mock(Provider.class);
         ModuleRegistry moduleRegistry = mock(ModuleRegistry.class);
-        _uriMapping.setModuleRegistry(moduleRegistry);
+        when(registryProvider.get()).thenReturn(moduleRegistry);
+        _uriMapping.setModuleRegistry(registryProvider);
 
         initWebContext();
 

@@ -24,6 +24,7 @@ package com.aperto.magnolia.vanity;
 
 
 import info.magnolia.context.MgnlContext;
+import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.link.LinkUtil;
 import org.apache.jackrabbit.value.StringValue;
 import org.slf4j.Logger;
@@ -139,24 +140,26 @@ public class VanityUrlService {
     private String createTargetLink(final Node node) {
         return createTargetLink(node, false);
     }
-    
-    private String createTargetLink(final Node node, boolean clearIfExternal) {
+
+    private String createTargetLink(final Node node, final boolean isForward) {
         String url = EMPTY;
         if (node != null) {
             url = getString(node, PN_LINK, EMPTY);
             if (isNotEmpty(url)) {
                 if (isExternalLink(url)) {
                     // we won't allow external links in a forward
-                    if (clearIfExternal) {
+                    if (isForward) {
                         url = EMPTY;
                     }
                 } else {
-                    String link = getLinkFromNode(getNodeByIdentifier(WEBSITE, url));
-                    url = substringAfter(defaultString(link), _contextPath);
+                    url = getLinkFromNode(getNodeByIdentifier(WEBSITE, url), isForward);
+                    if (isNotBlank(url) && url.contains(_contextPath)) {
+                        url = substringAfter(url, _contextPath);
+                    }
                 }
             }
             if (isNotEmpty(url)) {
-                url += getString(node, PN_SUFFIX, EMPTY); 
+                url += getString(node, PN_SUFFIX, EMPTY);
             }
         }
         return url;
@@ -172,7 +175,7 @@ public class VanityUrlService {
         String link = EMPTY;
         try {
             if (node != null && node.hasNode(NN_IMAGE)) {
-                link = getLinkFromNode(node.getNode(NN_IMAGE));
+                link = getLinkFromNode(node.getNode(NN_IMAGE), false);
                 link = removeStart(defaultString(link), _contextPath);
                 link = replace(link, "." + DEFAULT_EXTENSION, IMAGE_EXTENSION);
             }
@@ -213,8 +216,8 @@ public class VanityUrlService {
     /**
      * Override for testing.
      */
-    protected String getLinkFromNode(final Node node) {
-        return LinkUtil.createLink(node);
+    protected String getLinkFromNode(final Node node, boolean isForward) {
+        return isForward ? NodeUtil.getPathIfPossible(node) : LinkUtil.createLink(node);
     }
 
     @Inject
