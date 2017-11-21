@@ -23,7 +23,6 @@ package com.aperto.magnolia.vanity.app;
  */
 
 
-import com.vaadin.ui.Table;
 import info.magnolia.ui.workbench.column.AbstractColumnFormatter;
 import info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition;
 import org.slf4j.Logger;
@@ -37,6 +36,8 @@ import static com.aperto.magnolia.vanity.VanityUrlModule.NT_VANITY;
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static info.magnolia.jcr.util.NodeUtil.isNodeType;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
+
+import com.vaadin.v7.ui.Table;
 
 /**
  * Column formatter which respects vanity url and folder nodes.

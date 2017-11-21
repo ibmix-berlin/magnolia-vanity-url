@@ -24,7 +24,8 @@ package com.aperto.magnolia.vanity.app;
 
 
 import com.aperto.magnolia.vanity.VanityUrlService;
-import com.vaadin.ui.Table;
+import com.vaadin.v7.ui.Table;
+
 import info.magnolia.ui.workbench.column.AbstractColumnFormatter;
 
 import javax.inject.Inject;
