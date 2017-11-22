@@ -11,6 +11,7 @@ import info.magnolia.test.mock.jcr.MockSession;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.inject.Provider;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
@@ -180,14 +181,15 @@ public class VanityUrlServiceTest {
                 }
                 return link;
             }
-
         };
 
+        Provider<VanityUrlModule> moduleProvider = mock(Provider.class);
         VanityUrlModule vanityUrlModule = new VanityUrlModule();
         PublicUrlService publicUrlService = mock(PublicUrlService.class);
-        when(publicUrlService.createTargetUrl((Node) any())).thenReturn("http://www.aperto.de/page.html");
-        when(publicUrlService.createVanityUrl((Node) any())).thenReturn("http://www.aperto.de/vanity");
+        when(publicUrlService.createTargetUrl(any())).thenReturn("http://www.aperto.de/page.html");
+        when(publicUrlService.createVanityUrl(any())).thenReturn("http://www.aperto.de/vanity");
         vanityUrlModule.setPublicUrlService(publicUrlService);
-        _service.setVanityUrlModule(vanityUrlModule);
+        when(moduleProvider.get()).thenReturn(vanityUrlModule);
+        _service.setVanityUrlModule(moduleProvider);
     }
 }

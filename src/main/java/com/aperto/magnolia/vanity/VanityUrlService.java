@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -79,7 +80,7 @@ public class VanityUrlService {
     @Named(value = "magnolia.contextpath")
     private String _contextPath = "";
 
-    private VanityUrlModule _vanityUrlModule;
+    private Provider<VanityUrlModule> _vanityUrlModule;
 
     /**
      * Creates the redirect url for uri mapping.
@@ -112,7 +113,7 @@ public class VanityUrlService {
      * @return public url
      */
     public String createPublicUrl(final Node node) {
-        PublicUrlService publicUrlService = _vanityUrlModule.getPublicUrlService();
+        PublicUrlService publicUrlService = _vanityUrlModule.get().getPublicUrlService();
         return publicUrlService.createTargetUrl(node);
     }
 
@@ -123,7 +124,7 @@ public class VanityUrlService {
      * @return vanity url
      */
     public String createVanityUrl(final Node node) {
-        PublicUrlService publicUrlService = _vanityUrlModule.getPublicUrlService();
+        PublicUrlService publicUrlService = _vanityUrlModule.get().getPublicUrlService();
         return publicUrlService.createVanityUrl(node);
     }
 
@@ -228,7 +229,7 @@ public class VanityUrlService {
     }
 
     @Inject
-    public void setVanityUrlModule(final VanityUrlModule vanityUrlModule) {
+    public void setVanityUrlModule(final Provider<VanityUrlModule> vanityUrlModule) {
         _vanityUrlModule = vanityUrlModule;
     }
 }
