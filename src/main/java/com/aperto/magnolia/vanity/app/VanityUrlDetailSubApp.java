@@ -21,6 +21,7 @@ package com.aperto.magnolia.vanity.app;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
+
 import com.aperto.magnolia.vanity.VanityUrlModule;
 import info.magnolia.cms.core.version.VersionManager;
 import info.magnolia.context.MgnlContext;
@@ -44,7 +45,7 @@ import javax.jcr.Session;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 /**
  * Extended detail sub-app - just sets the proper caption.

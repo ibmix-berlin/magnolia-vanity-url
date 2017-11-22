@@ -38,7 +38,10 @@ import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.apache.commons.lang3.StringUtils.containsAny;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * Virtual Uri Mapping of vanity URLs managed in the vanity url app.

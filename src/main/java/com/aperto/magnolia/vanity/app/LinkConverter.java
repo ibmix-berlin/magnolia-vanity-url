@@ -22,13 +22,12 @@ package com.aperto.magnolia.vanity.app;
  * #L%
  */
 
-
 import info.magnolia.ui.form.field.converter.BaseIdentifierToPathConverter;
 
 import java.util.Locale;
 
-import static org.apache.commons.lang.StringUtils.isNotBlank;
-import static org.apache.commons.lang.StringUtils.startsWithIgnoreCase;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.startsWithIgnoreCase;
 
 /**
  * Handles input of links by urls (external) or absolute paths (internal).

@@ -22,7 +22,6 @@ package com.aperto.magnolia.vanity.app;
  * #L%
  */
 
-
 import com.aperto.magnolia.vanity.VanityUrlService;
 import info.magnolia.cms.beans.runtime.FileProperties;
 import info.magnolia.cms.core.Path;
@@ -46,16 +45,26 @@ import javax.jcr.Binary;
 import javax.jcr.Node;
 import javax.jcr.Property;
 import javax.jcr.RepositoryException;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.NN_IMAGE;
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
-import static info.magnolia.jcr.util.PropertyUtil.*;
+import static info.magnolia.jcr.util.PropertyUtil.getPropertyOrNull;
+import static info.magnolia.jcr.util.PropertyUtil.getString;
+import static info.magnolia.jcr.util.PropertyUtil.setProperty;
 import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.strip;
+import static org.apache.commons.lang3.StringUtils.stripStart;
+import static org.apache.commons.lang3.StringUtils.trim;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.jackrabbit.JcrConstants.JCR_DATA;
 
 /**
@@ -137,8 +146,8 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             closeQuietly(qrCodeInputStream);
         }
     }
-    
-    protected void populateItem(InputStream inputStream, Node qrCodeNode) throws  RepositoryException {
+
+    protected void populateItem(InputStream inputStream, Node qrCodeNode) throws RepositoryException {
         if (inputStream != null) {
             try {
                 Property data = getPropertyOrNull(qrCodeNode, JCR_DATA);

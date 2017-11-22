@@ -22,7 +22,6 @@ package com.aperto.magnolia.vanity;
  * #L%
  */
 
-
 import info.magnolia.context.MgnlContext;
 import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.link.LinkUtil;
@@ -42,13 +41,21 @@ import javax.jcr.query.QueryResult;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
-import static info.magnolia.cms.util.RequestDispatchUtil.*;
+import static info.magnolia.cms.util.RequestDispatchUtil.FORWARD_PREFIX;
+import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
+import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
 import static info.magnolia.link.LinkUtil.DEFAULT_EXTENSION;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static javax.jcr.query.Query.JCR_SQL2;
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.apache.commons.lang3.StringUtils.defaultString;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static org.apache.commons.lang3.StringUtils.removeStart;
+import static org.apache.commons.lang3.StringUtils.replace;
+import static org.apache.commons.lang3.StringUtils.substringAfter;
 
 /**
  * Query service for vanity url nodes in vanity url workspace.

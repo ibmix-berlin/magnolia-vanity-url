@@ -22,7 +22,6 @@ package com.aperto.magnolia.vanity.app;
  * #L%
  */
 
-
 import com.aperto.magnolia.vanity.VanityUrlService;
 import info.magnolia.ui.api.action.AbstractAction;
 import info.magnolia.ui.api.action.ActionExecutionException;
@@ -38,7 +37,7 @@ import javax.inject.Inject;
 import javax.jcr.Node;
 
 import static info.magnolia.ui.api.location.Location.LOCATION_TYPE_APP;
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * Action to see the big QR code image for a vanity url.

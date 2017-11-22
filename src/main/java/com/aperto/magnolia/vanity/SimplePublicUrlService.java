@@ -22,7 +22,6 @@ package com.aperto.magnolia.vanity;
  * #L%
  */
 
-
 import info.magnolia.link.LinkUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +30,18 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
 
-import static com.aperto.magnolia.vanity.VanityUrlService.*;
+import static com.aperto.magnolia.vanity.VanityUrlService.PN_LINK;
+import static com.aperto.magnolia.vanity.VanityUrlService.PN_SUFFIX;
+import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.jcr.util.NodeUtil.getPathIfPossible;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static org.apache.commons.lang3.StringUtils.removeEnd;
+import static org.apache.commons.lang3.StringUtils.replaceOnce;
 
 /**
  * Alternative simple implementation for the {@link com.aperto.magnolia.vanity.PublicUrlService}.
