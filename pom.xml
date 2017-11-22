@@ -16,7 +16,7 @@
     </organization>
 
     <properties>
-        <magnoliaVersion>5.4.2</magnoliaVersion>
+        <magnoliaVersion>5.6</magnoliaVersion>
 
         <source.javaversion>1.8</source.javaversion>
         <target.javaversion>1.8</target.javaversion>
