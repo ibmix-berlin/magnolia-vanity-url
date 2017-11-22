@@ -22,10 +22,8 @@ package com.aperto.magnolia.vanity;
  * #L%
  */
 
-
 import info.magnolia.cms.beans.config.VirtualURIMapping;
 import info.magnolia.cms.core.AggregationState;
-import info.magnolia.context.ContextFactory;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.context.SystemContext;
 import info.magnolia.context.WebContext;
@@ -111,15 +109,12 @@ public class VirtualVanityUriMappingTest {
         _uriMapping.setModuleRegistry(registryProvider);
 
         initWebContext();
-
         initComponentProvider();
     }
 
     private void initComponentProvider() {
-        ContextFactory contextFactory = mock(ContextFactory.class);
         SystemContext systemContext = mock(SystemContext.class);
-        when(contextFactory.getSystemContext()).thenReturn(systemContext);
-        ComponentsTestUtil.setInstance(ContextFactory.class, contextFactory);
+        ComponentsTestUtil.setInstance(SystemContext.class, systemContext);
     }
 
     private void initWebContext() {
