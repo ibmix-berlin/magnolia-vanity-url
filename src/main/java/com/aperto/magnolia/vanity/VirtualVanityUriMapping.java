@@ -22,11 +22,11 @@ package com.aperto.magnolia.vanity;
  * #L%
  */
 
-import info.magnolia.cms.beans.config.QueryAwareVirtualURIMapping;
 import info.magnolia.context.MgnlContext;
 import info.magnolia.module.ModuleRegistry;
 import info.magnolia.module.site.ExtendedAggregationState;
 import info.magnolia.module.site.Site;
+import info.magnolia.virtualuri.VirtualUriMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,12 +34,13 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import java.net.URI;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.PatternSyntaxException;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
-import static org.apache.commons.lang3.StringUtils.containsAny;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
@@ -48,7 +49,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
  *
  * @author frank.sommer
  */
-public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
+public class VirtualVanityUriMapping implements VirtualUriMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
     private Provider<VanityUrlModule> _vanityUrlModule;
     private Provider<VanityUrlService> _vanityUrlService;
@@ -69,28 +70,15 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         _moduleRegistry = moduleRegistry;
     }
 
-    // CHECKSTYLE:OFF
     @Override
-    public MappingResult mapURI(String uri) {
-        // CHECKSTYLE:ON
-        return mapURI(uri, null);
-    }
-
-    // CHECKSTYLE:OFF
-    @Override
-    public MappingResult mapURI(String uri, String queryString) {
-        // CHECKSTYLE:ON
-        MappingResult result = null;
+    public Optional<Result> mapUri(final URI uri) {
+        Optional<Result> result = Optional.empty();
         try {
-            if (isVanityCandidate(uri)) {
-                String toUri = getUriOfVanityUrl(uri);
+            String vanityUrl = uri.getPath();
+            if (isVanityCandidate(vanityUrl)) {
+                String toUri = getUriOfVanityUrl(vanityUrl);
                 if (isNotBlank(toUri)) {
-                    if (!containsAny(toUri, "?#") && isNotBlank(queryString)) {
-                        toUri = toUri.concat("?" + queryString);
-                    }
-                    result = new MappingResult();
-                    result.setToURI(toUri);
-                    result.setLevel(uri.length());
+                    result = Optional.of(new Result(toUri, vanityUrl.length(), this));
                 }
             }
         } catch (PatternSyntaxException e) {
@@ -124,13 +112,10 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         try {
             // do it in system context, so the anonymous need no read rights for using vanity urls
             redirectUri = MgnlContext.doInSystemContext(
-                new MgnlContext.Op<String, RepositoryException>() {
-                    @Override
-                    public String exec() throws RepositoryException {
-                        VanityUrlService vanityUrlService = _vanityUrlService.get();
-                        Node node = vanityUrlService.queryForVanityUrlNode(vanityUrl, siteName);
-                        return vanityUrlService.createRedirectUrl(node);
-                    }
+                (MgnlContext.Op<String, RepositoryException>) () -> {
+                    VanityUrlService vanityUrlService = _vanityUrlService.get();
+                    Node node = vanityUrlService.queryForVanityUrlNode(vanityUrl, siteName);
+                    return vanityUrlService.createRedirectUrl(node);
                 }
             );
         } catch (RepositoryException e) {
@@ -148,5 +133,10 @@ public class VirtualVanityUriMapping implements QueryAwareVirtualURIMapping {
         }
 
         return siteName;
+    }
+
+    @Override
+    public boolean isValid() {
+        return _vanityUrlService.get() != null;
     }
 }
