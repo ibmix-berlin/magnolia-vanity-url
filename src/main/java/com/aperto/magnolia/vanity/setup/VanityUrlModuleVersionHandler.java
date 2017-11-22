@@ -22,7 +22,6 @@ package com.aperto.magnolia.vanity.setup;
  * #L%
  */
 
-
 import info.magnolia.jcr.nodebuilder.task.NodeBuilderTask;
 import info.magnolia.module.DefaultModuleVersionHandler;
 import info.magnolia.module.InstallContext;
@@ -39,6 +38,7 @@ import static info.magnolia.jcr.nodebuilder.Ops.addNode;
 import static info.magnolia.jcr.nodebuilder.Ops.addProperty;
 import static info.magnolia.jcr.nodebuilder.task.ErrorHandling.logging;
 import static info.magnolia.jcr.util.NodeTypes.ContentNode;
+import static info.magnolia.module.delta.DeltaBuilder.update;
 import static info.magnolia.repository.RepositoryConstants.CONFIG;
 
 /**
@@ -54,26 +54,26 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
 
     private final Task _addUriRepositoryMapping = new NodeBuilderTask("Add repository mapping", "Add uri to repository mapping for vanityUrls.", logging, CONFIG, "/server/URI2RepositoryMapping/mappings",
         addNode(WORKSPACE, ContentNode.NAME).then(
-            addProperty("URIPrefix", "/" + WORKSPACE),
-            addProperty("handlePrefix", ""),
-            addProperty("repository", WORKSPACE)
+            addProperty("URIPrefix", (Object) ("/" + WORKSPACE)),
+            addProperty("handlePrefix", (Object) ""),
+            addProperty("repository", (Object) WORKSPACE)
         )
     );
 
     public VanityUrlModuleVersionHandler() {
-        DeltaBuilder update131 = DeltaBuilder.update("1.3.1", "Update to version 1.3.1");
+        DeltaBuilder update131 = update("1.3.1", "Update to version 1.3.1");
         update131.addTask(new BootstrapConditionally("Bootstrap new config", "Bootstrap new public url service configuration.", "/mgnl-bootstrap/magnolia-vanity-url/config.modules.magnolia-vanity-url.config.publicUrlService.xml"));
         register(update131);
-        
-        DeltaBuilder update133 = DeltaBuilder.update("1.3.3", "Update to version 1.3.3");
+
+        DeltaBuilder update133 = update("1.3.3", "Update to version 1.3.3");
         update133.addTask(new BootstrapSingleModuleResource("Bootstrap new config", "Bootstrap folder/type definition in app.", "config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
         register(update133);
 
-        DeltaBuilder update141 = DeltaBuilder.update("1.4.1", "Update to version 1.4.1");
+        DeltaBuilder update141 = update("1.4.1", "Update to version 1.4.1");
         update141.addTask(new BootstrapSingleModuleResource("Bootstrap new config", "Bootstrap folder/type definition in app.", "config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
         register(update141);
 
-        DeltaBuilder update142 = DeltaBuilder.update("1.4.2", "Update to version 1.4.2");
+        DeltaBuilder update142 = update("1.4.2", "Update to version 1.4.2");
         update142.addTask(new BootstrapSingleModuleResource("Bootstrap new config", "Bootstrap new forward type definition in app dialog.", "config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
         register(update142);
     }
