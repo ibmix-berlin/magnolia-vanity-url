@@ -27,6 +27,7 @@ import info.magnolia.cms.beans.runtime.FileProperties;
 import info.magnolia.cms.core.Path;
 import info.magnolia.i18nsystem.SimpleTranslator;
 import info.magnolia.jcr.util.NodeTypes.Resource;
+import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.ui.api.action.ActionExecutionException;
 import info.magnolia.ui.form.EditorCallback;
 import info.magnolia.ui.form.EditorValidator;
@@ -100,8 +101,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
     private void checkVanityUrl() {
         try {
             final Node node = item.applyChanges();
-            String vanityUrl = getString(node, PN_VANITY_URL);
-            vanityUrl = stripStart(trimToEmpty(vanityUrl), "/");
+            String vanityUrl = getNormalizedVanityUrl(node);
             if (isEmpty(vanityUrl)) {
                 vanityUrl = "/untitled";
             } else {
@@ -112,6 +112,12 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         } catch (RepositoryException e) {
             LOGGER.error("Error checking vanity url property.", e);
         }
+    }
+
+    private String getNormalizedVanityUrl(final Node node) {
+        String vanityUrl = getString(node, PN_VANITY_URL);
+        vanityUrl = stripStart(trimToEmpty(vanityUrl), "/");
+        return vanityUrl;
     }
 
     private void savePreviewImage() {
@@ -164,6 +170,17 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
                 setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
             } catch (RepositoryException re) {
                 LOGGER.error("Could not get Binary. Upload will not be performed", re);
+            }
+        }
+    }
+
+    protected void setNodeName(Node node, JcrNodeAdapter item) throws RepositoryException {
+        if (node.hasProperty(PN_VANITY_URL) && !node.hasProperty("jcrName")) {
+            String newNodeName = Path.getValidatedLabel(getNormalizedVanityUrl(node));
+            if (!node.getName().equals(newNodeName)) {
+                newNodeName = Path.getUniqueLabel(node.getSession(), node.getParent().getPath(), newNodeName);
+                item.setNodeName(newNodeName);
+                NodeUtil.renameNode(node, newNodeName);
             }
         }
     }
