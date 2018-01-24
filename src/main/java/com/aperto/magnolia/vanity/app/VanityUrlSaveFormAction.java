@@ -34,7 +34,6 @@ import info.magnolia.ui.form.EditorValidator;
 import info.magnolia.ui.form.action.SaveFormAction;
 import info.magnolia.ui.form.action.SaveFormActionDefinition;
 import info.magnolia.ui.form.field.upload.UploadReceiver;
-import info.magnolia.ui.vaadin.integration.jcr.DefaultProperty;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNodeAdapter;
 import net.glxn.qrgen.QRCode;
 import org.apache.jackrabbit.value.ValueFactoryImpl;
@@ -61,7 +60,6 @@ import static info.magnolia.jcr.util.PropertyUtil.getPropertyOrNull;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.PropertyUtil.setProperty;
 import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.apache.commons.lang.StringUtils.isEmpty;
 import static org.apache.commons.lang.StringUtils.strip;
 import static org.apache.commons.lang.StringUtils.stripStart;
 import static org.apache.commons.lang.StringUtils.trim;
@@ -90,27 +88,9 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
 
     @Override
     public void execute() throws ActionExecutionException {
-        if (validator.isValid()) {
-            checkVanityUrl();
-            savePreviewImage();
-        }
         super.execute();
-    }
-
-    private void checkVanityUrl() {
-        try {
-            final Node node = item.applyChanges();
-            String vanityUrl = getNormalizedVanityUrl(node);
-            if (isEmpty(vanityUrl)) {
-                vanityUrl = "/untitled";
-            } else {
-                vanityUrl = "/" + vanityUrl;
-            }
-
-            item.addItemProperty(PN_VANITY_URL, new DefaultProperty<>(vanityUrl));
-            node.getSession().save();
-        } catch (RepositoryException e) {
-            LOGGER.error("Error checking vanity url property.", e);
+        if (validator.isValid()) {
+            savePreviewImage();
         }
     }
 

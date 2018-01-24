@@ -76,6 +76,10 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
         DeltaBuilder update142 = DeltaBuilder.update("1.4.2", "Update to version 1.4.2");
         update142.addTask(new BootstrapSingleModuleResource("Bootstrap new config", "Bootstrap new forward type definition in app dialog.", "config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
         register(update142);
+
+        DeltaBuilder update143 = DeltaBuilder.update("1.4.3", "Update to version 1.4.3");
+        update143.addTask(new BootstrapSingleModuleResource("Bootstrap new config", "Bootstrap new validation in app dialog.", "config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
+        register(update143);
     }
 
     @Override
