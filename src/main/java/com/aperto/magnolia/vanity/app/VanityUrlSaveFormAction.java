@@ -23,18 +23,20 @@ package com.aperto.magnolia.vanity.app;
  */
 
 import com.aperto.magnolia.vanity.VanityUrlService;
+import com.vaadin.v7.data.util.ObjectProperty;
 import info.magnolia.cms.beans.runtime.FileProperties;
-import info.magnolia.cms.core.Path;
+import info.magnolia.cms.core.FileSystemHelper;
 import info.magnolia.i18nsystem.SimpleTranslator;
+import info.magnolia.jcr.util.NodeNameHelper;
 import info.magnolia.jcr.util.NodeTypes.Resource;
 import info.magnolia.jcr.util.NodeUtil;
+import info.magnolia.objectfactory.Components;
 import info.magnolia.ui.api.action.ActionExecutionException;
 import info.magnolia.ui.form.EditorCallback;
 import info.magnolia.ui.form.EditorValidator;
 import info.magnolia.ui.form.action.SaveFormAction;
 import info.magnolia.ui.form.action.SaveFormActionDefinition;
 import info.magnolia.ui.form.field.upload.UploadReceiver;
-import info.magnolia.ui.vaadin.integration.jcr.DefaultProperty;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNodeAdapter;
 import net.glxn.qrgen.QRCode;
 import org.apache.jackrabbit.value.ValueFactoryImpl;
@@ -83,7 +85,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
 
     private SimpleTranslator _simpleTranslator;
     private VanityUrlService _vanityUrlService;
-    private String _fileName;
+    private NodeNameHelper _nodeNameHelper;
 
     public VanityUrlSaveFormAction(final SaveFormActionDefinition definition, final JcrNodeAdapter item, final EditorCallback callback, final EditorValidator validator) {
         super(definition, item, callback, validator);
@@ -107,7 +109,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             } else {
                 vanityUrl = "/" + vanityUrl;
             }
-            item.addItemProperty(PN_VANITY_URL, new DefaultProperty<>(vanityUrl));
+            item.addItemProperty(PN_VANITY_URL, new ObjectProperty<>(vanityUrl));
             node.getSession().save();
         } catch (RepositoryException e) {
             LOGGER.error("Error checking vanity url property.", e);
@@ -126,11 +128,11 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         try {
             final Node node = item.applyChanges();
             String url = _vanityUrlService.createVanityUrl(node);
-            _fileName = trim(strip(getString(node, PN_VANITY_URL, ""), "/")).replace("/", "-");
-            File tmpQrCodeFile = Path.getTempDirectory();
+            String fileName = trim(strip(getString(node, PN_VANITY_URL, ""), "/")).replace("/", "-");
+            File tmpQrCodeFile = Components.getComponent(FileSystemHelper.class).getTempDirectory();
 
             UploadReceiver uploadReceiver = new UploadReceiver(tmpQrCodeFile, _simpleTranslator);
-            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(_fileName + IMAGE_EXTENSION, MIME_TYPE);
+            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(fileName + IMAGE_EXTENSION, MIME_TYPE);
             QRCode.from(url).withSize(QR_WIDTH, GR_HEIGHT).writeTo(outputStream);
 
             Node qrNode;
@@ -141,7 +143,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             }
 
             qrCodeInputStream = new FileInputStream(uploadReceiver.getFile());
-            populateItem(qrCodeInputStream, qrNode);
+            populateItem(qrCodeInputStream, qrNode, fileName);
             outputStream.flush();
         } catch (RepositoryException e) {
             LOGGER.error("Error on saving preview image for vanity url.", e);
@@ -153,7 +155,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         }
     }
 
-    protected void populateItem(InputStream inputStream, Node qrCodeNode) throws RepositoryException {
+    private void populateItem(InputStream inputStream, Node qrCodeNode, final String fileName) throws RepositoryException {
         if (inputStream != null) {
             try {
                 Property data = getPropertyOrNull(qrCodeNode, JCR_DATA);
@@ -164,7 +166,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
                     data.setValue(binary);
                 }
 
-                setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, _fileName);
+                setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, fileName);
                 setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, MIME_TYPE);
                 Calendar calValue = new GregorianCalendar(TimeZone.getDefault());
                 setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
@@ -176,9 +178,9 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
 
     protected void setNodeName(Node node, JcrNodeAdapter item) throws RepositoryException {
         if (node.hasProperty(PN_VANITY_URL) && !node.hasProperty("jcrName")) {
-            String newNodeName = Path.getValidatedLabel(getNormalizedVanityUrl(node));
+            String newNodeName = _nodeNameHelper.getValidatedName(getNormalizedVanityUrl(node));
             if (!node.getName().equals(newNodeName)) {
-                newNodeName = Path.getUniqueLabel(node.getSession(), node.getParent().getPath(), newNodeName);
+                newNodeName = _nodeNameHelper.getUniqueName(node.getParent(), newNodeName);
                 item.setNodeName(newNodeName);
                 NodeUtil.renameNode(node, newNodeName);
             }
@@ -193,5 +195,10 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
     @Inject
     public void setSimpleTranslator(final SimpleTranslator simpleTranslator) {
         _simpleTranslator = simpleTranslator;
+    }
+
+    @Inject
+    public void setNodeNameHelper(final NodeNameHelper nodeNameHelper) {
+        _nodeNameHelper = nodeNameHelper;
     }
 }
