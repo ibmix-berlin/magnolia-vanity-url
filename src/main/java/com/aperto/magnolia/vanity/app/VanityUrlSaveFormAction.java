@@ -23,7 +23,6 @@ package com.aperto.magnolia.vanity.app;
  */
 
 import com.aperto.magnolia.vanity.VanityUrlService;
-import com.vaadin.v7.data.util.ObjectProperty;
 import info.magnolia.cms.beans.runtime.FileProperties;
 import info.magnolia.cms.core.FileSystemHelper;
 import info.magnolia.i18nsystem.SimpleTranslator;
@@ -63,7 +62,6 @@ import static info.magnolia.jcr.util.PropertyUtil.getPropertyOrNull;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.PropertyUtil.setProperty;
 import static org.apache.commons.io.IOUtils.closeQuietly;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.strip;
 import static org.apache.commons.lang3.StringUtils.stripStart;
 import static org.apache.commons.lang3.StringUtils.trim;
@@ -93,27 +91,11 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
 
     @Override
     public void execute() throws ActionExecutionException {
+        super.execute();
         if (validator.isValid()) {
-            checkVanityUrl();
             savePreviewImage();
         }
         super.execute();
-    }
-
-    private void checkVanityUrl() {
-        try {
-            final Node node = item.applyChanges();
-            String vanityUrl = getNormalizedVanityUrl(node);
-            if (isEmpty(vanityUrl)) {
-                vanityUrl = "/untitled";
-            } else {
-                vanityUrl = "/" + vanityUrl;
-            }
-            item.addItemProperty(PN_VANITY_URL, new ObjectProperty<>(vanityUrl));
-            node.getSession().save();
-        } catch (RepositoryException e) {
-            LOGGER.error("Error checking vanity url property.", e);
-        }
     }
 
     private String getNormalizedVanityUrl(final Node node) {

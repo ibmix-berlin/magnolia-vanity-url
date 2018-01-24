@@ -1027,6 +1027,36 @@
                   <sv:property sv:name="required" sv:type="Boolean">
                     <sv:value>true</sv:value>
                   </sv:property>
+                  <sv:node sv:name="validators">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                      <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="valid">
+                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.form.validator.definition.RegexpValidatorDefinition</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="errorMessage" sv:type="String">
+                        <sv:value>vanityUrl.errorMessage.invalid</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="pattern" sv:type="String">
+                        <sv:value>^/.+$</sv:value>
+                      </sv:property>
+                    </sv:node>
+                    <sv:node sv:name="unique">
+                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="class" sv:type="String">
+                        <sv:value>com.aperto.magnolia.vanity.app.UniqueVanityUrlValidatorDefinition</sv:value>
+                      </sv:property>
+                      <sv:property sv:name="errorMessage" sv:type="String">
+                        <sv:value>vanityUrl.errorMessage.notUnique</sv:value>
+                      </sv:property>
+                    </sv:node>
+                  </sv:node>
                 </sv:node>
                 <sv:node sv:name="site">
                   <sv:property sv:name="jcr:primaryType" sv:type="Name">
