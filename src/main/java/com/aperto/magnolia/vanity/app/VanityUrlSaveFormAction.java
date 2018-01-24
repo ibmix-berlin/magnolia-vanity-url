@@ -83,7 +83,6 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
 
     private SimpleTranslator _simpleTranslator;
     private VanityUrlService _vanityUrlService;
-    private String _fileName;
 
     public VanityUrlSaveFormAction(final SaveFormActionDefinition definition, final JcrNodeAdapter item, final EditorCallback callback, final EditorValidator validator) {
         super(definition, item, callback, validator);
@@ -107,6 +106,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             } else {
                 vanityUrl = "/" + vanityUrl;
             }
+
             item.addItemProperty(PN_VANITY_URL, new DefaultProperty<>(vanityUrl));
             node.getSession().save();
         } catch (RepositoryException e) {
@@ -126,11 +126,11 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         try {
             final Node node = item.applyChanges();
             String url = _vanityUrlService.createVanityUrl(node);
-            _fileName = trim(strip(getString(node, PN_VANITY_URL, ""), "/")).replace("/", "-");
+            String fileName = trim(strip(getString(node, PN_VANITY_URL, ""), "/")).replace("/", "-");
             File tmpQrCodeFile = Path.getTempDirectory();
 
             UploadReceiver uploadReceiver = new UploadReceiver(tmpQrCodeFile, _simpleTranslator);
-            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(_fileName + IMAGE_EXTENSION, MIME_TYPE);
+            outputStream = (FileOutputStream) uploadReceiver.receiveUpload(fileName + IMAGE_EXTENSION, MIME_TYPE);
             QRCode.from(url).withSize(QR_WIDTH, GR_HEIGHT).writeTo(outputStream);
 
             Node qrNode;
@@ -141,7 +141,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             }
 
             qrCodeInputStream = new FileInputStream(uploadReceiver.getFile());
-            populateItem(qrCodeInputStream, qrNode);
+            populateItem(qrCodeInputStream, qrNode, fileName);
             outputStream.flush();
         } catch (RepositoryException e) {
             LOGGER.error("Error on saving preview image for vanity url.", e);
@@ -152,8 +152,8 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             closeQuietly(qrCodeInputStream);
         }
     }
-    
-    protected void populateItem(InputStream inputStream, Node qrCodeNode) throws  RepositoryException {
+
+    private void populateItem(InputStream inputStream, Node qrCodeNode, final String fileName) throws RepositoryException {
         if (inputStream != null) {
             try {
                 Property data = getPropertyOrNull(qrCodeNode, JCR_DATA);
@@ -164,7 +164,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
                     data.setValue(binary);
                 }
 
-                setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, _fileName);
+                setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, fileName);
                 setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, MIME_TYPE);
                 Calendar calValue = new GregorianCalendar(TimeZone.getDefault());
                 setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
