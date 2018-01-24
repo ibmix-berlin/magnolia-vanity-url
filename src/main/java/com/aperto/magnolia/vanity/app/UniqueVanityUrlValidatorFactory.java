@@ -23,8 +23,8 @@ package com.aperto.magnolia.vanity.app;
  */
 
 import com.aperto.magnolia.vanity.VanityUrlService;
-import com.vaadin.data.Item;
-import com.vaadin.data.Validator;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Validator;
 import info.magnolia.ui.form.validator.factory.AbstractFieldValidatorFactory;
 
 import javax.inject.Inject;

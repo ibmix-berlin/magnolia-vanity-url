@@ -22,11 +22,10 @@ package com.aperto.magnolia.vanity.app;
  * #L%
  */
 
-
 import com.aperto.magnolia.vanity.VanityUrlService;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-import com.vaadin.data.validator.AbstractStringValidator;
+import com.vaadin.v7.data.Item;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.validator.AbstractStringValidator;
 import info.magnolia.ui.vaadin.integration.jcr.JcrNodeAdapter;
 
 import javax.jcr.Node;
