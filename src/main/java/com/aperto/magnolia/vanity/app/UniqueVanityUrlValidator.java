@@ -33,7 +33,6 @@ import javax.jcr.Node;
 import java.util.List;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_SITE;
-import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static info.magnolia.jcr.util.NodeUtil.getNodeIdentifierIfPossible;
 
 /**
@@ -58,17 +57,16 @@ public class UniqueVanityUrlValidator extends AbstractStringValidator {
         boolean isValid = true;
         if (_item instanceof JcrNodeAdapter) {
             JcrNodeAdapter jcrNodeAdapter = (JcrNodeAdapter) _item;
-            isValid = validateField(jcrNodeAdapter);
+            isValid = validateField(value, jcrNodeAdapter);
         }
         return isValid;
     }
 
-    private boolean validateField(final JcrNodeAdapter jcrNodeAdapter) {
+    private boolean validateField(final String value, final JcrNodeAdapter jcrNodeAdapter) {
         boolean validField = true;
-        Property<?> vanityUrl = jcrNodeAdapter.getItemProperty(PN_VANITY_URL);
         Property<?> site = jcrNodeAdapter.getItemProperty(PN_SITE);
-        if (vanityUrl.getValue() != null && site.getValue() != null) {
-            List<Node> nodes = _vanityUrlService.queryForVanityUrlNodes(vanityUrl.getValue().toString(), site.getValue().toString());
+        if (site.getValue() != null) {
+            List<Node> nodes = _vanityUrlService.queryForVanityUrlNodes(value, site.getValue().toString());
             if (jcrNodeAdapter instanceof JcrNewNodeAdapter) {
                 validField = nodes.isEmpty();
             } else {
