@@ -22,7 +22,6 @@ package com.aperto.magnolia.vanity;
  * #L%
  */
 
-
 import info.magnolia.context.MgnlContext;
 import info.magnolia.jcr.util.NodeUtil;
 import info.magnolia.link.LinkUtil;
@@ -33,22 +32,33 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
-import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
+import java.util.Collections;
+import java.util.List;
 
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
-import static info.magnolia.cms.util.RequestDispatchUtil.*;
+import static info.magnolia.cms.util.RequestDispatchUtil.FORWARD_PREFIX;
+import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
+import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
+import static info.magnolia.jcr.util.NodeUtil.asIterable;
+import static info.magnolia.jcr.util.NodeUtil.asList;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
 import static info.magnolia.link.LinkUtil.DEFAULT_EXTENSION;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static javax.jcr.query.Query.JCR_SQL2;
-import static org.apache.commons.lang.StringUtils.*;
+import static org.apache.commons.lang.StringUtils.EMPTY;
+import static org.apache.commons.lang.StringUtils.defaultString;
+import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.apache.commons.lang.StringUtils.isNotEmpty;
+import static org.apache.commons.lang.StringUtils.removeStart;
+import static org.apache.commons.lang.StringUtils.replace;
+import static org.apache.commons.lang.StringUtils.substringAfter;
 
 /**
  * Query service for vanity url nodes in vanity url workspace.
@@ -195,6 +205,24 @@ public class VanityUrlService {
     public Node queryForVanityUrlNode(final String vanityUrl, final String siteName) {
         Node node = null;
 
+        List<Node> nodes = queryForVanityUrlNodes(vanityUrl, siteName);
+        if (!nodes.isEmpty()) {
+            node = nodes.get(0);
+        }
+
+        return node;
+    }
+
+    /**
+     * Query for a vanity url nodes.
+     *
+     * @param vanityUrl vanity url from request
+     * @param siteName  site name from aggegation state
+     * @return vanity url nodes or empty list, if nothing found
+     */
+    public List<Node> queryForVanityUrlNodes(final String vanityUrl, final String siteName) {
+        List<Node> nodes = Collections.emptyList();
+
         try {
             Session jcrSession = MgnlContext.getJCRSession(VanityUrlModule.WORKSPACE);
             QueryManager queryManager = jcrSession.getWorkspace().getQueryManager();
@@ -202,15 +230,12 @@ public class VanityUrlService {
             query.bindValue(PN_VANITY_URL, new StringValue(vanityUrl));
             query.bindValue(PN_SITE, new StringValue(siteName));
             QueryResult queryResult = query.execute();
-            NodeIterator nodes = queryResult.getNodes();
-            if (nodes.hasNext()) {
-                node = nodes.nextNode();
-            }
+            nodes = asList(asIterable(queryResult.getNodes()));
         } catch (RepositoryException e) {
             LOGGER.error("Error message.", e);
         }
 
-        return node;
+        return nodes;
     }
 
     /**
