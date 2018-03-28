@@ -311,8 +311,11 @@
                         <artifactId>maven-source-plugin</artifactId>
                         <executions>
                             <execution>
+                                <id>attach-sources-no-fork</id>
+                                <inherited>true</inherited>
+                                <phase>generate-sources</phase>
                                 <goals>
-                                    <goal>jar</goal>
+                                    <goal>jar-no-fork</goal>
                                 </goals>
                             </execution>
                         </executions>
