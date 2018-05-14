@@ -51,6 +51,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
  */
 public class VirtualVanityUriMapping implements VirtualUriMapping {
     private static final Logger LOGGER = LoggerFactory.getLogger(VirtualVanityUriMapping.class);
+
     private Provider<VanityUrlModule> _vanityUrlModule;
     private Provider<VanityUrlService> _vanityUrlService;
     private Provider<ModuleRegistry> _moduleRegistry;
@@ -106,22 +107,19 @@ public class VirtualVanityUriMapping implements VirtualUriMapping {
     }
 
     protected String getUriOfVanityUrl(final String vanityUrl) {
-        String redirectUri = EMPTY;
         final String siteName = retrieveSite();
+        Node node = null;
 
         try {
             // do it in system context, so the anonymous need no read rights for using vanity urls
-            redirectUri = MgnlContext.doInSystemContext(
-                (MgnlContext.Op<String, RepositoryException>) () -> {
-                    VanityUrlService vanityUrlService = _vanityUrlService.get();
-                    Node node = vanityUrlService.queryForVanityUrlNode(vanityUrl, siteName);
-                    return vanityUrlService.createRedirectUrl(node);
-                }
+            node = MgnlContext.doInSystemContext(
+                (MgnlContext.Op<Node, RepositoryException>) () -> _vanityUrlService.get().queryForVanityUrlNode(vanityUrl, siteName)
             );
         } catch (RepositoryException e) {
             LOGGER.warn("Error on querying for vanity url.", e);
         }
-        return redirectUri;
+
+        return node == null ? EMPTY : _vanityUrlService.get().createRedirectUrl(node);
     }
 
     private String retrieveSite() {
