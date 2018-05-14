@@ -119,7 +119,17 @@ public class VirtualVanityUriMapping implements VirtualUriMapping {
             LOGGER.warn("Error on querying for vanity url.", e);
         }
 
-        return node == null ? EMPTY : _vanityUrlService.get().createRedirectUrl(node);
+        return node == null ? EMPTY : createUrlForVanityNode(node);
+    }
+
+    /**
+     * Override for alternative redirect url creation.
+     *
+     * @param node vanity url node
+     * @return redirect or forward url
+     */
+    protected String createUrlForVanityNode(final Node node) {
+        return _vanityUrlService.get().createRedirectUrl(node);
     }
 
     private String retrieveSite() {
