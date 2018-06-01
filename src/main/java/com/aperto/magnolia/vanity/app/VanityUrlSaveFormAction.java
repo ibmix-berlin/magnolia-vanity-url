@@ -95,7 +95,6 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
         if (validator.isValid()) {
             savePreviewImage();
         }
-        super.execute();
     }
 
     private String getNormalizedVanityUrl(final Node node) {
