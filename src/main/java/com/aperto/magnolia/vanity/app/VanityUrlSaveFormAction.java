@@ -126,6 +126,7 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
             qrCodeInputStream = new FileInputStream(uploadReceiver.getFile());
             populateItem(qrCodeInputStream, qrNode, fileName);
             outputStream.flush();
+            node.getSession().save();
         } catch (RepositoryException e) {
             LOGGER.error("Error on saving preview image for vanity url.", e);
         } catch (IOException e) {
