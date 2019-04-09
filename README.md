@@ -42,7 +42,7 @@ Versions
 * Version 1.2.x is compatible with Magnolia 5.2.x
 * Version 1.3.x is compatible with Magnolia 5.3.x
 * Version 1.4.x is compatible with Magnolia 5.4.x and 5.5.x
-* Version 1.5.x is compatible with Magnolia 5.6.x
+* Version 1.5.x is compatible with Magnolia 5.6.x and 5.7.x
 
 Magnolia Module Configuration
 -----------------
