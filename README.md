@@ -1,6 +1,11 @@
 Magnolia Vanity-URL App
 =======================
 
+[![Build Status](https://travis-ci.com/aperto/magnolia-vanity-url.svg?branch=master)](https://travis-ci.com/aperto/magnolia-vanity-url) [![Magnolia compatibility](https://img.shields.io/badge/magnolia-5.4-brightgreen.svg)](https://www.magnolia-cms.com)
+[![Magnolia compatibility](https://img.shields.io/badge/magnolia-5.5-brightgreen.svg)](https://www.magnolia-cms.com)
+[![Magnolia compatibility](https://img.shields.io/badge/magnolia-5.6-brightgreen.svg)](https://www.magnolia-cms.com)
+[![Magnolia compatibility](https://img.shields.io/badge/magnolia-5.7-brightgreen.svg)](https://www.magnolia-cms.com)
+
 A [module](https://documentation.magnolia-cms.com/display/DOCS/Modules) containing an [app](https://documentation.magnolia-cms.com/display/DOCS/Apps) for the [Magnolia CMS](http://www.magnolia-cms.com)
 
 Allows to configure vanity URLs in the Magnolia CMS without requiring access to the config workspace. Ideal for page/content editors who are not supposed to write to the config workspace. Also creates QR codes.
