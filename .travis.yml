@@ -2,8 +2,7 @@ language: java
 jdk: oraclejdk8
 before_install:
   - mkdir -p ~/.m2
-  - echo "<settingsSecurity><master>`mvn --encrypt-master-password ${MASTPASS}`</master></settingsSecurity>" > ~/.m2/settings-security.xml
-  - mvn org.sonatype.plugins:nexus-m2settings-maven-plugin:1.6.5:download -DnexusUrl=https://nexus.magnolia-cms.com -Dusername=${USERNAME} -Dpassword=${PASSWORD} -DtemplateId=magnolia-internal-UEkeku77mdz
+  - echo "<settings><server><id>magnolia.forge.snapshots</id><username>${USERNAME}</username><password>${PASSWORD}</password></server></settings>" > ~/.m2/settings.xml
 script:
   - mvn clean deploy
 cache:
