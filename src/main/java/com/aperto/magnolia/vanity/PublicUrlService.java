@@ -38,7 +38,7 @@ public interface PublicUrlService {
      * @param node vanity url node
      * @return vanity url
      */
-    String createVanityUrl(final Node node);
+    String createVanityUrl(Node node);
 
     /**
      * Creates the public url for displaying as target link in app view.
@@ -46,5 +46,5 @@ public interface PublicUrlService {
      * @param node vanity url node
      * @return public url
      */
-    String createTargetUrl(final Node node);
+    String createTargetUrl(Node node);
 }

@@ -76,9 +76,6 @@
     <property name="localeCountry" value="DE"/>
     <property name="localeLanguage" value="de"/>
 
-    <!-- http://checkstyle.sourceforge.net/config.html -->
-    <module name="SuppressionCommentFilter"/>
-
     <module name="RegexpSingleline">
         <property name="format" value="TODO:?[\s]*$"/>
         <property name="message"
@@ -121,10 +118,7 @@
         <property name="cacheFile" value="target/checkstyle.cache"/>
         <property name="tabWidth" value="4"/>
 
-        <!-- http://checkstyle.sourceforge.net/config.html#SuppressionCommentFilter -->
-        <!-- We need this to make the SuppressionCommentFilter work -->
-        <module name="FileContentsHolder"/>
-
+        <module name="SuppressionCommentFilter"/>
 
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
@@ -364,7 +358,7 @@
 
         <!-- http://checkstyle.sourceforge.net/config_coding.html#IllegalType -->
         <module name="IllegalType">
-            <property name="format" value="_"/>
+            <property name="illegalClassNames" value="_"/>
         </module>
 
         <!-- http://checkstyle.sourceforge.net/config_coding.html#IllegalToken -->
