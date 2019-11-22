@@ -35,7 +35,7 @@ Maven dependency
     <dependency>
         <artifactId>magnolia-vanity-url</artifactId>
         <groupId>com.aperto.magkit</groupId>
-        <version>1.5.2</version>
+        <version>1.5.3</version>
     </dependency>
 ```
 
