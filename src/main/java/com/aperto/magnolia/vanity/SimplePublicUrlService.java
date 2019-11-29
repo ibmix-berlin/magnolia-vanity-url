@@ -10,19 +10,18 @@ package com.aperto.magnolia.vanity;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 
-import info.magnolia.link.LinkUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,8 +35,6 @@ import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.jcr.util.NodeUtil.getPathIfPossible;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
-import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.removeEnd;
@@ -73,7 +70,7 @@ public class SimplePublicUrlService implements PublicUrlService {
             url = getString(node, PN_LINK, EMPTY);
             if (isNotEmpty(url)) {
                 if (!isExternalLink(url)) {
-                    url = normalizePrefix() + removeContextPath(getLinkFromId(url));
+                    url = normalizePrefix() + removeContextPath(getExternalLinkFromId(url));
                 }
                 url += getString(node, PN_SUFFIX, EMPTY);
             }
@@ -97,13 +94,6 @@ public class SimplePublicUrlService implements PublicUrlService {
 
     private String normalizePrefix() {
         return removeEnd(_targetServerPrefix, "/");
-    }
-
-    /**
-     * Override for testing.
-     */
-    protected String getLinkFromId(final String url) {
-        return LinkUtil.createLink(getNodeByIdentifier(WEBSITE, url));
     }
 
     public void setTargetServerPrefix(final String targetServerPrefix) {

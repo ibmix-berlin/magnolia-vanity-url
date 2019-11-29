@@ -84,10 +84,10 @@ public class SimplePublicUrlServiceTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         _service = new SimplePublicUrlService() {
             @Override
-            protected String getLinkFromId(final String url) {
+            public String getExternalLinkFromId(final String nodeId) {
                 return "/internal/page.html";
             }
         };

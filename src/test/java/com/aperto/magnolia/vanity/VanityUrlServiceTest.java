@@ -58,12 +58,12 @@ public class VanityUrlServiceTest {
     private VanityUrlService _service;
 
     @Test
-    public void testRedirectWithNull() throws Exception {
+    public void testRedirectWithNull() {
         assertThat(_service.createRedirectUrl(null), equalTo(""));
     }
 
     @Test
-    public void testTargetUrlWithEmptyNode() throws Exception {
+    public void testTargetUrlWithEmptyNode() {
         MockNode mockNode = new MockNode("node");
         assertThat(_service.createRedirectUrl(mockNode), equalTo(""));
         assertThat(_service.createPreviewUrl(mockNode), equalTo(""));
@@ -114,28 +114,28 @@ public class VanityUrlServiceTest {
     }
 
     @Test
-    public void testPublicUrl() throws Exception {
+    public void testPublicUrl() {
         assertThat(_service.createPublicUrl(null), equalTo("http://www.aperto.de/page.html"));
     }
 
     @Test
-    public void testVanityUrl() throws Exception {
+    public void testVanityUrl() {
         assertThat(_service.createVanityUrl(null), equalTo("http://www.aperto.de/vanity"));
     }
 
     @Test
-    public void testImageLinkWithNull() throws Exception {
+    public void testImageLinkWithNull() {
         assertThat(_service.createImageLink(null), equalTo(""));
     }
 
     @Test
-    public void testImageLinkWithMissingImage() throws Exception {
+    public void testImageLinkWithMissingImage() {
         MockNode mockNode = new MockNode("node");
         assertThat(_service.createImageLink(mockNode), equalTo(""));
     }
 
     @Test
-    public void testImageLinkWithImage() throws Exception {
+    public void testImageLinkWithImage() {
         MockNode mockNode = new MockNode("node");
         MockNode image = new MockNode(NN_IMAGE);
         mockNode.addNode(image);

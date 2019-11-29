@@ -10,12 +10,12 @@ package com.aperto.magnolia.vanity;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -49,7 +49,6 @@ import static info.magnolia.cms.util.RequestDispatchUtil.REDIRECT_PREFIX;
 import static info.magnolia.jcr.util.NodeUtil.asIterable;
 import static info.magnolia.jcr.util.NodeUtil.asList;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
 import static info.magnolia.link.LinkUtil.DEFAULT_EXTENSION;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static javax.jcr.query.Query.JCR_SQL2;
@@ -163,9 +162,12 @@ public class VanityUrlService {
                         url = EMPTY;
                     }
                 } else {
-                    url = getLinkFromNode(getNodeByIdentifier(WEBSITE, url), isForward);
-                    if (isNotBlank(url) && url.contains(_contextPath)) {
-                        url = substringAfter(url, _contextPath);
+                    Node nodeFromId = getNodeFromId(url);
+                    if (nodeFromId != null) {
+                        url = getLinkFromNode(nodeFromId, isForward);
+                        if (isNotBlank(url) && url.contains(_contextPath)) {
+                            url = substringAfter(url, _contextPath);
+                        }
                     }
                 }
             }
@@ -249,5 +251,17 @@ public class VanityUrlService {
     @Inject
     public void setVanityUrlModule(final Provider<VanityUrlModule> vanityUrlModule) {
         _vanityUrlModule = vanityUrlModule;
+    }
+
+    protected static Node getNodeFromId(final String nodeId) {
+        Node node = null;
+        try {
+            Session jcrSession = MgnlContext.getJCRSession(WEBSITE);
+            node = jcrSession.getNodeByIdentifier(nodeId);
+        } catch (RepositoryException e) {
+            LOGGER.info("Error getting node for {}.", nodeId);
+            LOGGER.debug("Error getting node for {}.", nodeId, e);
+        }
+        return node;
     }
 }

@@ -23,8 +23,6 @@ package com.aperto.magnolia.vanity;
  */
 
 import info.magnolia.cms.beans.config.ServerConfiguration;
-import info.magnolia.context.MgnlContext;
-import info.magnolia.link.LinkUtil;
 import info.magnolia.module.site.Domain;
 import info.magnolia.module.site.Site;
 import info.magnolia.module.site.SiteManager;
@@ -34,8 +32,6 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import java.util.Collection;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
@@ -46,9 +42,7 @@ import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.jcr.util.NodeUtil.getPathIfPossible;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
-import static org.apache.commons.lang3.StringUtils.defaultString;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.removeEnd;
 import static org.apache.commons.lang3.StringUtils.replaceOnce;
@@ -121,22 +115,6 @@ public class DefaultPublicUrlService implements PublicUrlService {
             }
         }
         return url;
-    }
-
-    /**
-     * Override for testing.
-     */
-    protected String getExternalLinkFromId(final String nodeId) {
-        String externalLink = null;
-        try {
-            Session jcrSession = MgnlContext.getJCRSession(WEBSITE);
-            Node node = jcrSession.getNodeByIdentifier(nodeId);
-            externalLink = LinkUtil.createExternalLink(node);
-        } catch (RepositoryException e) {
-            LOGGER.info("Error creating external link from {}.", nodeId);
-            LOGGER.debug("Error creating external link from {}.", nodeId, e);
-        }
-        return defaultString(externalLink);
     }
 
     @Inject
