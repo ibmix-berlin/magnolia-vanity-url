@@ -10,12 +10,12 @@ package com.aperto.magnolia.vanity;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -23,6 +23,7 @@ package com.aperto.magnolia.vanity;
  */
 
 import info.magnolia.cms.beans.config.ServerConfiguration;
+import info.magnolia.context.MgnlContext;
 import info.magnolia.link.LinkUtil;
 import info.magnolia.module.site.Domain;
 import info.magnolia.module.site.Site;
@@ -33,6 +34,8 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.util.Collection;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
@@ -43,9 +46,9 @@ import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
 import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
 import static info.magnolia.jcr.util.NodeUtil.getPathIfPossible;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
-import static info.magnolia.jcr.util.SessionUtil.getNodeByIdentifier;
 import static info.magnolia.repository.RepositoryConstants.WEBSITE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.apache.commons.lang3.StringUtils.defaultString;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.removeEnd;
 import static org.apache.commons.lang3.StringUtils.replaceOnce;
@@ -123,8 +126,17 @@ public class DefaultPublicUrlService implements PublicUrlService {
     /**
      * Override for testing.
      */
-    protected String getExternalLinkFromId(final String url) {
-        return LinkUtil.createExternalLink(getNodeByIdentifier(WEBSITE, url));
+    protected String getExternalLinkFromId(final String nodeId) {
+        String externalLink = null;
+        try {
+            Session jcrSession = MgnlContext.getJCRSession(WEBSITE);
+            Node node = jcrSession.getNodeByIdentifier(nodeId);
+            externalLink = LinkUtil.createExternalLink(node);
+        } catch (RepositoryException e) {
+            LOGGER.info("Error creating external link from {}.", nodeId);
+            LOGGER.debug("Error creating external link from {}.", nodeId, e);
+        }
+        return defaultString(externalLink);
     }
 
     @Inject
