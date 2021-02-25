@@ -7,6 +7,7 @@ Magnolia Vanity-URL App
 [![Magnolia compatibility](https://img.shields.io/badge/magnolia-5.6-brightgreen.svg)](https://www.magnolia-cms.com)
 [![Magnolia compatibility](https://img.shields.io/badge/magnolia-5.7-brightgreen.svg)](https://www.magnolia-cms.com)
 [![Magnolia compatibility](https://img.shields.io/badge/magnolia-6.1-brightgreen.svg)](https://www.magnolia-cms.com)
+[![Magnolia compatibility](https://img.shields.io/badge/magnolia-6.2-brightgreen.svg)](https://www.magnolia-cms.com)
 
 A [module](https://documentation.magnolia-cms.com/display/DOCS/Modules) containing an [app](https://documentation.magnolia-cms.com/display/DOCS/Apps) for the [Magnolia CMS](http://www.magnolia-cms.com)
 
@@ -27,7 +28,7 @@ Any bug reports, improvement or feature requests are welcome!
 Maven artifacts in Magnolia's Nexus
 ---------------------------------
 The code is built on [Travis CI](https://travis-ci.com/aperto/magnolia-vanity-url).
-You can browse available artifacts through [Magnolia's Nexus](http://nexus.magnolia-cms.com/#nexus-search;quick~magnolia-vanity-url)
+You can browse available artifacts through [Magnolia's Nexus](https://nexus.magnolia-cms.com/#nexus-search;quick~magnolia-vanity-url)
 
 Maven dependency
 -----------------
@@ -44,7 +45,7 @@ Versions
 * Version 1.2.x is compatible with Magnolia 5.2.x
 * Version 1.3.x is compatible with Magnolia 5.3.x
 * Version 1.4.x is compatible with Magnolia 5.4.x and 5.5.x
-* Version 1.5.x is compatible with Magnolia 5.6.x, 5.7.x and 6.1.x
+* Version 1.5.x is compatible with Magnolia 5.6.x, 5.7.x, 6.1.x and 6.2.x
 
 Magnolia Module Configuration
 -----------------
