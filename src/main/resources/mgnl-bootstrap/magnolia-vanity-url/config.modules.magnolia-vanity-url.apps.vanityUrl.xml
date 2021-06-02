@@ -125,9 +125,6 @@
           <sv:property sv:name="icon" sv:type="String">
             <sv:value>icon-publish</sv:value>
           </sv:property>
-          <sv:property sv:name="recursive" sv:type="String">
-            <sv:value>true</sv:value>
-          </sv:property>
         </sv:node>
         <sv:node sv:name="deactivate">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">

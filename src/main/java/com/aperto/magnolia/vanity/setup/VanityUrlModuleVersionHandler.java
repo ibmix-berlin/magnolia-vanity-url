@@ -10,12 +10,12 @@ package com.aperto.magnolia.vanity.setup;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -28,6 +28,7 @@ import info.magnolia.module.InstallContext;
 import info.magnolia.module.delta.BootstrapConditionally;
 import info.magnolia.module.delta.BootstrapSingleModuleResource;
 import info.magnolia.module.delta.DeltaBuilder;
+import info.magnolia.module.delta.RemovePropertyTask;
 import info.magnolia.module.delta.Task;
 
 import java.util.ArrayList;
@@ -80,6 +81,10 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
         DeltaBuilder update150 = DeltaBuilder.update("1.5.0", "Update to version 1.5.0");
         update150.addTask(new BootstrapSingleModuleResource("Bootstrap new config", "Bootstrap new validation in app dialog.", "config.modules.magnolia-vanity-url.apps.vanityUrl.xml"));
         register(update150);
+
+        DeltaBuilder update154 = DeltaBuilder.update("1.5.4", "Update to version 1.5.4");
+        update154.addTask(new RemovePropertyTask("Remove wrong app config", "Remove recursive flag in activate action in app.", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/activate", "recursive"));
+        register(update154);
     }
 
     @Override
