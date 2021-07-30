@@ -1,1220 +1,1201 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-         xmlns:mgnl="http://www.magnolia.info/jcr/mgnl"
-         sv:name="vanityUrl">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>mgnl:contentNode</sv:value>
-  </sv:property>
-  <sv:property sv:name="appClass" sv:type="String">
-    <sv:value>info.magnolia.ui.contentapp.ContentApp</sv:value>
-  </sv:property>
-  <sv:property sv:name="class" sv:type="String">
-    <sv:value>info.magnolia.ui.contentapp.ConfiguredContentAppDescriptor</sv:value>
-  </sv:property>
-  <sv:property sv:name="icon" sv:type="String">
-    <sv:value>icon-share</sv:value>
-  </sv:property>
-  <sv:property sv:name="name" sv:type="String">
-    <sv:value>vanityUrl</sv:value>
-  </sv:property>
-  <sv:node sv:name="subApps">
+<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="vanityUrl">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>mgnl:contentNode</sv:value>
+        <sv:value>mgnl:contentNode</sv:value>
     </sv:property>
-    <sv:node sv:name="browser">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mgnl:contentNode</sv:value>
-      </sv:property>
-      <sv:property sv:name="class" sv:type="String">
-        <sv:value>info.magnolia.ui.contentapp.browser.BrowserSubAppDescriptor</sv:value>
-      </sv:property>
-      <sv:property sv:name="subAppClass" sv:type="String">
-        <sv:value>info.magnolia.ui.contentapp.browser.BrowserSubApp</sv:value>
-      </sv:property>
-      <sv:node sv:name="actions">
+    <sv:property sv:name="appClass" sv:type="String">
+        <sv:value>info.magnolia.ui.contentapp.ContentApp</sv:value>
+    </sv:property>
+    <sv:property sv:name="class" sv:type="String">
+        <sv:value>info.magnolia.ui.contentapp.ConfiguredContentAppDescriptor</sv:value>
+    </sv:property>
+    <sv:property sv:name="icon" sv:type="String">
+        <sv:value>icon-share</sv:value>
+    </sv:property>
+    <sv:property sv:name="name" sv:type="String">
+        <sv:value>vanityUrl</sv:value>
+    </sv:property>
+    <sv:node sv:name="subApps">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
+            <sv:value>mgnl:contentNode</sv:value>
         </sv:property>
-        <sv:node sv:name="addUrl">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="appName" sv:type="String">
-            <sv:value>vanityUrl</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.contentapp.detail.action.CreateItemActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-add-item</sv:value>
-          </sv:property>
-          <sv:property sv:name="nodeType" sv:type="String">
-            <sv:value>mgnl:vanityUrl</sv:value>
-          </sv:property>
-          <sv:property sv:name="subAppId" sv:type="String">
-            <sv:value>detail</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
+        <sv:node sv:name="browser">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="root" sv:type="String">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:node sv:name="nodeTypes">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:property sv:name="folder" sv:type="String">
-                <sv:value>mgnl:folder</sv:value>
-              </sv:property>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="delete">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.DeleteActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="command" sv:type="String">
-            <sv:value>delete</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="editUrl">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="appName" sv:type="String">
-            <sv:value>vanityUrl</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.contentapp.detail.action.EditItemActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-edit</sv:value>
-          </sv:property>
-          <sv:property sv:name="subAppId" sv:type="String">
-            <sv:value>detail</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="nodeTypes">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:property sv:name="mgnl-vanityUrl" sv:type="String">
-                <sv:value>mgnl:vanityUrl</sv:value>
-              </sv:property>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="activate">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.ActivationActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="command" sv:type="String">
-            <sv:value>activate</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-publish</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="deactivate">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.DeactivationActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="command" sv:type="String">
-            <sv:value>deactivate</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-unpublish</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="confirmDeleteUrl">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.ConfirmationActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-delete</sv:value>
-          </sv:property>
-          <sv:property sv:name="successActionName" sv:type="String">
-            <sv:value>delete</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="multiple" sv:type="String">
-              <sv:value>true</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="preview">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="appName" sv:type="String">
-            <sv:value>vanityUrl</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>com.aperto.magnolia.vanity.app.PreviewActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-view</sv:value>
-          </sv:property>
-          <sv:property sv:name="subAppId" sv:type="String">
-            <sv:value>preview</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="rules">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="IsNotDeletedRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="viewCode">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="appName" sv:type="String">
-            <sv:value>vanityUrl</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>com.aperto.magnolia.vanity.app.PreviewActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-view</sv:value>
-          </sv:property>
-          <sv:property sv:name="implementationClass" sv:type="String">
-            <sv:value>com.aperto.magnolia.vanity.app.QrCodeViewAction</sv:value>
-          </sv:property>
-          <sv:property sv:name="subAppId" sv:type="String">
-            <sv:value>preview</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="rules">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="IsNotDeletedRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="addFolder">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.AddFolderActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-add-folder</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="root" sv:type="String">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:node sv:name="rules">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="IsNotDeletedRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="editFolder">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.OpenEditDialogActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="dialogName" sv:type="String">
-            <sv:value>ui-framework:folder</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-edit</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:node sv:name="rules">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="IsNotDeletedRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="confirmDeleteFolder">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="extends" sv:type="String">
-            <sv:value>../confirmDeleteUrl</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-delete</sv:value>
-          </sv:property>
-          <sv:property sv:name="successActionName" sv:type="String">
-            <sv:value>deleteFolder</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="deleteFolder">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="asynchronous" sv:type="String">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="catalog" sv:type="String">
-            <sv:value>dam</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.MarkNodeAsDeletedActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="command" sv:type="String">
-            <sv:value>markAssetFolderAsDeleted</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="activateRecursive">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="asynchronous" sv:type="String">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="extends" sv:type="String">
-            <sv:value>../activate</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-publish-incl-sub</sv:value>
-          </sv:property>
-          <sv:property sv:name="notifyUser" sv:type="String">
-            <sv:value>false</sv:value>
-          </sv:property>
-          <sv:property sv:name="recursive" sv:type="String">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:node sv:name="rules">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="IsNotDeletedRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
-                </sv:property>
-              </sv:node>
-              <sv:node sv:name="IsPublishableRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsPublishableRule</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-            <sv:node sv:name="access">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="roles">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="canPublish" sv:type="String">
-                  <sv:value>canPublish</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="move">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.contentapp.movedialog.action.OpenMoveDialogActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-move</sv:value>
-          </sv:property>
-          <sv:node sv:name="availability">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="multiple" sv:type="String">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
-              <sv:value>true</sv:value>
-            </sv:property>
-            <sv:node sv:name="rules">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="IsNotDeletedRule">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="implementationClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="moveFolder">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="extends" sv:type="String">
-            <sv:value>../move</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="actionbar">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
-        </sv:property>
-        <sv:property sv:name="defaultAction" sv:type="String">
-          <sv:value>editUrl</sv:value>
-        </sv:property>
-        <sv:node sv:name="sections">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:node sv:name="root">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="groups">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="addActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="addUrl">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="addFolder">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-            </sv:node>
-            <sv:node sv:name="availability">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:property sv:name="nodes" sv:type="String">
-                <sv:value>false</sv:value>
-              </sv:property>
-              <sv:property sv:name="root" sv:type="String">
-                <sv:value>true</sv:value>
-              </sv:property>
-            </sv:node>
-          </sv:node>
-          <sv:node sv:name="folder">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="availability">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="nodeTypes">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="mgnl-folder" sv:type="String">
-                  <sv:value>mgnl:folder</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-            <sv:node sv:name="groups">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="addActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="addUrl">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="addFolder">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="confirmDeleteFolder">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="editActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="editFolder">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="moveFolder">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="activationActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="activate">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="activateRecursive">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="deactivate">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="importExportActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="export">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="import">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-          <sv:node sv:name="url">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="groups">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="addActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="addUrl">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="confirmDeleteUrl">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="editActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="editUrl">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="preview">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="viewCode">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="move">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="activationActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="activate">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="deactivate">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-            </sv:node>
-            <sv:node sv:name="availability">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="nodeTypes">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="vanityUrl" sv:type="String">
-                  <sv:value>mgnl:vanityUrl</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-          <sv:node sv:name="multiple">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="groups">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="deleteActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="confirmDeleteUrl">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-              <sv:node sv:name="activationActions">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="items">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="activate">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                  <sv:node sv:name="deactivate">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                  </sv:node>
-                </sv:node>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="workbench">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
-        </sv:property>
-        <sv:property sv:name="dropConstraintClass" sv:type="String">
-          <sv:value>com.aperto.magnolia.vanity.app.VanityUrlDropConstraint</sv:value>
-        </sv:property>
-        <sv:property sv:name="editable" sv:type="String">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:node sv:name="contentViews">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:node sv:name="tree">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
             </sv:property>
             <sv:property sv:name="class" sv:type="String">
-              <sv:value>info.magnolia.ui.workbench.tree.TreePresenterDefinition</sv:value>
+                <sv:value>info.magnolia.ui.contentapp.browser.BrowserSubAppDescriptor</sv:value>
             </sv:property>
-            <sv:node sv:name="columns">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:property sv:name="extends" sv:type="String">
-                <sv:value>../../list/columns</sv:value>
-              </sv:property>
-            </sv:node>
-          </sv:node>
-          <sv:node sv:name="list">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
+            <sv:property sv:name="subAppClass" sv:type="String">
+                <sv:value>info.magnolia.ui.contentapp.browser.BrowserSubApp</sv:value>
             </sv:property>
-            <sv:property sv:name="class" sv:type="String">
-              <sv:value>info.magnolia.ui.workbench.list.ListPresenterDefinition</sv:value>
-            </sv:property>
-            <sv:node sv:name="columns">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="name">
+            <sv:node sv:name="actions">
                 <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="class" sv:type="String">
-                  <sv:value>info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition</sv:value>
-                </sv:property>
-                <sv:property sv:name="expandRatio" sv:type="Double">
-                  <sv:value>2.0</sv:value>
-                </sv:property>
-                <sv:property sv:name="formatterClass" sv:type="String">
-                  <sv:value>com.aperto.magnolia.vanity.app.FolderUrlNameColumnFormatter</sv:value>
-                </sv:property>
-                <sv:property sv:name="propertyName" sv:type="String">
-                  <sv:value>vanityUrl</sv:value>
-                </sv:property>
-                <sv:property sv:name="sortable" sv:type="String">
-                  <sv:value>true</sv:value>
-                </sv:property>
-              </sv:node>
-              <sv:node sv:name="site">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="class" sv:type="String">
-                  <sv:value>info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition</sv:value>
-                </sv:property>
-                <sv:property sv:name="expandRatio" sv:type="Double">
-                  <sv:value>1.0</sv:value>
-                </sv:property>
-                <sv:property sv:name="propertyName" sv:type="String">
-                  <sv:value>site</sv:value>
-                </sv:property>
-                <sv:property sv:name="sortable" sv:type="String">
-                  <sv:value>true</sv:value>
-                </sv:property>
-              </sv:node>
-              <sv:node sv:name="link">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="class" sv:type="String">
-                  <sv:value>com.aperto.magnolia.vanity.app.LinkColumnDefinition</sv:value>
-                </sv:property>
-                <sv:property sv:name="expandRatio" sv:type="Double">
-                  <sv:value>3.0</sv:value>
-                </sv:property>
-                <sv:property sv:name="sortable" sv:type="String">
-                  <sv:value>true</sv:value>
-                </sv:property>
-              </sv:node>
-              <sv:node sv:name="status">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="class" sv:type="String">
-                  <sv:value>info.magnolia.ui.workbench.column.definition.StatusColumnDefinition</sv:value>
-                </sv:property>
-                <sv:property sv:name="displayInChooseDialog" sv:type="Boolean">
-                  <sv:value>false</sv:value>
-                </sv:property>
-                <sv:property sv:name="formatterClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.workbench.column.StatusColumnFormatter</sv:value>
-                </sv:property>
-                <sv:property sv:name="width" sv:type="Long">
-                  <sv:value>46</sv:value>
-                </sv:property>
-              </sv:node>
-              <sv:node sv:name="moddate">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:property sv:name="class" sv:type="String">
-                  <sv:value>info.magnolia.ui.workbench.column.definition.MetaDataColumnDefinition</sv:value>
-                </sv:property>
-                <sv:property sv:name="displayInChooseDialog" sv:type="Boolean">
-                  <sv:value>false</sv:value>
-                </sv:property>
-                <sv:property sv:name="formatterClass" sv:type="String">
-                  <sv:value>info.magnolia.ui.workbench.column.DateColumnFormatter</sv:value>
-                </sv:property>
-                <sv:property sv:name="propertyName" sv:type="String">
-                  <sv:value>mgnl:lastModified</sv:value>
-                </sv:property>
-                <sv:property sv:name="sortable" sv:type="String">
-                  <sv:value>true</sv:value>
-                </sv:property>
-                <sv:property sv:name="width" sv:type="Long">
-                  <sv:value>160</sv:value>
-                </sv:property>
-              </sv:node>
-            </sv:node>
-          </sv:node>
-          <sv:node sv:name="search">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="class" sv:type="String">
-              <sv:value>info.magnolia.ui.workbench.search.SearchPresenterDefinition</sv:value>
-            </sv:property>
-            <sv:node sv:name="columns">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:property sv:name="extends" sv:type="String">
-                <sv:value>../../list/columns</sv:value>
-              </sv:property>
-            </sv:node>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="imageProvider">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
-        </sv:property>
-        <sv:property sv:name="class" sv:type="String">
-          <sv:value>info.magnolia.ui.imageprovider.definition.ConfiguredImageProviderDefinition</sv:value>
-        </sv:property>
-        <sv:property sv:name="imageProviderClass" sv:type="String">
-          <sv:value>info.magnolia.ui.imageprovider.DefaultImageProvider</sv:value>
-        </sv:property>
-        <sv:property sv:name="originalImageNodeName" sv:type="String">
-          <sv:value>qrCode</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="contentConnector">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
-        </sv:property>
-        <sv:property sv:name="defaultOrder" sv:type="String">
-          <sv:value>jcrName</sv:value>
-        </sv:property>
-        <sv:property sv:name="includeProperties" sv:type="String">
-          <sv:value>false</sv:value>
-        </sv:property>
-        <sv:property sv:name="rootPath" sv:type="String">
-          <sv:value>/</sv:value>
-        </sv:property>
-        <sv:property sv:name="workspace" sv:type="String">
-          <sv:value>vanityUrls</sv:value>
-        </sv:property>
-        <sv:node sv:name="nodeTypes">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:node sv:name="vanityUrl">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="icon" sv:type="String">
-              <sv:value>icon-favorites</sv:value>
-            </sv:property>
-            <sv:property sv:name="name" sv:type="String">
-              <sv:value>mgnl:vanityUrl</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="folder">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:property sv:name="icon" sv:type="String">
-              <sv:value>icon-folder-l</sv:value>
-            </sv:property>
-            <sv:property sv:name="name" sv:type="String">
-              <sv:value>mgnl:folder</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-      </sv:node>
-    </sv:node>
-    <sv:node sv:name="detail">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mgnl:contentNode</sv:value>
-      </sv:property>
-      <sv:property sv:name="class" sv:type="String">
-        <sv:value>info.magnolia.ui.contentapp.detail.DetailSubAppDescriptor</sv:value>
-      </sv:property>
-      <sv:property sv:name="subAppClass" sv:type="String">
-        <sv:value>com.aperto.magnolia.vanity.app.VanityUrlDetailSubApp</sv:value>
-      </sv:property>
-      <sv:node sv:name="editor">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
-        </sv:property>
-        <sv:node sv:name="nodeType">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="icon" sv:type="String">
-            <sv:value>icon-node-content</sv:value>
-          </sv:property>
-          <sv:property sv:name="name" sv:type="String">
-            <sv:value>mgnl:vanityUrl</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="actions">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:node sv:name="commit">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-          </sv:node>
-          <sv:node sv:name="cancel">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-          </sv:node>
-        </sv:node>
-        <sv:node sv:name="form">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:node sv:name="tabs">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-              <sv:value>mgnl:contentNode</sv:value>
-            </sv:property>
-            <sv:node sv:name="vanityUrl">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>mgnl:contentNode</sv:value>
-              </sv:property>
-              <sv:node sv:name="fields">
-                <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                  <sv:value>mgnl:contentNode</sv:value>
-                </sv:property>
-                <sv:node sv:name="vanityUrl">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="class" sv:type="String">
-                    <sv:value>info.magnolia.ui.form.field.definition.TextFieldDefinition</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="required" sv:type="Boolean">
-                    <sv:value>true</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="validators">
+                </sv:property>
+                <sv:node sv:name="addUrl">
                     <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
-                    </sv:property>
-                    <sv:node sv:name="valid">
-                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
                         <sv:value>mgnl:contentNode</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="class" sv:type="String">
-                        <sv:value>info.magnolia.ui.form.validator.definition.RegexpValidatorDefinition</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="errorMessage" sv:type="String">
-                        <sv:value>vanityUrl.errorMessage.invalid</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="pattern" sv:type="String">
-                        <sv:value>^/.+$</sv:value>
-                      </sv:property>
-                    </sv:node>
-                    <sv:node sv:name="unique">
-                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                        <sv:value>mgnl:contentNode</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="class" sv:type="String">
-                        <sv:value>com.aperto.magnolia.vanity.app.UniqueVanityUrlValidatorDefinition</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="errorMessage" sv:type="String">
-                        <sv:value>vanityUrl.errorMessage.notUnique</sv:value>
-                      </sv:property>
-                    </sv:node>
-                  </sv:node>
-                </sv:node>
-                <sv:node sv:name="site">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="class" sv:type="String">
-                    <sv:value>com.aperto.magnolia.vanity.app.SiteSelectFieldDefinition</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="defaultValue" sv:type="String">
-                    <sv:value>default</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="required" sv:type="Boolean">
-                    <sv:value>true</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="sortOptions" sv:type="Boolean">
-                    <sv:value>false</sv:value>
-                  </sv:property>
-                </sv:node>
-                <sv:node sv:name="link">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="appName" sv:type="String">
-                    <sv:value>pages</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="class" sv:type="String">
-                    <sv:value>info.magnolia.ui.form.field.definition.LinkFieldDefinition</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="required" sv:type="Boolean">
-                    <sv:value>true</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="targetWorkspace" sv:type="String">
-                    <sv:value>website</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="type" sv:type="String">
-                    <sv:value>String</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="identifierToPathConverter">
-                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="appName" sv:type="String">
+                        <sv:value>vanityUrl</sv:value>
                     </sv:property>
                     <sv:property sv:name="class" sv:type="String">
-                      <sv:value>com.aperto.magnolia.vanity.app.LinkConverter</sv:value>
+                        <sv:value>info.magnolia.ui.contentapp.detail.action.CreateItemActionDefinition</sv:value>
                     </sv:property>
-                  </sv:node>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-add-item</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="nodeType" sv:type="String">
+                        <sv:value>mgnl:vanityUrl</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="subAppId" sv:type="String">
+                        <sv:value>detail</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="root" sv:type="String">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="nodeTypes">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:property sv:name="folder" sv:type="String">
+                                <sv:value>mgnl:folder</sv:value>
+                            </sv:property>
+                        </sv:node>
+                    </sv:node>
                 </sv:node>
-                <sv:node sv:name="linkSuffix">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="class" sv:type="String">
-                    <sv:value>info.magnolia.ui.form.field.definition.TextFieldDefinition</sv:value>
-                  </sv:property>
-                </sv:node>
-                <sv:node sv:name="type">
-                  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                    <sv:value>mgnl:contentNode</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="class" sv:type="String">
-                    <sv:value>info.magnolia.ui.form.field.definition.OptionGroupFieldDefinition</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="required" sv:type="Boolean">
-                    <sv:value>true</sv:value>
-                  </sv:property>
-                  <sv:property sv:name="sortOptions" sv:type="Boolean">
-                    <sv:value>false</sv:value>
-                  </sv:property>
-                  <sv:node sv:name="options">
+                <sv:node sv:name="delete">
                     <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                      <sv:value>mgnl:contentNode</sv:value>
+                        <sv:value>mgnl:contentNode</sv:value>
                     </sv:property>
-                    <sv:node sv:name="301">
-                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                        <sv:value>mgnl:contentNode</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="selected" sv:type="Boolean">
-                        <sv:value>true</sv:value>
-                      </sv:property>
-                    </sv:node>
-                    <sv:node sv:name="302">
-                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                        <sv:value>mgnl:contentNode</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="value" sv:type="String">
-                        <sv:value>302</sv:value>
-                      </sv:property>
-                    </sv:node>
-                    <sv:node sv:name="forward">
-                      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                        <sv:value>mgnl:contentNode</sv:value>
-                      </sv:property>
-                      <sv:property sv:name="value" sv:type="String">
-                        <sv:value>forward</sv:value>
-                      </sv:property>
-                    </sv:node>
-                  </sv:node>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.framework.action.DeleteActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="command" sv:type="String">
+                        <sv:value>delete</sv:value>
+                    </sv:property>
                 </sv:node>
-              </sv:node>
+                <sv:node sv:name="editUrl">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="appName" sv:type="String">
+                        <sv:value>vanityUrl</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.contentapp.detail.action.EditItemActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-edit</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="subAppId" sv:type="String">
+                        <sv:value>detail</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="nodeTypes">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:property sv:name="mgnl-vanityUrl" sv:type="String">
+                                <sv:value>mgnl:vanityUrl</sv:value>
+                            </sv:property>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="activate">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.framework.action.ActivationActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="command" sv:type="String">
+                        <sv:value>activate</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-publish</sv:value>
+                    </sv:property>
+                </sv:node>
+                <sv:node sv:name="deactivate">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.framework.action.DeactivationActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="command" sv:type="String">
+                        <sv:value>deactivate</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-unpublish</sv:value>
+                    </sv:property>
+                </sv:node>
+                <sv:node sv:name="confirmDeleteUrl">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.framework.action.ConfirmationActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-delete</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="successActionName" sv:type="String">
+                        <sv:value>delete</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="multiple" sv:type="String">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="preview">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="appName" sv:type="String">
+                        <sv:value>vanityUrl</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>com.aperto.magnolia.vanity.app.PreviewActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-view</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="subAppId" sv:type="String">
+                        <sv:value>preview</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="rules">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="IsNotDeletedRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="viewCode">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="appName" sv:type="String">
+                        <sv:value>vanityUrl</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>com.aperto.magnolia.vanity.app.PreviewActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-view</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="implementationClass" sv:type="String">
+                        <sv:value>com.aperto.magnolia.vanity.app.QrCodeViewAction</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="subAppId" sv:type="String">
+                        <sv:value>preview</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="rules">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="IsNotDeletedRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="addFolder">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.framework.action.AddFolderActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-add-folder</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="root" sv:type="String">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="rules">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="IsNotDeletedRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="editFolder">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.framework.action.OpenEditDialogActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="dialogName" sv:type="String">
+                        <sv:value>ui-framework:folder</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-edit</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="rules">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="IsNotDeletedRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="confirmDeleteFolder">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="extends" sv:type="String">
+                        <sv:value>../confirmDeleteUrl</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-delete</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="successActionName" sv:type="String">
+                        <sv:value>delete</sv:value>
+                    </sv:property>
+                </sv:node>
+                <sv:node sv:name="activateRecursive">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="asynchronous" sv:type="String">
+                        <sv:value>true</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="extends" sv:type="String">
+                        <sv:value>../activate</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-publish-incl-sub</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="notifyUser" sv:type="String">
+                        <sv:value>false</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="recursive" sv:type="String">
+                        <sv:value>true</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="rules">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="IsNotDeletedRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                            <sv:node sv:name="IsPublishableRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsPublishableRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                        <sv:node sv:name="access">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="roles">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="canPublish" sv:type="String">
+                                    <sv:value>canPublish</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="move">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.contentapp.movedialog.action.OpenMoveDialogActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-move</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="availability">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="multiple" sv:type="String">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="writePermissionRequired" sv:type="Boolean">
+                            <sv:value>true</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="rules">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="IsNotDeletedRule">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="implementationClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.framework.availability.IsNotDeletedRule</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="moveFolder">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="extends" sv:type="String">
+                        <sv:value>../move</sv:value>
+                    </sv:property>
+                </sv:node>
             </sv:node>
-          </sv:node>
+            <sv:node sv:name="actionbar">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:property sv:name="defaultAction" sv:type="String">
+                    <sv:value>editUrl</sv:value>
+                </sv:property>
+                <sv:node sv:name="sections">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="root">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="groups">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="addActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="addUrl">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="addFolder">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                        </sv:node>
+                        <sv:node sv:name="availability">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:property sv:name="nodes" sv:type="String">
+                                <sv:value>false</sv:value>
+                            </sv:property>
+                            <sv:property sv:name="root" sv:type="String">
+                                <sv:value>true</sv:value>
+                            </sv:property>
+                        </sv:node>
+                    </sv:node>
+                    <sv:node sv:name="folder">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="availability">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="nodeTypes">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="mgnl-folder" sv:type="String">
+                                    <sv:value>mgnl:folder</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                        <sv:node sv:name="groups">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="addActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="addUrl">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="addFolder">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="confirmDeleteFolder">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                            <sv:node sv:name="editActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="editFolder">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="moveFolder">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                            <sv:node sv:name="activationActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="activate">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="activateRecursive">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="deactivate">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                            <sv:node sv:name="importExportActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="export">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="import">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                    <sv:node sv:name="url">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="groups">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="addActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="addUrl">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="confirmDeleteUrl">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                            <sv:node sv:name="editActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="editUrl">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="preview">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="viewCode">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="move">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                            <sv:node sv:name="activationActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="activate">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="deactivate">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                        </sv:node>
+                        <sv:node sv:name="availability">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="nodeTypes">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="vanityUrl" sv:type="String">
+                                    <sv:value>mgnl:vanityUrl</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                    <sv:node sv:name="multiple">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="groups">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="deleteActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="confirmDeleteUrl">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                            <sv:node sv:name="activationActions">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="items">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="activate">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                    <sv:node sv:name="deactivate">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+            </sv:node>
+            <sv:node sv:name="workbench">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:property sv:name="dropConstraintClass" sv:type="String">
+                    <sv:value>com.aperto.magnolia.vanity.app.VanityUrlDropConstraint</sv:value>
+                </sv:property>
+                <sv:property sv:name="editable" sv:type="String">
+                    <sv:value>false</sv:value>
+                </sv:property>
+                <sv:node sv:name="contentViews">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="tree">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="class" sv:type="String">
+                            <sv:value>info.magnolia.ui.workbench.tree.TreePresenterDefinition</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="columns">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:property sv:name="extends" sv:type="String">
+                                <sv:value>../../list/columns</sv:value>
+                            </sv:property>
+                        </sv:node>
+                    </sv:node>
+                    <sv:node sv:name="list">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="class" sv:type="String">
+                            <sv:value>info.magnolia.ui.workbench.list.ListPresenterDefinition</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="columns">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="name">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="class" sv:type="String">
+                                    <sv:value>info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="expandRatio" sv:type="Double">
+                                    <sv:value>2.0</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="formatterClass" sv:type="String">
+                                    <sv:value>com.aperto.magnolia.vanity.app.FolderUrlNameColumnFormatter</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="propertyName" sv:type="String">
+                                    <sv:value>vanityUrl</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="sortable" sv:type="String">
+                                    <sv:value>true</sv:value>
+                                </sv:property>
+                            </sv:node>
+                            <sv:node sv:name="site">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="class" sv:type="String">
+                                    <sv:value>info.magnolia.ui.workbench.column.definition.PropertyColumnDefinition</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="expandRatio" sv:type="Double">
+                                    <sv:value>1.0</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="propertyName" sv:type="String">
+                                    <sv:value>site</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="sortable" sv:type="String">
+                                    <sv:value>true</sv:value>
+                                </sv:property>
+                            </sv:node>
+                            <sv:node sv:name="link">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="class" sv:type="String">
+                                    <sv:value>com.aperto.magnolia.vanity.app.LinkColumnDefinition</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="expandRatio" sv:type="Double">
+                                    <sv:value>3.0</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="sortable" sv:type="String">
+                                    <sv:value>true</sv:value>
+                                </sv:property>
+                            </sv:node>
+                            <sv:node sv:name="status">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="class" sv:type="String">
+                                    <sv:value>info.magnolia.ui.workbench.column.definition.StatusColumnDefinition</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="displayInChooseDialog" sv:type="Boolean">
+                                    <sv:value>false</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="formatterClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.workbench.column.StatusColumnFormatter</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="width" sv:type="Long">
+                                    <sv:value>46</sv:value>
+                                </sv:property>
+                            </sv:node>
+                            <sv:node sv:name="moddate">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="class" sv:type="String">
+                                    <sv:value>info.magnolia.ui.workbench.column.definition.MetaDataColumnDefinition</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="displayInChooseDialog" sv:type="Boolean">
+                                    <sv:value>false</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="formatterClass" sv:type="String">
+                                    <sv:value>info.magnolia.ui.workbench.column.DateColumnFormatter</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="propertyName" sv:type="String">
+                                    <sv:value>mgnl:lastModified</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="sortable" sv:type="String">
+                                    <sv:value>true</sv:value>
+                                </sv:property>
+                                <sv:property sv:name="width" sv:type="Long">
+                                    <sv:value>160</sv:value>
+                                </sv:property>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                    <sv:node sv:name="search">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="class" sv:type="String">
+                            <sv:value>info.magnolia.ui.workbench.search.SearchPresenterDefinition</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="columns">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:property sv:name="extends" sv:type="String">
+                                <sv:value>../../list/columns</sv:value>
+                            </sv:property>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+            </sv:node>
+            <sv:node sv:name="imageProvider">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:property sv:name="class" sv:type="String">
+                    <sv:value>info.magnolia.ui.imageprovider.definition.ConfiguredImageProviderDefinition</sv:value>
+                </sv:property>
+                <sv:property sv:name="imageProviderClass" sv:type="String">
+                    <sv:value>info.magnolia.ui.imageprovider.DefaultImageProvider</sv:value>
+                </sv:property>
+                <sv:property sv:name="originalImageNodeName" sv:type="String">
+                    <sv:value>qrCode</sv:value>
+                </sv:property>
+            </sv:node>
+            <sv:node sv:name="contentConnector">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:property sv:name="defaultOrder" sv:type="String">
+                    <sv:value>jcrName</sv:value>
+                </sv:property>
+                <sv:property sv:name="includeProperties" sv:type="String">
+                    <sv:value>false</sv:value>
+                </sv:property>
+                <sv:property sv:name="rootPath" sv:type="String">
+                    <sv:value>/</sv:value>
+                </sv:property>
+                <sv:property sv:name="workspace" sv:type="String">
+                    <sv:value>vanityUrls</sv:value>
+                </sv:property>
+                <sv:node sv:name="nodeTypes">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="vanityUrl">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="icon" sv:type="String">
+                            <sv:value>icon-favorites</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="name" sv:type="String">
+                            <sv:value>mgnl:vanityUrl</sv:value>
+                        </sv:property>
+                    </sv:node>
+                    <sv:node sv:name="folder">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="icon" sv:type="String">
+                            <sv:value>icon-folder-l</sv:value>
+                        </sv:property>
+                        <sv:property sv:name="name" sv:type="String">
+                            <sv:value>mgnl:folder</sv:value>
+                        </sv:property>
+                    </sv:node>
+                </sv:node>
+            </sv:node>
         </sv:node>
-      </sv:node>
-      <sv:node sv:name="actions">
+        <sv:node sv:name="detail">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>mgnl:contentNode</sv:value>
+            </sv:property>
+            <sv:property sv:name="class" sv:type="String">
+                <sv:value>info.magnolia.ui.contentapp.detail.DetailSubAppDescriptor</sv:value>
+            </sv:property>
+            <sv:property sv:name="subAppClass" sv:type="String">
+                <sv:value>com.aperto.magnolia.vanity.app.VanityUrlDetailSubApp</sv:value>
+            </sv:property>
+            <sv:node sv:name="editor">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:node sv:name="nodeType">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="icon" sv:type="String">
+                        <sv:value>icon-node-content</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="name" sv:type="String">
+                        <sv:value>mgnl:vanityUrl</sv:value>
+                    </sv:property>
+                </sv:node>
+                <sv:node sv:name="actions">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="commit">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                    </sv:node>
+                    <sv:node sv:name="cancel">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                    </sv:node>
+                </sv:node>
+                <sv:node sv:name="form">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:node sv:name="tabs">
+                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                            <sv:value>mgnl:contentNode</sv:value>
+                        </sv:property>
+                        <sv:node sv:name="vanityUrl">
+                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                <sv:value>mgnl:contentNode</sv:value>
+                            </sv:property>
+                            <sv:node sv:name="fields">
+                                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                    <sv:value>mgnl:contentNode</sv:value>
+                                </sv:property>
+                                <sv:node sv:name="vanityUrl">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="class" sv:type="String">
+                                        <sv:value>info.magnolia.ui.form.field.definition.TextFieldDefinition</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="required" sv:type="Boolean">
+                                        <sv:value>true</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="validators">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                        <sv:node sv:name="valid">
+                                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                                <sv:value>mgnl:contentNode</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="class" sv:type="String">
+                                                <sv:value>info.magnolia.ui.form.validator.definition.RegexpValidatorDefinition</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="errorMessage" sv:type="String">
+                                                <sv:value>vanityUrl.errorMessage.invalid</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="pattern" sv:type="String">
+                                                <sv:value>^/.+$</sv:value>
+                                            </sv:property>
+                                        </sv:node>
+                                        <sv:node sv:name="unique">
+                                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                                <sv:value>mgnl:contentNode</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="class" sv:type="String">
+                                                <sv:value>com.aperto.magnolia.vanity.app.UniqueVanityUrlValidatorDefinition</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="errorMessage" sv:type="String">
+                                                <sv:value>vanityUrl.errorMessage.notUnique</sv:value>
+                                            </sv:property>
+                                        </sv:node>
+                                    </sv:node>
+                                </sv:node>
+                                <sv:node sv:name="site">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="class" sv:type="String">
+                                        <sv:value>com.aperto.magnolia.vanity.app.SiteSelectFieldDefinition</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="defaultValue" sv:type="String">
+                                        <sv:value>default</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="required" sv:type="Boolean">
+                                        <sv:value>true</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="sortOptions" sv:type="Boolean">
+                                        <sv:value>false</sv:value>
+                                    </sv:property>
+                                </sv:node>
+                                <sv:node sv:name="link">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="appName" sv:type="String">
+                                        <sv:value>pages</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="class" sv:type="String">
+                                        <sv:value>info.magnolia.ui.form.field.definition.LinkFieldDefinition</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="required" sv:type="Boolean">
+                                        <sv:value>true</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="targetWorkspace" sv:type="String">
+                                        <sv:value>website</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="type" sv:type="String">
+                                        <sv:value>String</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="identifierToPathConverter">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                        <sv:property sv:name="class" sv:type="String">
+                                            <sv:value>com.aperto.magnolia.vanity.app.LinkConverter</sv:value>
+                                        </sv:property>
+                                    </sv:node>
+                                </sv:node>
+                                <sv:node sv:name="linkSuffix">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="class" sv:type="String">
+                                        <sv:value>info.magnolia.ui.form.field.definition.TextFieldDefinition</sv:value>
+                                    </sv:property>
+                                </sv:node>
+                                <sv:node sv:name="type">
+                                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                        <sv:value>mgnl:contentNode</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="class" sv:type="String">
+                                        <sv:value>info.magnolia.ui.form.field.definition.OptionGroupFieldDefinition</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="required" sv:type="Boolean">
+                                        <sv:value>true</sv:value>
+                                    </sv:property>
+                                    <sv:property sv:name="sortOptions" sv:type="Boolean">
+                                        <sv:value>false</sv:value>
+                                    </sv:property>
+                                    <sv:node sv:name="options">
+                                        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                            <sv:value>mgnl:contentNode</sv:value>
+                                        </sv:property>
+                                        <sv:node sv:name="301">
+                                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                                <sv:value>mgnl:contentNode</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="selected" sv:type="Boolean">
+                                                <sv:value>true</sv:value>
+                                            </sv:property>
+                                        </sv:node>
+                                        <sv:node sv:name="302">
+                                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                                <sv:value>mgnl:contentNode</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="value" sv:type="String">
+                                                <sv:value>302</sv:value>
+                                            </sv:property>
+                                        </sv:node>
+                                        <sv:node sv:name="forward">
+                                            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                                                <sv:value>mgnl:contentNode</sv:value>
+                                            </sv:property>
+                                            <sv:property sv:name="value" sv:type="String">
+                                                <sv:value>forward</sv:value>
+                                            </sv:property>
+                                        </sv:node>
+                                    </sv:node>
+                                </sv:node>
+                            </sv:node>
+                        </sv:node>
+                    </sv:node>
+                </sv:node>
+            </sv:node>
+            <sv:node sv:name="actions">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:node sv:name="commit">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.form.action.SaveFormActionDefinition</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="implementationClass" sv:type="String">
+                        <sv:value>com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction</sv:value>
+                    </sv:property>
+                </sv:node>
+                <sv:node sv:name="cancel">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>mgnl:contentNode</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="class" sv:type="String">
+                        <sv:value>info.magnolia.ui.form.action.CancelFormActionDefinition</sv:value>
+                    </sv:property>
+                </sv:node>
+            </sv:node>
+            <sv:node sv:name="contentConnector">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>mgnl:contentNode</sv:value>
+                </sv:property>
+                <sv:property sv:name="extends" sv:type="String">
+                    <sv:value>../../browser/contentConnector</sv:value>
+                </sv:property>
+            </sv:node>
+        </sv:node>
+        <sv:node sv:name="preview">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>mgnl:contentNode</sv:value>
+            </sv:property>
+            <sv:property sv:name="class" sv:type="String">
+                <sv:value>info.magnolia.ui.framework.app.embedded.EmbeddedPageSubAppDescriptor</sv:value>
+            </sv:property>
+            <sv:property sv:name="label" sv:type="String">
+                <sv:value>vanityUrl.app.preview.label</sv:value>
+            </sv:property>
+            <sv:property sv:name="subAppClass" sv:type="String">
+                <sv:value>info.magnolia.ui.framework.app.embedded.EmbeddedPageSubApp</sv:value>
+            </sv:property>
+        </sv:node>
+    </sv:node>
+    <sv:node sv:name="permissions">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
-        </sv:property>
-        <sv:node sv:name="commit">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.form.action.SaveFormActionDefinition</sv:value>
-          </sv:property>
-          <sv:property sv:name="implementationClass" sv:type="String">
-            <sv:value>com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction</sv:value>
-          </sv:property>
-        </sv:node>
-        <sv:node sv:name="cancel">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>mgnl:contentNode</sv:value>
-          </sv:property>
-          <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.form.action.CancelFormActionDefinition</sv:value>
-          </sv:property>
-        </sv:node>
-      </sv:node>
-      <sv:node sv:name="contentConnector">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mgnl:contentNode</sv:value>
         </sv:property>
-        <sv:property sv:name="extends" sv:type="String">
-          <sv:value>../../browser/contentConnector</sv:value>
-        </sv:property>
-      </sv:node>
+        <sv:node sv:name="roles">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>mgnl:contentNode</sv:value>
+            </sv:property>
+            <sv:property sv:name="canAccessVanityUrlApp" sv:type="String">
+                <sv:value>canAccessVanityUrlApp</sv:value>
+            </sv:property>
+        </sv:node>
     </sv:node>
-    <sv:node sv:name="preview">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mgnl:contentNode</sv:value>
-      </sv:property>
-      <sv:property sv:name="class" sv:type="String">
-        <sv:value>info.magnolia.ui.framework.app.embedded.EmbeddedPageSubAppDescriptor</sv:value>
-      </sv:property>
-      <sv:property sv:name="label" sv:type="String">
-        <sv:value>vanityUrl.app.preview.label</sv:value>
-      </sv:property>
-      <sv:property sv:name="subAppClass" sv:type="String">
-        <sv:value>info.magnolia.ui.framework.app.embedded.EmbeddedPageSubApp</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-  <sv:node sv:name="permissions">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>mgnl:contentNode</sv:value>
-    </sv:property>
-    <sv:node sv:name="roles">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mgnl:contentNode</sv:value>
-      </sv:property>
-      <sv:property sv:name="canAccessVanityUrlApp" sv:type="String">
-        <sv:value>canAccessVanityUrlApp</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
 </sv:node>

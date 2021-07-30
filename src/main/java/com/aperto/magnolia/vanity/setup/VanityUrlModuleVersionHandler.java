@@ -28,7 +28,9 @@ import info.magnolia.module.InstallContext;
 import info.magnolia.module.delta.BootstrapConditionally;
 import info.magnolia.module.delta.BootstrapSingleModuleResource;
 import info.magnolia.module.delta.DeltaBuilder;
+import info.magnolia.module.delta.RemoveNodeTask;
 import info.magnolia.module.delta.RemovePropertyTask;
+import info.magnolia.module.delta.SetPropertyTask;
 import info.magnolia.module.delta.Task;
 
 import java.util.ArrayList;
@@ -83,7 +85,9 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
         register(update150);
 
         DeltaBuilder update154 = DeltaBuilder.update("1.5.4", "Update to version 1.5.4");
-        update154.addTask(new RemovePropertyTask("Remove wrong app config", "Remove recursive flag in activate action in app.", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/activate", "recursive"));
+        update154.addTask(new RemovePropertyTask("Remove wrong app activate config", "Remove recursive flag in activate action in app.", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/activate", "recursive"));
+        update154.addTask(new SetPropertyTask("Fix folder delete action config", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/confirmDeleteFolder", "successActionName", "delete"));
+        update154.addTask(new RemoveNodeTask("Remove wrong app action config", "Remove deleteFolder action in app.", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/deleteFolder"));
         register(update154);
     }
 
