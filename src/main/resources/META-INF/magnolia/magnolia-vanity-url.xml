@@ -23,7 +23,7 @@
 
 <!DOCTYPE module SYSTEM "module.dtd" >
 <module>
-    <name>magnolia-vanity-url</name>
+    <name>${project.artifactId}</name>
     <displayName>${project.name}</displayName>
     <description>${project.description}</description>
     <class>com.aperto.magnolia.vanity.VanityUrlModule</class>

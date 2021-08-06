@@ -4,22 +4,24 @@
 
     <groupId>com.aperto.magkit</groupId>
     <artifactId>magnolia-vanity-url</artifactId>
-    <version>1.5.4-SNAPSHOT</version>
+    <version>1.6.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>magnolia-vanity-url Magnolia Module</name>
 
     <inceptionYear>2013</inceptionYear>
 
     <organization>
-        <name>Aperto AG</name>
-        <url>http://www.aperto.de</url>
+        <name>Aperto – An IBM Company</name>
+        <url>https://www.aperto.com</url>
     </organization>
 
     <properties>
-        <magnoliaVersion>5.6</magnoliaVersion>
+        <magnoliaVersion>6.2.7</magnoliaVersion>
+        <magnolia.site.version>1.4</magnolia.site.version>
+        <qrgen.version>1.4</qrgen.version>
 
-        <source.javaversion>1.8</source.javaversion>
-        <target.javaversion>1.8</target.javaversion>
+        <source.javaversion>11</source.javaversion>
+        <target.javaversion>11</target.javaversion>
 
         <source.encoding>UTF-8</source.encoding>
         <project.build.sourceEncoding>${source.encoding}</project.build.sourceEncoding>
@@ -30,16 +32,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.6</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.5</version>
-        </dependency>
         <dependency>
             <groupId>info.magnolia.ui</groupId>
             <artifactId>magnolia-ui-admincentral</artifactId>
@@ -52,11 +44,6 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>info.magnolia.ui</groupId>
-            <artifactId>magnolia-ui-contentapp</artifactId>
-            <version>${magnoliaVersion}</version>
-        </dependency>
-        <dependency>
             <groupId>info.magnolia.core</groupId>
             <artifactId>magnolia-virtual-uri</artifactId>
             <version>${magnoliaVersion}</version>
@@ -64,17 +51,17 @@
         <dependency>
             <groupId>info.magnolia.site</groupId>
             <artifactId>magnolia-site</artifactId>
-            <version>1.2</version>
+            <version>${magnolia.site.version}</version>
         </dependency>
         <dependency>
             <groupId>info.magnolia.site</groupId>
             <artifactId>magnolia-site-app</artifactId>
-            <version>1.2</version>
+            <version>${magnolia.site.version}</version>
         </dependency>
         <dependency>
             <groupId>net.glxn</groupId>
             <artifactId>qrgen</artifactId>
-            <version>1.4</version>
+            <version>${qrgen.version}</version>
         </dependency>
 
         <dependency>

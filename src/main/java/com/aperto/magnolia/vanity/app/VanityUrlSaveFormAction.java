@@ -23,7 +23,6 @@ package com.aperto.magnolia.vanity.app;
  */
 
 import com.aperto.magnolia.vanity.VanityUrlService;
-import info.magnolia.cms.beans.runtime.FileProperties;
 import info.magnolia.cms.core.FileSystemHelper;
 import info.magnolia.i18nsystem.SimpleTranslator;
 import info.magnolia.jcr.util.NodeNameHelper;
@@ -153,10 +152,10 @@ public class VanityUrlSaveFormAction extends SaveFormAction {
                     data.setValue(binary);
                 }
 
-                setProperty(qrCodeNode, FileProperties.PROPERTY_FILENAME, fileName);
-                setProperty(qrCodeNode, FileProperties.PROPERTY_CONTENTTYPE, MIME_TYPE);
+                setProperty(qrCodeNode, info.magnolia.cms.beans.runtime.File.PROPERTY_FILENAME, fileName);
+                setProperty(qrCodeNode, info.magnolia.cms.beans.runtime.File.PROPERTY_CONTENTTYPE, MIME_TYPE);
                 Calendar calValue = new GregorianCalendar(TimeZone.getDefault());
-                setProperty(qrCodeNode, FileProperties.PROPERTY_LASTMODIFIED, calValue);
+                setProperty(qrCodeNode, info.magnolia.cms.beans.runtime.File.PROPERTY_LASTMODIFIED, calValue);
             } catch (RepositoryException re) {
                 LOGGER.error("Could not get Binary. Upload will not be performed", re);
             }

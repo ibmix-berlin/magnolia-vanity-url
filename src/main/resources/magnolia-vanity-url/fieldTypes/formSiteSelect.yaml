@@ -1,0 +1,2 @@
+definitionClass: com.aperto.magnolia.vanity.app.SiteSelectFieldDefinition
+factoryClass: info.magnolia.ui.form.field.factory.SelectFieldFactory

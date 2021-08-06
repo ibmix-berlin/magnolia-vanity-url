@@ -10,12 +10,12 @@ package com.aperto.magnolia.vanity.setup;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -89,6 +89,11 @@ public class VanityUrlModuleVersionHandler extends DefaultModuleVersionHandler {
         update154.addTask(new SetPropertyTask("Fix folder delete action config", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/confirmDeleteFolder", "successActionName", "delete"));
         update154.addTask(new RemoveNodeTask("Remove wrong app action config", "Remove deleteFolder action in app.", CONFIG, "/modules/magnolia-vanity-url/apps/vanityUrl/subApps/browser/actions/deleteFolder"));
         register(update154);
+
+        DeltaBuilder update160 = DeltaBuilder.update("1.6.0", "Update to version 1.6.0");
+        update160.addTask(new RemoveNodeTask("Remove jcr uri mapping config", "Remove virtual uri mapping in jcr. It's in yaml now.", CONFIG, "/modules/magnolia-vanity-url/virtualURIMapping"));
+        update160.addTask(new RemoveNodeTask("Remove jcr field types config", "Remove field types in jcr. It's in yaml now.", CONFIG, "/modules/magnolia-vanity-url/fieldTypes"));
+        register(update160);
     }
 
     @Override
