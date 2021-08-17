@@ -41,7 +41,7 @@ import javax.jcr.query.QueryResult;
 import java.util.Collections;
 import java.util.List;
 
-import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
+import static com.aperto.magnolia.vanity.VanityUrlModule.NT_VANITY;
 import static com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction.IMAGE_EXTENSION;
 import static info.magnolia.cms.util.RequestDispatchUtil.FORWARD_PREFIX;
 import static info.magnolia.cms.util.RequestDispatchUtil.PERMANENT_PREFIX;
@@ -58,6 +58,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.removeStart;
 import static org.apache.commons.lang3.StringUtils.replace;
+import static org.apache.commons.lang3.StringUtils.startsWithIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.substringAfter;
 
 /**
@@ -69,7 +70,7 @@ import static org.apache.commons.lang3.StringUtils.substringAfter;
 public class VanityUrlService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VanityUrlService.class);
 
-    private static final String QUERY = "select * from [mgnl:vanityUrl] where vanityUrl = $vanityUrl and site = $site";
+    private static final String QUERY = "select * from [" + NT_VANITY + "] where vanityUrl = $vanityUrl and site = $site";
     public static final String NN_IMAGE = "qrCode";
     public static final String DEF_SITE = "default";
     public static final String PN_SITE = "site";
@@ -263,5 +264,9 @@ public class VanityUrlService {
             LOGGER.debug("Error getting node for {}.", nodeId, e);
         }
         return node;
+    }
+
+    static boolean isExternalLink(String linkValue) {
+        return startsWithIgnoreCase(linkValue, "https://") || startsWithIgnoreCase(linkValue, "http://");
     }
 }

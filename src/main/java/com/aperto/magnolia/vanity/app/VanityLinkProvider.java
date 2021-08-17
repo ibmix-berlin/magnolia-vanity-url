@@ -4,7 +4,7 @@ package com.aperto.magnolia.vanity.app;
  * #%L
  * magnolia-vanity-url Magnolia Module
  * %%
- * Copyright (C) 2013 - 2018 Aperto AG
+ * Copyright (C) 2013 - 2021 Aperto – An IBM Company
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,33 +22,31 @@ package com.aperto.magnolia.vanity.app;
  * #L%
  */
 
+
 import com.aperto.magnolia.vanity.VanityUrlService;
-import com.vaadin.v7.data.Item;
-import com.vaadin.v7.data.Validator;
-import info.magnolia.ui.form.validator.factory.AbstractFieldValidatorFactory;
+import com.machinezoo.noexception.Exceptions;
+import com.vaadin.data.ValueProvider;
 
 import javax.inject.Inject;
+import javax.jcr.Item;
+import javax.jcr.Node;
 
 /**
- * Validator factory.
+ * Vanity url link column value provider.
  *
  * @author frank.sommer
- * @since 24.01.2018
+ * @since 1.6.0
  */
-public class UniqueVanityUrlValidatorFactory extends AbstractFieldValidatorFactory<UniqueVanityUrlValidatorDefinition> {
-
-    private final Item _item;
+public class VanityLinkProvider implements ValueProvider<Item, String> {
     private final VanityUrlService _vanityUrlService;
 
     @Inject
-    public UniqueVanityUrlValidatorFactory(final UniqueVanityUrlValidatorDefinition definition, final Item item, final VanityUrlService vanityUrlService) {
-        super(definition);
-        _item = item;
+    public VanityLinkProvider(VanityUrlService vanityUrlService) {
         _vanityUrlService = vanityUrlService;
     }
 
     @Override
-    public Validator createValidator() {
-        return new UniqueVanityUrlValidator(definition, _item, _vanityUrlService);
+    public String apply(Item item) {
+        return Exceptions.wrap().get(() -> _vanityUrlService.createPublicUrl((Node) item));
     }
 }

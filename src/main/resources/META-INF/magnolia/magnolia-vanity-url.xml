@@ -38,6 +38,14 @@
         </component>
     </components>
 
+    <components>
+        <id>datasource-sitelist</id>
+        <component>
+            <type>info.magnolia.ui.field.SelectFieldSupport</type>
+            <implementation>info.magnolia.ui.datasource.optionlist.OptionSelectFieldSupport</implementation>
+        </component>
+    </components>
+
     <dependencies>
         <dependency>
             <name>ui-admincentral</name>

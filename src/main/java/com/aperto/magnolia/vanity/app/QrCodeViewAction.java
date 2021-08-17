@@ -23,13 +23,12 @@ package com.aperto.magnolia.vanity.app;
  */
 
 import com.aperto.magnolia.vanity.VanityUrlService;
+import info.magnolia.ui.ValueContext;
 import info.magnolia.ui.api.action.AbstractAction;
-import info.magnolia.ui.api.action.ActionExecutionException;
 import info.magnolia.ui.api.location.DefaultLocation;
 import info.magnolia.ui.api.location.Location;
 import info.magnolia.ui.api.location.LocationController;
-import info.magnolia.ui.contentapp.detail.action.AbstractItemActionDefinition;
-import info.magnolia.ui.vaadin.integration.jcr.AbstractJcrNodeAdapter;
+import info.magnolia.ui.contentapp.action.OpenLocationActionDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,28 +44,29 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
  * @author frank.sommer
  * @since 28.05.14
  */
-public class QrCodeViewAction extends AbstractAction<AbstractItemActionDefinition> {
+public class QrCodeViewAction extends AbstractAction<OpenLocationActionDefinition> {
     private static final Logger LOGGER = LoggerFactory.getLogger(QrCodeViewAction.class);
 
-    private final AbstractJcrNodeAdapter _nodeItemToEdit;
     private final LocationController _locationController;
+    private final ValueContext<Node> _valueContext;
     private VanityUrlService _vanityUrlService;
 
     @Inject
-    public QrCodeViewAction(AbstractItemActionDefinition definition, AbstractJcrNodeAdapter nodeItemToEdit, LocationController locationController) {
+    public QrCodeViewAction(OpenLocationActionDefinition definition, ValueContext<Node> valueContext, LocationController locationController) {
         super(definition);
-        _nodeItemToEdit = nodeItemToEdit;
         _locationController = locationController;
+        _valueContext = valueContext;
     }
 
     @Override
-    public void execute() throws ActionExecutionException {
-        LOGGER.debug("Execute preview action ...");
-        Node node = _nodeItemToEdit.getJcrItem();
-        String link = _vanityUrlService.createImageLink(node);
-        if (isNotEmpty(link)) {
-            Location location = new DefaultLocation(LOCATION_TYPE_APP, getDefinition().getAppName(), getDefinition().getSubAppId(), link);
-            _locationController.goTo(location);
+    public void execute() {
+        LOGGER.debug("Execute qr code view action ...");
+        if (_valueContext.getSingle().isPresent()) {
+            String link = _vanityUrlService.createImageLink(_valueContext.getSingle().get());
+            if (isNotEmpty(link)) {
+                Location location = new DefaultLocation(LOCATION_TYPE_APP, getDefinition().getAppName(), getDefinition().getSubAppId(), link);
+                _locationController.goTo(location);
+            }
         }
     }
 

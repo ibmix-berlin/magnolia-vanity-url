@@ -32,7 +32,7 @@ import javax.jcr.Node;
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_LINK;
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_SUFFIX;
 import static com.aperto.magnolia.vanity.VanityUrlService.PN_VANITY_URL;
-import static com.aperto.magnolia.vanity.app.LinkConverter.isExternalLink;
+import static com.aperto.magnolia.vanity.VanityUrlService.isExternalLink;
 import static info.magnolia.jcr.util.NodeUtil.getPathIfPossible;
 import static info.magnolia.jcr.util.PropertyUtil.getString;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
