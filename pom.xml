@@ -225,11 +225,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.9</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.2.1</version>
                 </plugin>
@@ -252,7 +247,7 @@
                         <pushChanges>false</pushChanges>
                         <localCheckout>true</localCheckout>
                         <goals>deploy</goals>
-                        <releaseProfiles>javadoc</releaseProfiles>
+                        <!--releaseProfiles>javadoc</releaseProfiles-->
                     </configuration>
                 </plugin>
                 <!--
@@ -308,16 +303,6 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
                         <executions>
                             <execution>
                                 <goals>
