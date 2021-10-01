@@ -115,7 +115,6 @@
 
     <!-- Look for empty @param comments ... -->
     <module name="TreeWalker">
-        <property name="cacheFile" value="target/checkstyle.cache"/>
         <property name="tabWidth" value="4"/>
 
         <module name="SuppressionCommentFilter"/>

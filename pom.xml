@@ -131,7 +131,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>1.7</version>
+                <version>2.0.0</version>
                 <configuration>
                     <licenseName>gpl3_license</licenseName>
                     <licenseResolver>${project.baseUri}/src/license</licenseResolver>
@@ -161,7 +161,7 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.2</version>
                     <configuration>
                         <configLocation>${checkstyle.config}/checkstyle-rules.xml</configLocation>
                         <failsOnError>true</failsOnError>
@@ -184,7 +184,7 @@
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
-                            <version>8.18</version>
+                            <version>9.0</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -199,14 +199,14 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.4.3</version>
+                    <version>3.2.0</version>
                     <configuration>
                         <encoding>${source.encoding}</encoding>
                     </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.3.1</version>
+                    <version>3.2.0</version>
                     <executions>
                         <execution>
                             <id>create-test-jar</id>
@@ -224,12 +224,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>2.2.1</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>2.5</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <!--
                     This plugin is used to release a project with Maven, saving a lot of repetitive, manual work. Releasing a project is
@@ -247,15 +247,6 @@
                         <goals>deploy</goals>
                         <releaseProfiles>javadoc</releaseProfiles>
                     </configuration>
-                </plugin>
-                <!--
-                   Sonar plugin that generates various metric reports for your projects.
-                   see http://sonar.codehaus.org/
-                  -->
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>2.1</version>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
                 <plugin>
