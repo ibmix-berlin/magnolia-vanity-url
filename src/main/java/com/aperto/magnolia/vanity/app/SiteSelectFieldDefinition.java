@@ -22,11 +22,11 @@ package com.aperto.magnolia.vanity.app;
  * #L%
  */
 
-
 import info.magnolia.context.MgnlContext;
 import info.magnolia.jcr.util.NodeUtil;
-import info.magnolia.ui.form.field.definition.SelectFieldDefinition;
-import info.magnolia.ui.form.field.definition.SelectFieldOptionDefinition;
+import info.magnolia.ui.datasource.DatasourceType;
+import info.magnolia.ui.datasource.optionlist.Option;
+import info.magnolia.ui.datasource.optionlist.OptionListDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,6 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.aperto.magnolia.vanity.VanityUrlService.DEF_SITE;
@@ -48,46 +47,54 @@ import static info.magnolia.repository.RepositoryConstants.CONFIG;
  * @author frank.sommer
  * @since 05.05.14
  */
-public class SiteSelectFieldDefinition extends SelectFieldDefinition {
+@DatasourceType("siteListDatasource")
+public class SiteSelectFieldDefinition extends OptionListDefinition {
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteSelectFieldDefinition.class);
     private static final String SITE_LOCATION = "/modules/multisite/config/sites";
 
+    public SiteSelectFieldDefinition() {
+        setName("sitelist");
+    }
+
     @Override
-    public List<SelectFieldOptionDefinition> getOptions() {
-        final List<SelectFieldOptionDefinition> options = new ArrayList<>();
+    public List<Option> getOptions() {
+        List<Option> options = new ArrayList<>();
 
         final List<Node> nodes = getNodes();
         if (nodes.isEmpty()) {
             LOGGER.debug("No site nodes found.");
-            options.add(createOptionDefinition(DEF_SITE, true));
+            options.add(createOptionDefinition(DEF_SITE));
         } else {
             LOGGER.debug("{} site nodes found.", nodes.size());
             for (Node node : nodes) {
-                options.add(createOptionDefinition(NodeUtil.getName(node), options.isEmpty()));
+                options.add(createOptionDefinition(NodeUtil.getName(node)));
             }
         }
-
         return options;
     }
 
-    private SelectFieldOptionDefinition createOptionDefinition(final String name, final boolean selected) {
-        final SelectFieldOptionDefinition def = new SelectFieldOptionDefinition();
+    private Option createOptionDefinition(final String name) {
+        final Option def = new Option();
         def.setName(name);
         def.setLabel(name);
         def.setValue(name);
-        def.setSelected(selected);
         return def;
     }
 
-    protected List<Node> getNodes() {
-        List<Node> nodes = Collections.emptyList();
+    private List<Node> getNodes() {
+        List<Node> nodes = new ArrayList<>();
 
         try {
-            Session jcrSession = MgnlContext.getJCRSession(CONFIG);
-            if (jcrSession.nodeExists(SITE_LOCATION)) {
-                Node siteBaseNode = jcrSession.getNode(SITE_LOCATION);
-                nodes = asList(NodeUtil.getNodes(siteBaseNode, ContentNode.NAME));
-            }
+            MgnlContext.doInSystemContext(new MgnlContext.RepositoryOp() {
+                @Override
+                public void doExec() throws RepositoryException {
+                    Session jcrSession = MgnlContext.getJCRSession(CONFIG);
+                    if (jcrSession.nodeExists(SITE_LOCATION)) {
+                        Node siteBaseNode = jcrSession.getNode(SITE_LOCATION);
+                        nodes.addAll(asList(NodeUtil.getNodes(siteBaseNode, ContentNode.NAME)));
+                    }
+                }
+            });
         } catch (RepositoryException e) {
             LOGGER.error("Error getting site nodes.", e);
         }

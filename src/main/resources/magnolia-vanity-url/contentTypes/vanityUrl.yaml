@@ -1,0 +1,15 @@
+datasource:
+  workspace: vanityUrls
+
+model:
+  nodeType: mgnl:vanityUrl
+  properties:
+    - name: vanityUrl
+    - name: site
+    - name: link
+    - name: linkSuffix
+    - name: type
+      options:
+        - value: 301
+        - value: 302
+        - value: forward

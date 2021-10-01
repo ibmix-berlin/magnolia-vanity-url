@@ -36,7 +36,7 @@ Maven dependency
     <dependency>
         <artifactId>magnolia-vanity-url</artifactId>
         <groupId>com.aperto.magkit</groupId>
-        <version>1.5.4</version>
+        <version>1.6.0</version>
     </dependency>
 ```
 
@@ -46,6 +46,7 @@ Versions
 * Version 1.3.x is compatible with Magnolia 5.3.x
 * Version 1.4.x is compatible with Magnolia 5.4.x and 5.5.x
 * Version 1.5.x is compatible with Magnolia 5.6.x, 5.7.x, 6.1.x and 6.2.x
+* Version 1.6.x is compatible with Magnolia 6.2.x (new UI support)
 
 Magnolia Module Configuration
 -----------------

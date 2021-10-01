@@ -1,0 +1,148 @@
+!content-type:vanityUrl
+name: vanityUrls
+icon: icon-share
+label: vanityUrls.app.label
+datasource:
+  preview:
+    nodeName: qrCode
+subApps:
+  browser:
+    label: vanityUrls.app.label
+    actionbar:
+      sections:
+        item:
+          groups:
+            editActions:
+              items:
+                - name: preview
+                - name: viewCode
+        deletedItem:
+          groups:
+            editActions:
+              items:
+                - name: preview
+                - name: viewCode
+    actions:
+      preview:
+        class: info.magnolia.ui.contentapp.action.OpenLocationActionDefinition
+        implementationClass: com.aperto.magnolia.vanity.app.PreviewAction
+        icon: icon-external-webpage
+        appName: vanityUrls
+        subAppId: preview
+        availability:
+          nodeTypes:
+            vanityUrl: mgnl:vanityUrl
+          rules:
+            notDeleted:
+              $type: jcrIsDeletedRule
+              negate: true
+      viewCode:
+        class: info.magnolia.ui.contentapp.action.OpenLocationActionDefinition
+        implementationClass: com.aperto.magnolia.vanity.app.QrCodeViewAction
+        icon: icon-view
+        appName: vanityUrls
+        subAppId: preview
+        availability:
+          nodeTypes:
+            vanityUrl: mgnl:vanityUrl
+          rules:
+            notDeleted:
+              $type: jcrIsDeletedRule
+              negate: true
+    workbench:
+      contentViews:
+        list:
+          columns: !override
+            name:
+              $type: vanityUrlColumn
+              name: vanityUrl
+              nodeTypeToIcon:
+                "mgnl:folder": icon-folder-l
+                "mgnl:vanityUrl": icon-favorites
+            site:
+              width: 100
+              filterComponent:
+                $type: textField
+            link:
+              valueProvider: com.aperto.magnolia.vanity.app.VanityLinkProvider
+              width: 400
+              filterComponent:
+                $type: textField
+            activationStatus:
+              $type: jcrStatusColumn
+            lastModified:
+              $type: dateColumn
+              name: mgnl:lastModified
+              width: 190
+        tree:
+          columns: !override
+            name:
+              $type: vanityUrlColumn
+              name: vanityUrl
+              nodeTypeToIcon:
+                "mgnl:folder": icon-folder-l
+                "mgnl:vanityUrl": icon-favorites
+            site:
+              width: 100
+              filterComponent:
+                $type: textField
+            link:
+              valueProvider: com.aperto.magnolia.vanity.app.VanityLinkProvider
+              width: 400
+              filterComponent:
+                $type: textField
+            activationStatus:
+              $type: jcrStatusColumn
+            lastModified:
+              $type: dateColumn
+              name: mgnl:lastModified
+              width: 190
+  detail:
+    datasource:
+      describeByProperty: vanityUrl
+    form:
+      properties: !override
+        vanityUrl:
+          $type: textField
+          required: true
+          validators:
+            valid:
+              $type: regexpValidator
+              errorMessage: vanityUrl.errorMessage.invalid
+              pattern: ^/.+$
+        site:
+          $type: comboBoxField
+          defaultValue: fallback
+          datasource:
+            $type: siteListDatasource
+        link:
+          $type: pageLinkField
+          textInputAllowed: true
+          required: true
+        linkSuffix:
+          $type: textField
+        type:
+          $type: radioButtonGroupField
+          defaultValue: 301
+          datasource:
+            $type: optionListDatasource
+            options:
+              - name: 301
+                value: 301
+              - name: 302
+                value: 302
+              - name: forward
+                value: forward
+    actions:
+      commit:
+        $type: commitAction
+        implementationClass: com.aperto.magnolia.vanity.app.VanityUrlSaveFormAction
+      cancel:
+        $type: closeAction
+  preview:
+    class: info.magnolia.ui.framework.app.embedded.EmbeddedPageSubAppDescriptor
+    label: vanityUrls.app.preview.label
+    subAppClass: info.magnolia.ui.framework.app.embedded.EmbeddedPageSubApp
+permissions:
+  roles:
+    canAccessVanityUrlApp: canAccessVanityUrlApp
