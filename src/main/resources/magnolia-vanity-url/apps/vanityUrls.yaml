@@ -23,6 +23,8 @@ subApps:
                 - name: preview
                 - name: viewCode
     actions:
+      export:
+        format: XML
       preview:
         class: info.magnolia.ui.contentapp.action.OpenLocationActionDefinition
         implementationClass: com.aperto.magnolia.vanity.app.PreviewAction
