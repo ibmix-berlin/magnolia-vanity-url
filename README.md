@@ -9,6 +9,15 @@ Magnolia Vanity-URL App
 [![Magnolia compatibility](https://img.shields.io/badge/magnolia-6.1-brightgreen.svg)](https://www.magnolia-cms.com)
 [![Magnolia compatibility](https://img.shields.io/badge/magnolia-6.2-brightgreen.svg)](https://www.magnolia-cms.com)
 
+Attention
+---------
+Project was moved to https://github.com/IBM/magkit-vanity-url.
+
+With that also the Maven coords will be changed for all version higher than `1.6.0`.
+
+Introduction
+------------
+
 A [module](https://documentation.magnolia-cms.com/display/DOCS/Modules) containing an [app](https://documentation.magnolia-cms.com/display/DOCS/Apps) for the [Magnolia CMS](http://www.magnolia-cms.com)
 
 Allows to configure vanity URLs in the Magnolia CMS without requiring access to the config workspace. Ideal for page/content editors who are not supposed to write to the config workspace. Also creates QR codes for quick testing with your mobile phone.
